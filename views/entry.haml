@@ -1,0 +1,55 @@
+%article.hentry{ id: entry.id, class: entry.episode? ? 'episode' : nil }
+	%div
+		- if entry.episode?
+			%a.close{ href: '#' } close
+		%header
+			%h1.entry-title 
+				- if entry.episode?
+					= entry.title
+				- else
+					%a{ href: entry.path }= entry.title
+			%p.entry-metadata
+				- if entry.episode?
+					%a{ href: "/user_atom_feeds/#{escape(entry.author_name)}" }
+						%span.fn= entry.author_name
+				Updated
+				%time.updated{ datetime: entry.updated }= entry.updated.strftime('%A, %b %d')
+				| 
+				Published
+				%time.published{ pubdate: true, datetime: entry.published }= entry.published.strftime('%A, %b %d')
+		.entry-content 
+			%figure
+				%img{ src: entry.link('related')['href'], height: '', width: '', style: 'display:none;' }
+				- if entry.episode?
+					%p
+						%audio{ controls: true, preload: 'none' }
+							- entry.links('enclosure').each do |enclosure|
+								%source{ src: enclosure['href'] }
+		.entry-summary= entry.summary
+		%footer
+			- if entry.keywords
+				%nav
+					%ul.entry-keywords
+						- entry.keywords.each do |keyword|
+							%li.entry-keyword
+								%a{ href: "/keyword_atom_feeds/#{escape(keyword)}", rel: 'tag' }= keyword
+			- if entry.subscribable?
+				%a{ href: entry.link('alternate')['href'].gsub(/http/, 'itpc') } Subscribe in iTunes
+			- if entry.episode?
+				%hr
+				%section.entry-comments
+					- entry.comments.each do |comment|
+						%article
+							%header
+								%h1= comment.author
+								%time.published{ pubdate: true, datetime: comment.created_at }= comment.created_at.strftime('%A, %b %d')
+							%p= comment.content
+					%form{ action: '/comments', method: 'post' }
+						%input{ type: 'hidden', name: 'entry_id', value: entry.id }
+						%ul
+							%li
+								%input{ type: 'text', name: 'author', placeholder: 'Author' }
+							%li
+								%textarea{ name: 'content', name: 'content', placeholder: 'Comment' }
+							%li
+								%input{ type: 'submit', value: 'Comment' }

@@ -1,0 +1,23 @@
+$total-cols: 12
+$col-width: 2em
+$gutter-width: 1em
+$side-gutter-width: $gutter-width
+
+$alt: #5c3c3c
+$base: complement($alt)
+
+$default-transition-duration: .2s
+
+@mixin sans-family
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif
+	
+@mixin serif-family
+	font-family: Cambria, Georgia, serif
+	
+@mixin monospace-family
+	font-family: "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, Courier, monospace, sans-serif
+	
+@import susy/susy
+@import susy/reset
+@import defaults
+@import lightbox

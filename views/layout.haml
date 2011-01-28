@@ -1,0 +1,21 @@
+!!! 5
+%html{ lang: 'en' }
+	%head
+		%title= @title || 'Alarm'
+		%link{ href: '/stylesheets/app.css', rel: 'stylesheet', type: 'text/css' }
+	%body
+		#container
+			%header
+				%hgroup
+					%h1= 'Alarm'
+			%nav
+				%ul
+					- root.entries.each do |entry|
+						%li
+							%a{ href: entry.path }= entry.title.sub(/ Feeds/, '')
+			%div{ role: 'main' }
+				= yield
+			%footer
+				Copyright #{root.rights}
+				%address
+					%a{ href: "mailto:#{root.author_email}" }= root.author_email

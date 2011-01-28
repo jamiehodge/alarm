@@ -1,0 +1,109 @@
+@import base
+
+a
+	+hover-link
+	
+body
+	background-color: rgba(0, 0, 0, .1)	
+
+*
+	// background-color: rgba(200, 0, 0, .0125)
+	
+#container
+	background-color: rgba(255, 255, 255, 1)
+	
+	+container
+	// +show-grid('grid.png')
+	
+	+leader
+	
+	> header
+		
+		h1
+			+alpha
+			+adjust-font-size-to(36px)
+			+trailer(1, 36px)
+			@extend .allcaps
+			@extend .sans
+			@extend b
+		background-color: rgba(0, 0, 0, .0250)
+	> nav
+		+full
+		ul
+			+horizontal-list
+			li
+				+columns(2)
+				@extend .sans
+				
+	div[role="main"]
+		+alpha
+		+omega
+		+columns(10)
+		+pad(1,1)
+		+leader
+		+trailer
+		.hfeed
+			> aside
+				+leader
+				+columns(3,10)
+				img
+					width: 100%
+					height: $base-rhythm-unit * 5
+			> header
+				+leader
+				+trailer
+				+columns(6,10)
+				time
+					@extend small
+				a
+					@extend small
+			> nav
+				+full(10)
+				+leader
+				+trailer
+				@extend small
+				ul
+					+inline-block-list
+					li:after
+						content: '|'
+						opacity: .5
+			.feed-content
+				+full(10)
+				.hentry
+					> div
+						overflow: auto
+						max-height: $base-rhythm-unit * 16
+					+trailer
+					background-color: rgba(0, 0, 0, .0125)
+					.close
+						@extend small
+					header
+						+trailer
+					.entry-metadata
+						@extend small 
+					footer
+						@extend small
+						nav
+							ul
+								+horizontal-list
+					.entry-comments
+						+leader
+						header
+							+trailer(0)
+						form
+							ul
+								+no-bullets
+			> footer
+				@extend small
+		.hfeed.catalog	
+			> header,
+			> aside
+				display: none
+			> nav
+				+columns(10,10)
+	> footer
+		+alpha
+		+omega
+		+columns(12)
+		+trailer
+		@extend small
