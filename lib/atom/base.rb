@@ -5,7 +5,7 @@ module Atom
     
     def initialize(xml)
       @doc = Nokogiri::XML(xml)
-      ['title', 'author/name', 'author/email'].each do |e|
+      ['title', 'author/name', 'author/email', 'itunes|explicit'].each do |e|
         self.class.send(:define_method, symbolize_method_name(e)) { text_at(e) }
       end
     end
