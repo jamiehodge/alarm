@@ -1,6 +1,5 @@
 require 'test/unit'
 require 'test_unit_extensions'
-require 'open-uri'
 
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'atom'
