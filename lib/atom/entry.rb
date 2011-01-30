@@ -31,5 +31,14 @@ module Atom
     def subscribable?
       !(catalog? || episode?)
     end
+    
+    def video_enclosures
+      links('enclosure').select { |link| link['hasVideo'] == 'yes'  }
+    end
+    
+    def audio_enclosures
+      links('enclosure').select { |link| link['hasVideo'] == 'no' && link['hasAudio'] == 'yes' }
+    end
+    
   end
 end
