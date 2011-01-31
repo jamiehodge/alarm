@@ -3,28 +3,29 @@
 class App < Sinatra::Base
   
   configure do
-    Compass.add_project_configuration(File.join(File.dirname(__FILE__), 'config.rb'))
+    set :app_file, __FILE__
+    set :base_url, 'http://larm-radio.hum.ku.dk/podcastproducer'
     
-    DB = Sequel.sqlite(File.join(File.dirname(__FILE__), 'db', 'alarm.db'))
+    Compass.configuration.project_path = public
+    Compass.configuration.environment = environment
+    Compass.configuration.output_style = :compressed
     
-    Rakismet.key = ''
+    Sequel.sqlite(File.join(root, 'db', "#{environment}.db"))
+    
+    Rakismet.key = 'de217906739b'
     Rakismet.url = 'http://larm-radio.hum.ku.dk'
     Rakismet.host = 'rest.akismet.com'
   end
   
-  $LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'lib' )
+  $LOAD_PATH.unshift File.join(root, 'lib' )
   require 'atom'
   require 'comment'
   
   helpers do
     include Rack::Utils
     
-    def base_url
-      "http://larm-radio.hum.ku.dk/podcastproducer" # change to reflect your installation
-    end
-    
     def root_catalog
-      @root_catalog ||= Atom::Feed.with_uri("#{base_url}/catalogs")
+      @root_catalog ||= Atom::Feed.with_uri("#{settings.base_url}/catalogs")
     end
     
     def keywords_catalog
@@ -38,7 +39,7 @@ class App < Sinatra::Base
   end
   
   get '/:feed_type/?:id?' do
-    @feed = Atom::Feed.with_uri("#{base_url}/#{params[:feed_type]}/#{params[:id]}")
+    @feed = Atom::Feed.with_uri("#{settings.base_url}/#{params[:feed_type]}/#{params[:id]}")
     halt 404 unless @feed && root_catalog
     @title = "Alarm: #{@feed.title}"
     haml :feed, locals: { feed: @feed, root: root_catalog }
