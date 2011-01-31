@@ -38,7 +38,7 @@ class App < Sinatra::Base
     sass :"stylesheets/#{name}", Compass.sass_engine_options
   end
   
-  get '/:feed_type/?:id?' do
+  get '/:feed_type/:id' do
     @feed = Atom::Feed.with_uri("#{settings.base_url}/#{params[:feed_type]}/#{params[:id]}")
     halt 404 unless @feed && root_catalog
     @title = "Alarm: #{@feed.title}"
