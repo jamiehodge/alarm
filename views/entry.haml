@@ -12,11 +12,11 @@
 				- if entry.episode?
 					%a{ href: "/user_atom_feeds/#{escape(entry.author_name)}" }
 						%span.fn= entry.author_name
-				Updated
-				%time.updated{ datetime: entry.updated }= entry.updated.strftime('%A, %b %d')
-				| 
 				Published
 				%time.published{ pubdate: true, datetime: entry.published }= entry.published.strftime('%A, %b %d')
+				|
+				Updated
+				%time.updated{ datetime: entry.updated }= entry.updated.strftime('%A, %b %d')
 		.entry-content 
 			%figure
 				%img{ src: entry.link('related')['href'], height: '', width: '', style: 'display:none;' }
@@ -25,11 +25,11 @@
 						- unless entry.video_enclosures.empty?
 							%video{ controls: true, preload: 'none', poster: entry.link('related')['href'] }
 								- entry.video_enclosures.each do |enclosure|
-									%source{ src: enclosure['href'] }
+									%source{ src: enclosure['href'] }/
 						- unless entry.audio_enclosures.empty?
 							%audio{ controls: true, preload: 'none' }
 								- entry.audio_enclosures.each do |enclosure|
-									%source{ src: enclosure['href'] }
+									%source{ src: enclosure['href'] }/
 		.entry-summary= entry.summary
 		%footer
 			- if entry.keywords

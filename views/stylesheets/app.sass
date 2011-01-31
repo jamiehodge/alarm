@@ -13,7 +13,7 @@ body
 	background-color: rgba(255, 255, 255, 1)
 	
 	+container
-	// +show-grid('grid.png')
+	// +show-grid('images/grid.png')
 	
 	+leader
 	
@@ -32,15 +32,17 @@ body
 		ul
 			+horizontal-list
 			li
-				+columns(2)
-				@extend .sans
+				@extend .caps
+				@extend small
+				&:after
+					content: '|'
+					opacity: .5
 				
 	div[role="main"]
 		+alpha
 		+omega
 		+columns(10)
 		+pad(1,1)
-		+leader
 		+trailer
 		.hfeed
 			> aside

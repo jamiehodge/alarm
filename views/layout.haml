@@ -12,7 +12,7 @@
 				%ul
 					- root.entries.each do |entry|
 						%li
-							%a{ href: entry.path }= entry.title.sub(/ Feeds/, '')
+							%a{ href: entry.path }= entry.title
 			%div{ role: 'main' }
 				= yield
 			%footer
