@@ -12,7 +12,7 @@ class App < Sinatra::Base
     
     Sequel.sqlite(File.join(root, 'db', "#{environment}.db"))
     
-    Rakismet.key = 'de217906739b'
+    Rakismet.key = ''
     Rakismet.url = 'http://larm-radio.hum.ku.dk'
     Rakismet.host = 'rest.akismet.com'
   end
