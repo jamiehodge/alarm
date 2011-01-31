@@ -99,6 +99,14 @@ body
 						form
 							ul
 								+no-bullets
+								label
+									+columns(1,10)
+								textarea, input:not([type="radio"]):not([type="submit"])
+									+box-sizing(border-box) 
+									width: 100%
+								textarea
+									height: $base-rhythm-unit * 8
+									
 			> footer
 				@extend small
 		.hfeed.catalog	

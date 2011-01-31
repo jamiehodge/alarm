@@ -53,8 +53,10 @@
 						%input{ type: 'hidden', name: 'entry_id', value: entry.id }
 						%ul
 							%li
-								%input{ type: 'text', name: 'author', placeholder: 'Author' }
+								%label{ for: 'author' } Author
+								%input{ type: 'text', name: 'author', placeholder: 'Author', required: true }
 							%li
-								%textarea{ name: 'content', name: 'content', placeholder: 'Comment' }
+								%label{ for: 'content' } Content
+								%textarea{ name: 'content', name: 'content', placeholder: 'Comment', required: true }
 							%li
 								%input{ type: 'submit', value: 'Comment' }
