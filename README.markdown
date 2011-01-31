@@ -13,8 +13,7 @@ A simple web front-end for Podcast Producer's Podcast Library
 
 ## Installation
 
-1. Alter `base_url` in `app.rb` to reflect your Podcast Producer installation
-2. Enter your Akismet key and url
+1. Alter `base_url`, `Rakismet.key` and `Rakismet.url` in `app.rb` to reflect your Podcast Producer installation
 2. `mkdir db`
 3. `bundle install`
 4. `rackup`
