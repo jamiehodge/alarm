@@ -14,3 +14,5 @@ gem 'nokogiri'
 
 gem 'sequel'
 gem 'sqlite3'
+
+gem 'rakismet'

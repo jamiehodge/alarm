@@ -6,6 +6,10 @@ class App < Sinatra::Base
     Compass.add_project_configuration(File.join(File.dirname(__FILE__), 'config.rb'))
     
     DB = Sequel.sqlite(File.join(File.dirname(__FILE__), 'db', 'alarm.db'))
+    
+    Rakismet.key = ''
+    Rakismet.url = 'http://larm-radio.hum.ku.dk'
+    Rakismet.host = 'rest.akismet.com'
   end
   
   $LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'lib' )
@@ -41,7 +45,8 @@ class App < Sinatra::Base
   end
   
   post '/comments' do
-    Comment.create entry_id: params[:entry_id], author: params[:author], content: params[:content], created_at: Time.now
+    @comment = Comment.new(params.merge(created_at: Time.now, user_ip: request.ip, user_agent: request.user_agent, referrer: request.referer))
+    @comment.save unless @comment.spam?
     redirect request.referer + "##{params[:entry_id]}"
   end
   

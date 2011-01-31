@@ -1,5 +1,8 @@
 class Comment < Sequel::Model
   plugin :schema
+  include Rakismet::Model
+  
+  attr_accessor :user_ip, :user_agent, :referrer
   
   unless table_exists?
     set_schema  do
@@ -11,4 +14,5 @@ class Comment < Sequel::Model
     end
     create_table
   end
+  
 end
