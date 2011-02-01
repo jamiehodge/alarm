@@ -14,6 +14,9 @@ time
 	&:after
 		content: '|'
 		opacity: .5
+		
+hr
+	opacity: .25
 	
 #container
 	background-color: rgba(255, 255, 255, 1)
@@ -22,7 +25,7 @@ time
 	// +show-grid('images/grid.png')
 	+box-shadow(#C8C8C8, 0, 4px, 18px)
 	
-	+leader
+	+leader(2)
 	
 	> header
 		
@@ -77,10 +80,10 @@ time
 			.feed-content
 				+full(10)
 				.hentry
+					+trailer
 					> div
 						overflow: auto
 						max-height: $base-rhythm-unit * 16
-					+trailer
 					background-color: rgba(0, 0, 0, .0125)
 					.close
 						@extend small
@@ -94,6 +97,8 @@ time
 						+columns(10,10)
 					footer
 						@extend small
+						.entry-keywords
+							+leader
 						nav
 							ul
 								+horizontal-list
