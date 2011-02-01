@@ -28,8 +28,8 @@ class App < Sinatra::Base
       @root_catalog ||= Atom::Feed.with_uri("#{settings.base_url}/catalogs")
     end
     
-    def keywords_catalog
-      @keywords_catalog ||= root_catalog.entries.find { |e| e.link('alternate')['feedtype'] == "keyword_feeds_catalog" }
+    def workflow_catalog
+      @workflow_catalog ||= root_catalog.entries.find { |e| e.link('alternate')['feedtype'] == "workflow_feeds_catalog" }
     end
   end
   
@@ -52,6 +52,6 @@ class App < Sinatra::Base
   end
   
   get '/' do
-    redirect "/catalogs/#{keywords_catalog.id}"
+    redirect "/catalogs/#{workflow_catalog.id}"
   end
 end
