@@ -7,7 +7,6 @@
 		%h2.feed-subtitle= feed.subtitle
 		%time.updated{ datetime: feed.updated }= feed.updated.strftime('%A, %b %d')
 		- if feed.subscribable?
-			|
 			%a{ href: feed.link('self')['href'].gsub(/http/, 'itpc') } Subscribe in iTunes
 	%nav
 		%ul

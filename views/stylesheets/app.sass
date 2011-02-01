@@ -4,16 +4,23 @@ a
 	+hover-link
 	
 body
-	background-color: rgba(0, 0, 0, .1)	
+	background-color: #F9F9F9	
 
 *
 	// background-color: rgba(200, 0, 0, .0125)
+	
+time
+	@extend small
+	&:after
+		content: '|'
+		opacity: .5
 	
 #container
 	background-color: rgba(255, 255, 255, 1)
 	
 	+container
 	// +show-grid('images/grid.png')
+	+box-shadow(#C8C8C8, 0, 4px, 18px)
 	
 	+leader
 	
@@ -55,8 +62,6 @@ body
 				+leader
 				+trailer
 				+columns(6,10)
-				time
-					@extend small
 				a
 					@extend small
 			> nav

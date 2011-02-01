@@ -14,7 +14,6 @@
 						%span.fn= entry.author_name
 				Published
 				%time.published{ pubdate: true, datetime: entry.published }= entry.published.strftime('%A, %b %d')
-				|
 				Updated
 				%time.updated{ datetime: entry.updated }= entry.updated.strftime('%A, %b %d')
 		.entry-content 
