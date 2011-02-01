@@ -1,10 +1,10 @@
-%section.hfeed{ id: feed.id, class: feed.catalog? ? 'catalog' : nil }
+%section.hfeed.feed{ id: feed.id }
 	%aside
 		%figure
 			%img{ src: feed.logo, height: '', width: '' }
 	%header
 		%h1.feed-title= feed.title
-		%h2.feed-subtitle= feed.subtitle
+		.feed-subtitle= feed.subtitle
 		%time.updated{ datetime: feed.updated }= feed.updated.strftime('%A, %b %d')
 		- if feed.subscribable?
 			%a{ href: feed.link('self')['href'].gsub(/http/, 'itpc') } Subscribe in iTunes
@@ -15,7 +15,10 @@
 					%a{ href: "##{entry.id}" }= entry.title
 	.feed-content
 		- feed.entries.each do |entry|
-			= haml :entry, locals: { entry: entry }
+			- if entry.episode?
+				= haml :"entries/episode", locals: { entry: entry }
+			- else
+				= haml :"entries/feed", locals: { entry: entry }
 	%footer
 		
 		

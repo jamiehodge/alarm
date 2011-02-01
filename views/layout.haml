@@ -7,10 +7,11 @@
 		#container
 			%header
 				%hgroup
-					%h1= 'Alarm'
+					%a{ :href => '/' }
+						%h1= 'Alarm' || @title
 			%nav
 				%ul
-					- root.entries.each do |entry|
+					- root.entries[0..-2].each do |entry|
 						%li
 							%a{ href: entry.path }= entry.title
 			%div{ role: 'main' }

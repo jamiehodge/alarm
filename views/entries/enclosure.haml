@@ -1,0 +1,8 @@
+- unless entry.video_enclosures.empty?
+	%video{ controls: true, preload: 'none', poster: entry.link('related')['href'] }
+		- entry.video_enclosures.each do |enclosure|
+			%source{ src: enclosure['href'] }/
+- unless entry.audio_enclosures.empty?
+	%audio{ controls: true, preload: 'none' }
+		- entry.audio_enclosures.each do |enclosure|
+			%source{ src: enclosure['href'] }/

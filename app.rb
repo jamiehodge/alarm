@@ -42,7 +42,11 @@ class App < Sinatra::Base
     @feed = Atom::Feed.with_uri("#{settings.base_url}/#{params[:feed_type]}/#{params[:id]}")
     halt 404 unless @feed && root_catalog
     @title = "Alarm: #{@feed.title}"
-    haml :feed, locals: { feed: @feed, root: root_catalog }
+    if @feed.catalog?
+      haml :catalog, locals: { feed: @feed, root: root_catalog }
+    else
+      haml :feed, locals: { feed: @feed, root: root_catalog }
+    end
   end
   
   post '/comments' do

@@ -10,7 +10,6 @@ body
 	// background-color: rgba(200, 0, 0, .0125)
 	
 time
-	@extend small
 	&:after
 		content: '|'
 		opacity: .5
@@ -40,7 +39,7 @@ hr
 	> nav
 		+full
 		ul
-			+inline-block-list
+			+horizontal-list
 			li
 				@extend .caps
 				@extend small
@@ -65,18 +64,28 @@ hr
 				+leader
 				+trailer
 				+columns(6,10)
+				h2
+					@extend small
+				time,
 				a
 					@extend small
 			> nav
 				+full(10)
 				+leader
 				+trailer
-				@extend small
+				padding-top: $base-rhythm-unit
+				padding-bottom: $base-rhythm-unit
+				background-color: rgba(0, 0, 0, .0250)
 				ul
 					+inline-block-list
-					li:after
-						content: '|'
-						opacity: .5
+					li
+						&:after
+							content: '|'
+							opacity: .5
+						@extend .allcaps
+			&.catalog
+				.feed-content
+					
 			.feed-content
 				+full(10)
 				.hentry
@@ -119,12 +128,11 @@ hr
 									
 			> footer
 				@extend small
-		.hfeed.catalog	
-			> header,
-			> aside
-				display: none
+		.hfeed.catalog
 			> nav
 				+columns(10,10)
+				ul
+					+no-bullets
 	> footer
 		+alpha
 		+omega
