@@ -1,12 +1,23 @@
+// Font Sizes
+
+$base-font-size: 16px
+$base-line-height: 24px
+
+// Grid
+
 $total-cols: 12
-$col-width: 2em
+$col-width: 4em
 $gutter-width: 1em
 $side-gutter-width: $gutter-width
 
-$alt: #5c3c3c
-$base: complement($alt)
+@import susy/susy
 
-$default-transition-duration: .2s
+// Colors
+
+$base: #4c4c4c
+$alt: #777
+
+// Fonts
 
 @mixin sans-family
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif
@@ -17,7 +28,4 @@ $default-transition-duration: .2s
 @mixin monospace-family
 	font-family: "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, Courier, monospace, sans-serif
 	
-@import susy/susy
-@import susy/reset
-@import defaults
-@import lightbox
+// OTHER MIXINS

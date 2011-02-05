@@ -1,28 +1,11 @@
 @import base
-
-a
-	+hover-link
 	
-body
-	background-color: #F9F9F9	
-
-*
-	// background-color: rgba(200, 0, 0, .0125)
-	
-time
-	&:after
-		content: '|'
-		opacity: .5
-		
-hr
-	opacity: .25
-	
-#container
+#page
 	background-color: rgba(255, 255, 255, 1)
 	
 	+container
 	// +show-grid('images/grid.png')
-	+box-shadow(#C8C8C8, 0, 4px, 18px)
+	// +box-shadow(#C8C8C8, 0, 4px, 18px)
 	
 	+leader(2)
 	
@@ -35,7 +18,7 @@ hr
 			@extend .allcaps
 			@extend .sans
 			@extend b
-		background-color: rgba(0, 0, 0, .0250)
+			+replace-text('images/larm_radio.png', 0, $base-rhythm-unit * .125)
 	> nav
 		+full
 		ul
@@ -45,54 +28,48 @@ hr
 				@extend small
 				&:after
 					content: '|'
-					opacity: .5
 				
 	div[role="main"]
 		+alpha
 		+omega
-		+columns(10)
-		+pad(1,1)
+		+columns(12)
 		+trailer
 		.hfeed
 			> aside
 				+leader
-				+columns(3,10)
+				+columns(3,12)
 				img
 					width: 100%
 					height: $base-rhythm-unit * 5
 			> header
 				+leader
 				+trailer
-				+columns(6,10)
+				+columns(8,12)
 				h2
 					@extend small
 				time,
 				a
 					@extend small
 			> nav
-				+full(10)
+				+full(12)
 				+leader
 				+trailer
 				padding-top: $base-rhythm-unit
 				padding-bottom: $base-rhythm-unit
-				background-color: rgba(0, 0, 0, .0250)
 				ul
 					+inline-block-list
 					li
 						&:after
 							content: '|'
-							opacity: .5
-						@extend .allcaps
+						
 			&.catalog
-				.feed-content
-					
 			.feed-content
-				+full(10)
+				+full(12)
 				.hentry
 					+trailer
 					> div
-						overflow: auto
-						max-height: $base-rhythm-unit * 16
+						// overflow: auto
+						// max-height: $base-rhythm-unit * 16
 					background-color: rgba(0, 0, 0, .0125)
 					.close
 						@extend small
@@ -103,7 +80,7 @@ hr
 					video,
 					audio
 						+trailer
-						+columns(10,10)
+						+columns(12,12)
 					footer
 						@extend small
 						.entry-keywords
@@ -119,7 +96,7 @@ hr
 							ul
 								+no-bullets
 								label
-									+columns(1,10)
+									+columns(1,12)
 								textarea, input:not([type="radio"]):not([type="submit"])
 									+box-sizing(border-box) 
 									width: 100%
@@ -130,7 +107,7 @@ hr
 				@extend small
 		.hfeed.catalog
 			> nav
-				+columns(10,10)
+				+columns(12,12)
 				ul
 					+no-bullets
 	> footer

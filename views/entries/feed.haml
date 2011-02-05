@@ -1,15 +1,23 @@
-%article.hentry{ id: entry.id, class: entry.episode? ? 'episode' : nil }
-	%div
-		%header
-			%h1.entry-title 
-				%a{ href: entry.path }= entry.title
-			%p.entry-metadata
-				Published
-				%time.published{ pubdate: true, datetime: entry.published }= entry.published.strftime('%A, %b %d')
-				Updated
-				%time.updated{ datetime: entry.updated }= entry.updated.strftime('%A, %b %d')
-		.entry-content
-		.entry-summary= entry.summary
-		%footer
-			- if entry.subscribable?
-				%a{ href: entry.link('alternate')['href'].gsub(/http/, 'itpc') } Subscribe in iTunes
+%article.entry{ id: entry.id }
+	%nav
+		%ul
+			%li
+				%a{ href: '#' } ▲
+			%li
+				%a{ href: entry.link('alternate')['href'].gsub(/http/, 'itpc') } 
+					Abonner in iTunes
+	%header
+		%figure
+			%img{ src: entry.link('related')['href'] }
+		%h1 
+			%a{ href: entry.path }= entry.title
+		%p
+			%time{ pubdate: true, datetime: entry.published }= entry.published.strftime('%A, %b %d')
+			%time{ datetime: entry.updated }= entry.updated.strftime('%A, %b %d')
+	%p= entry.summary
+	%footer
+		%address
+			%a{ href: "mailto:#{feed.author_email}" }= feed.rights
+		
+		
+		

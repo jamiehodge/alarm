@@ -1,0 +1,147 @@
+@charset "utf-8"
+@import defaults
+
++font-face('BebasNeue', '/fonts/BebasNeue.otf')
+
+*
+	// background-color: rgba(0,0,0,.0125)
+
+h1, h2, h3, h4, h5, h6
+	font-family: BebasNeue
+	
+body
+	+susy
+	background: #eee
+	
+	#page
+		+container
+		#slideshow
+			+full
+			+leader
+			height: $base-rhythm-unit * 2
+			+trailer(2)
+			blockquote
+				+columns(6)
+				+pad(3,3)
+		> header
+			+full
+			+pad(1,1)
+			a
+				+unstyled-link
+				h1
+					+full(10)
+					+adjust-font-size-to(96px)
+					+trailer(1,96px)
+					font-family: BebasNeue
+			h2
+				display: none
+		> aside
+			+alpha
+			+columns(3)
+			+leader(1)
+			// +rotate(15deg)
+			// background-color: #FFF095
+			nav
+				ul
+					+no-bullets
+					li
+						+trailer
+		> nav
+			+alpha
+			+columns(3)
+			// +rotate(-5deg)
+			// background-color: #FFF095
+			h1
+				
+			ul
+				+no-bullets
+				li
+					+trailer
+		#content
+			+columns(9)
+			+omega
+			a
+				+link-colors(rgba(56, 24, 24, 1))
+			#main
+				+columns(6,9)
+				> article
+					+box-shadow(rgba(0, 0, 0, .2))
+				article
+					+full(9)
+					+rhythm-borders(1px, 1, $base_font_size, 'none')
+					// background-color: rgba(255, 250, 200, .9)
+					background-color: rgba(255, 255, 255, .75)
+					// +linear-gradient(color-stops(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), left, image-url('/images/noise.png'))
+					> header
+						+full(9)
+						h1
+							+trailer(0)
+						figure
+							+columns(3,9)
+						time
+							@extend small
+						+trailer
+					> nav
+						+full(9)
+						ul
+							+inline-block-list
+							+trailer
+							li:after
+								content: '\00a0'
+						+trailer
+					figure
+						+full(9)
+						audio,
+						video
+							+columns(9,9)
+						figcaption
+							+columns(2,9)
+							+suffix(7,9)
+							@extend small
+							&:before
+								content: '('
+							&:after
+								content: ')'
+						+trailer
+					summary
+						+full(9)
+						+trailer
+					footer
+						+full(9)
+						address
+							@extend small
+						nav 
+							+full(9)
+							@extend small
+							ul
+								+horizontal-list
+							+trailer
+						.social
+							+full(9)
+							+trailer
+						.comments
+							& summary
+								@extend small
+							ul
+								+leader
+								margin-left: 0
+								li
+									+no-bullets
+					+trailer
+		> footer
+			+full
+			background: rgba(255, 255, 255, 1)
+			address
+				@extend small
+			
+a
+	+hover-link
+
+.playAll
+	font-family: BebasNeue
+	+adjust-font-size-to(24px)
+	+trailer(1, 24px)
+	+border-radius
+	background-color: #eee
+	color: #777
+	width: 100%

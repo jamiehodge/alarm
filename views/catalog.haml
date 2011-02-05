@@ -1,16 +1,16 @@
-%section.hfeed.catalog{ id: feed.id }
-	%aside
-		%figure
-			%img{ src: feed.logo, height: '', width: '' }
+%article.catalog{ id: feed.id }
 	%header
-		%h1.feed-title= feed.title
-		.feed-subtitle= feed.subtitle
-		%time.updated{ datetime: feed.updated }= feed.updated.strftime('%A, %b %d')
+		%hgroup
+			%h1= feed.title
+		%time{ datetime: feed.updated, style: 'display: none;' }= feed.updated.strftime('%A, %b %d')
+	%p{ style: 'display: none;' }= feed.subtitle
 	%nav
 		%ul
 			- feed.entries.each do |entry|
 				%li
-					%a{ href: "/atom_feeds/#{entry.id}" }= entry.title
-	.feed-content
+					%a{ href: "##{entry.id}" }= entry.title
+	- feed.entries.each do |entry|
+		= haml :"entries/feed", locals: { entry: entry, feed: feed }
 	%footer
-		
+		%address
+			%a{ href: "mailto:#{feed.author_email}" }= feed.rights

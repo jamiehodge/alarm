@@ -32,12 +32,16 @@ module Atom
       !(catalog? || episode?)
     end
     
+    def enclosures
+      links('enclosure')
+    end
+    
     def video_enclosures
-      links('enclosure').select { |link| link['hasVideo'] == 'yes'  }
+      enclosures.select { |link| link['hasVideo'] == 'yes'  }
     end
     
     def audio_enclosures
-      links('enclosure').select { |link| link['hasVideo'] == 'no' && link['hasAudio'] == 'yes' }
+      enclosures.select { |link| link['hasVideo'] == 'no' && link['hasAudio'] == 'yes' }
     end
     
   end

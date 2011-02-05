@@ -2,9 +2,14 @@
 
 class App < Sinatra::Base
   
+  mime_type :otf, 'application/octet-stream'
+  mime_type :ttf, 'application/octet-stream'
+  
   configure do
     set :app_file, __FILE__
     set :base_url, 'http://larm-radio.hum.ku.dk/podcastproducer'
+    set :home_catalog, 'E70D82E2-08B0-4A50-9E02-8547D8135F13'
+    set :latest_feed, '8D48DE8C-94CC-4B4B-8E8F-F9723154BC27' # 'F43EC952-9436-4DDA-A173-5DAE02924CC1'
     
     Compass.configuration.project_path = public
     Compass.configuration.environment = environment
@@ -28,24 +33,30 @@ class App < Sinatra::Base
       @root_catalog ||= Atom::Feed.with_uri("#{settings.base_url}/catalogs")
     end
     
-    def workflow_catalog
-      @workflow_catalog ||= root_catalog.entries.find { |e| e.link('alternate')['feedtype'] == "workflow_feeds_catalog" }
+    def home_catalog
+      @home_catalog ||= Atom::Feed.with_uri("#{settings.base_url}/atom_feeds/#{settings.home_catalog}")
     end
+    
+    def latest_feed
+      @latest_feed ||= Atom::Feed.with_uri("#{settings.base_url}/atom_feeds/#{settings.latest_feed}")
+    end
+    
+    
   end
   
-  get '/stylesheets/:name.css' do |name|
+  get '/css/:name.css' do |name|
     content_type 'text/css', charset: 'utf-8'
-    sass :"stylesheets/#{name}", Compass.sass_engine_options
+    sass :"sass/#{name}", Compass.sass_engine_options
   end
   
   get '/:feed_type/:id' do
     @feed = Atom::Feed.with_uri("#{settings.base_url}/#{params[:feed_type]}/#{params[:id]}")
-    halt 404 unless @feed && root_catalog
+    halt 404 unless @feed && root_catalog && latest_feed
     @title = "Alarm: #{@feed.title}"
     if @feed.catalog?
-      haml :catalog, locals: { feed: @feed, root: root_catalog }
+      haml :catalog, locals: { feed: @feed, root: root_catalog, latest: latest_feed }
     else
-      haml :feed, locals: { feed: @feed, root: root_catalog }
+      haml :feed, locals: { feed: @feed, root: root_catalog, latest: latest_feed }
     end
   end
   
@@ -56,6 +67,6 @@ class App < Sinatra::Base
   end
   
   get '/' do
-    redirect "/catalogs/#{workflow_catalog.id}"
+    redirect "/atom_feeds/#{home_catalog.id}"
   end
 end

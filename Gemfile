@@ -1,8 +1,7 @@
 source :rubygems
 
-gem 'compass', '= 0.10.6'
+gem 'compass'
 gem 'compass-susy-plugin', require: 'susy'
-gem 'css-lightbox'
 
 gem 'sinatra'
 gem 'rack-flash'

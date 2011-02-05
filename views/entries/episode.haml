@@ -1,20 +1,18 @@
-%article.hentry{ id: entry.id, class: entry.episode? ? 'episode' : nil }
-	%div
-		%a.close{ href: '#' } close
-		%header
-			%h1.entry-title= entry.title
-			%p.entry-metadata
-				%a{ href: "/user_atom_feeds/#{escape(entry.author_name)}" }
-					%span.fn= entry.author_name
-				Published
-				%time.published{ pubdate: true, datetime: entry.published }= entry.published.strftime('%A, %b %d')
-				Updated
-				%time.updated{ datetime: entry.updated }= entry.updated.strftime('%A, %b %d')
-		.entry-content 
-			%figure
-				= haml :"entries/enclosure", locals: { entry: entry }
-		.entry-summary= entry.summary
-		%footer
-			= haml :"entries/keyword", locals: { entry: entry }
-			%hr
-			= haml :"entries/comment", locals: { entry: entry }
+%article.entry{ id: entry.id }
+	%nav
+		%a{ href: '#' } ▲
+	%header
+		%h1= entry.title
+		%a{ href: "/user_atom_feeds/#{escape(entry.author_name)}" }= entry.author_name
+		%p
+			%time{ pubdate: true, datetime: entry.published }= entry.published.strftime('%A, %b %d')
+			%time{ datetime: entry.updated, style: 'display:none;'  }= entry.updated.strftime('%A, %b %d')
+	%figure
+		= haml :"entries/_enclosure", locals: { entry: entry }
+		%figcaption= entry.enclosures.first['duration']
+	%summary= entry.summary
+	%footer
+		= haml :"entries/_keyword", locals: { entry: entry }
+		= haml :"entries/_social", locals: { entry: entry }
+		= haml :"entries/_comment", locals: { entry: entry }
+	

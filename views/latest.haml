@@ -1,0 +1,7 @@
+%h2 Seneste
+%nav
+	%ul
+		- latest.entries.each do |entry|
+			%li
+				%a{ href: "/atom_feeds/#{latest_feed.id}##{entry.id}" }
+					= entry.title

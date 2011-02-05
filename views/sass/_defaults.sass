@@ -1,3 +1,10 @@
+// Imports
+
+@import base
+@import susy/reset
+
+// Typography
+
 html
 	text-rendering: optimizeLegibility
 	-webkit-font-smoothing: antialiased
@@ -22,10 +29,14 @@ html
 	@extend .caps
 	font-variant: small-caps
 	
+// Body
+	
 body
 	@extend .serif
 	color: $base
 	
+// Selected Text
+
 @mixin accessible-color($background: white)
 	@if lightness($background) >= 65%
 		color: $base
@@ -42,6 +53,8 @@ body
 	background: $alt
 	text-shadow: none
 	
+// Links
+	
 a
 	&:link, &:visited
 		color: $alt
@@ -52,16 +65,25 @@ a
 		text-decoration: none
 	&:focus
 		outline: thin dotted
+	
+// Headings
 
 h2, h3, h4, h5, h6
-	// +trailer
+	+trailer
 	
 h1
-	+adjust-font-size-to(21px)
+	// +adjust-font-size-to(21px)
 	// +trailer(1, 21px)
+	+adjust-font-size-to(36px)
+	+trailer(1, 36px)
 
 h1, h2
 	@extend .allcaps
+	letter-spacing: 0
+
+h2
+	+adjust-font-size-to(24px)
+	+trailer(1, 24px)
 	
 h3
 	font-weight: bold
@@ -72,6 +94,8 @@ h4
 	
 h5, h6
 	font-style: italic
+	
+// Inline
 	
 cite, em, dfn, address, i
 	font-style: italic
@@ -115,6 +139,8 @@ q
 pre, code, tt
 	@extend .mono
 	
+// Block
+	
 p
 	+trailer
 	
@@ -129,10 +155,14 @@ blockquote
 	margin: $base-rhythm-unit
 	font-style: italic
 	
+// Replaced
+	
 img
 	vertical-align: text-bottom
 	max-width: 100%
 	-ms-interpolation-mode: bicubic
+	
+// Lists
 	
 ol, ul, dl
 	+trailer
@@ -152,6 +182,8 @@ dt
 	
 dd
 	padding-left: $base-rhythm-unit
+	
+// Tables (need cellspacing=0 in the markup)
 	
 table
 	+trailer
@@ -179,6 +211,8 @@ tfoot
 caption
 	@extend .allcaps
 	
+// Forms
+	
 fieldset
 	+trailer
 	+rhythm-borders(1px)
@@ -189,3 +223,42 @@ legend
 	
 input[type=radio], input[type=checkbox]
 	vertical-align: baseline
+	
+label, input[type=button], input[type=submit], button 
+	cursor: pointer 
+
+label 
+	font-weight: bold 
+
+// box-sizing helps us control the width of inputs
+// which are otherwise very hard to manage in the grid.
+.textinput 
+	+sans-family
+	+adjust-font-size-to(14px, 1, 16px)
+	+rhythm-borders(1px, 0.25, 14px)
+	+trailer(0.5)
+	+box-sizing(border-box)
+	width: 100%
+	margin-top: 0
+	border-color: $base
+	height: $base-line-height / 14px * 1.5em 
+
+textarea 
+	@extend .textinput
+	height: $base-line-height / 14px * 6.5em
+	vertical-align: text-bottom 
+
+input 
+	&[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
+	&[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
+	&[type=number], &[type=range], &[type=search], &[type=color] 
+		@extend .textinput 
+	// reset webkit search styles
+	&[type=search] 
+		-webkit-appearance: none
+	&::-webkit-search-decoration 
+		display: none   
+
+button 
+	width: auto
+	overflow: visible

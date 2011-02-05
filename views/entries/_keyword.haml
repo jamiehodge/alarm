@@ -1,5 +1,5 @@
 %nav
-	%ul.entry-keywords
+	%ul
 		- entry.keywords.each do |keyword|
-			%li.entry-keyword
+			%li
 				%a{ href: "/keyword_atom_feeds/#{escape(keyword)}", rel: 'tag' }= keyword

@@ -1,24 +1,25 @@
-%section.hfeed.feed{ id: feed.id }
-	%aside
-		%figure
-			%img{ src: feed.logo, height: '', width: '' }
+%article.feed{ id: feed.id }
 	%header
-		%h1.feed-title= feed.title
-		.feed-subtitle= feed.subtitle
-		%time.updated{ datetime: feed.updated }= feed.updated.strftime('%A, %b %d')
-		- if feed.subscribable?
-			%a{ href: feed.link('self')['href'].gsub(/http/, 'itpc') } Subscribe in iTunes
+		%figure
+			%img{ src: feed.logo}
+		%hgroup
+			%h1= feed.title
+			%a{ href: feed.link('self')['href'].gsub(/http/, 'itpc') }
+				Abonner i iTunes
+		%time{ datetime: feed.updated }= feed.updated.strftime('%A, %b %d')
+		%p= feed.subtitle
 	%nav
+		%input.playAll{ type: 'button', value: 'Afspil alle' }
+		%h2 Genveje til udsendelser 
 		%ul
 			- feed.entries.each do |entry|
 				%li
 					%a{ href: "##{entry.id}" }= entry.title
-	.feed-content
-		- feed.entries.each do |entry|
-			- if entry.episode?
-				= haml :"entries/episode", locals: { entry: entry }
-			- else
-				= haml :"entries/feed", locals: { entry: entry }
+					= '(' + entry.enclosures.first['duration'] + ')'
+	- feed.entries.each do |entry|
+		= haml :"entries/episode", locals: { entry: entry }
 	%footer
-		
+		%address
+			%a{ href: "mailto:#{feed.author_email}" }= feed.rights
+	
 		

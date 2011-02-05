@@ -1,22 +1,71 @@
 !!! 5
 %html{ lang: 'en' }
 	%head
+		%meta{ charset: "utf-8" }/
+		
+		%meta{ content: "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible" }/
+		
 		%title= @title || 'Alarm'
-		%link{ href: '/stylesheets/app.css', rel: 'stylesheet', type: 'text/css' }
-	%body
-		#container
+		%meta{ content: "", name: "description" }/
+		%meta{ content: "", name: "author" }/
+		
+		%meta{ content: "width=device-width, initial-scale=1.0", name: "viewport" }/
+		
+		%link{ href: "/css/style.css?v=1", media: "all", rel: "stylesheet" }/
+		
+		%script{ src: "/js/modernizr.min.js" }
+	%body{ lang: "en" }
+		#page
+			#slideshow
+				- Comment.all.each do |comment|
+					%blockquote
+						= '&#8220;' + comment.content[0..200] + '...&#8221;'
+						= comment.author 
 			%header
 				%hgroup
-					%a{ :href => '/' }
-						%h1= 'Alarm' || @title
+					%a{ href: '/' }
+						%h1= root.title
+					%h2= root.subtitle
+			%aside
+				= haml :latest, locals: { latest: latest }
+			#content
+				#main
+					= yield
 			%nav
+				%h2 Browse
 				%ul
 					- root.entries[0..-2].each do |entry|
 						%li
 							%a{ href: entry.path }= entry.title
-			%div{ role: 'main' }
-				= yield
+			
+				
 			%footer
-				Copyright #{root.rights}
 				%address
-					%a{ href: "mailto:#{root.author_email}" }= root.author_email
+					%a{ href: "mailto:#{root.author_email}" }= root.rights
+					
+					
+					
+		%script{ src: "http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" }
+		:javascript
+			!window.jQuery && document.write(unescape('%3Cscript src="/js/jquery.min.js"%3E%3C/script%3E'))
+
+		%script{ src: "/js/plugins.js?v=1" }
+		%script{ src: "/js/script.js?v=1" }
+		
+		%script{ src: "/js/jquery.collapse.js?v=1" }
+		%script{ src: "/js/jquery.cookie.js?v?=1" }
+		
+		%script{ src: "/js/jquery.cycle.lite.min.js?v=1" }
+		
+		:javascript
+			$.getScript("/js/dd_belatedpng.js",function(){ DD_belatedPNG.fix('img, .png_bg'); });
+		
+		:javascript
+			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+			(function(d, t) {
+				var g = d.createElement(t),
+					s = d.getElementsByTagName(t)[0];
+				g.async = true;
+				g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				s.parentNode.insertBefore(g, s);
+			})(document, 'script');
