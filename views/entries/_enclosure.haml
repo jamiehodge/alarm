@@ -1,10 +1,10 @@
 - if !entry.video_enclosures.empty?
-	%video{ controls: true, preload: 'none', poster: entry.link('related')['href'] }
+	%video{ :controls => true, :preload => 'none', :poster => entry.link('related')['href'] }
 		- entry.video_enclosures.each do |enclosure|
-			%source{ src: enclosure['href'] }/
-			%a{ href: enclosure['href'] } Download #{enclosure['title'] }
+			%source{ :src => enclosure['href'] }/
+			%a{ :href => enclosure['href'] } Download #{enclosure['title'] }
 - elsif !entry.audio_enclosures.empty?
-	%audio{ controls: true, preload: 'none' }
+	%audio{ :controls => true, :preload => 'none' }
 		- entry.audio_enclosures.each do |enclosure|
-			%source{ src: enclosure['href'] }/
-			%a{ href: enclosure['href'] } Download #{enclosure['title'] }
+			%source{ :src => enclosure['href'] }/
+			%a{ :href => enclosure['href'] } Download #{enclosure['title'] }

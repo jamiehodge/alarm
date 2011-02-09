@@ -1,25 +1,25 @@
-%article.feed{ id: feed.id }
+%article.feed{ :id => feed.id }
 	%header
 		%figure
-			%img{ src: feed.logo}
+			%img{ :src => feed.logo}
 		%hgroup
 			%h1= feed.title
-			%a{ href: feed.link('self')['href'].gsub(/http/, 'itpc') }
-				Abonner i iTunes
-		%time{ datetime: feed.updated }= feed.updated.strftime('%A, %b %d')
+			%a{ :href => feed.link('self')['href'].gsub(/http/, 'itpc') }
+				%small= t.feed.subscribe
+		%time{ :datetime => feed.updated }= l feed.updated, '%A, %b %d %Y'
 		%p= feed.subtitle
 	%nav
-		%input.playAll{ type: 'button', value: 'Afspil alle' }
-		%h2 Genveje til udsendelser 
+		%input.playAll{ :type => 'button', :value => t.feed.play_all }
+		%h2= t.feed.links_to_programs 
 		%ul
 			- feed.entries.each do |entry|
 				%li
-					%a{ href: "##{entry.id}" }= entry.title
-					= '(' + entry.enclosures.first['duration'] + ')'
+					%a{ :href => "##{entry.id}" }= entry.title
+					%small= '(' + entry.enclosures.first['duration'] + ')'
 	- feed.entries.each do |entry|
-		= haml :"entries/episode", locals: { entry: entry }
+		= haml :"entries/episode", :locals => { :entry => entry }
 	%footer
 		%address
-			%a{ href: "mailto:#{feed.author_email}" }= feed.rights
+			%a{ :href => "mailto:#{feed.author_email}" }= feed.rights
 	
 		

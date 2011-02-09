@@ -1,23 +1,25 @@
-%article.entry{ id: entry.id }
+%article.entry{ :id => entry.id }
 	%nav
 		%ul
 			%li
-				%a{ href: '#' } ▲
+				%a{ :href => '#' } ▲
 			%li
-				%a{ href: entry.link('alternate')['href'].gsub(/http/, 'itpc') } 
-					Abonner in iTunes
+				
 	%header
 		%figure
-			%img{ src: entry.link('related')['href'] }
-		%h1 
-			%a{ href: entry.path }= entry.title
+			%img{ :src => entry.link('related')['href'] }
+		%hgroup
+			%h1 
+				%a{ :href => entry.path }= entry.title
+			%a{ :href => entry.link('alternate')['href'].gsub(/http/, 'itpc') } 
+				%small= t.feed.subscribe
 		%p
-			%time{ pubdate: true, datetime: entry.published }= entry.published.strftime('%A, %b %d')
-			%time{ datetime: entry.updated }= entry.updated.strftime('%A, %b %d')
+			%time{ :pubdate => true, :datetime => entry.published }= l entry.published, '%A, %b %d %Y'
+			%time{ :datetime => entry.updated }= l entry.updated, '%A, %b %d %Y'
 	%p= entry.summary
 	%footer
 		%address
-			%a{ href: "mailto:#{feed.author_email}" }= feed.rights
+			%a{ :href => "mailto:#{feed.author_email}" }= feed.rights
 		
 		
 		

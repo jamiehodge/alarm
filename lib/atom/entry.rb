@@ -13,11 +13,11 @@ module Atom
     end
     
     def keywords
-      text_at('keywords').split(',').map(&:strip) if episode?
+      text_at('keywords').split(',').map(&:strip) if episode? rescue []
     end
     
     def comments
-      Comment.filter(entry_id: id ).reverse_order(:created_at)
+      Comment.filter(:entry_id => id ).reverse_order(:created_at)
     end
     
     def catalog?

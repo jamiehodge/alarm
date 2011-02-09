@@ -1,10 +1,10 @@
 source :rubygems
 
 gem 'compass'
-gem 'compass-susy-plugin', require: 'susy'
+gem 'compass-susy-plugin', :require => 'susy'
 
 gem 'sinatra'
-gem 'rack-flash'
+gem 'sinatra-r18n', :require => 'sinatra/r18n'
 
 gem 'haml'
 gem 'sass'

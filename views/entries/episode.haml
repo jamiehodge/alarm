@@ -1,18 +1,17 @@
-%article.entry{ id: entry.id }
+%article.entry{ :id => entry.id }
 	%nav
-		%a{ href: '#' } ▲
+		%a{ :href => '#' } ▲
 	%header
 		%h1= entry.title
-		%a{ href: "/user_atom_feeds/#{escape(entry.author_name)}" }= entry.author_name
+		%a{ :href => "/user_atom_feeds/#{escape(entry.author_name)}" }= entry.author_name
 		%p
-			%time{ pubdate: true, datetime: entry.published }= entry.published.strftime('%A, %b %d')
-			%time{ datetime: entry.updated, style: 'display:none;'  }= entry.updated.strftime('%A, %b %d')
+			%time{ :pubdate => true, :datetime => entry.published }= l entry.published, '%A, %b %d %Y'
+			%time{ :datetime => entry.updated, :style => 'display:none;'  }= l entry.updated, '%A, %b %d %Y'
 	%figure
-		= haml :"entries/_enclosure", locals: { entry: entry }
-		%figcaption= entry.enclosures.first['duration']
+		= haml :"entries/_enclosure", :locals => { :entry => entry }
 	%summary= entry.summary
 	%footer
-		= haml :"entries/_keyword", locals: { entry: entry }
-		= haml :"entries/_social", locals: { entry: entry }
-		= haml :"entries/_comment", locals: { entry: entry }
+		= haml :"entries/_keyword", :locals => { :entry => entry }
+		= haml :"entries/_social", :locals => { :entry => entry }
+		= haml :"entries/_comment", :locals => { :entry => entry }
 	
