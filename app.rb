@@ -44,6 +44,9 @@ class App < Sinatra::Base
       @latest_feed ||= Atom::Feed.with_uri("#{settings.base_url}/atom_feeds/#{settings.latest_feed}")
     end
     
+    def cache_page(seconds=5*60)
+      response['Cache-Control'] = "public, max-age=#{seconds}" unless development?
+    end
     
   end
   
@@ -52,11 +55,13 @@ class App < Sinatra::Base
   end
   
   get '/stylesheets/:name.css' do |name|
+    cache_page
     content_type 'text/css', :charset => 'utf-8'
     sass :"sass/#{name}", Compass.sass_engine_options
   end
   
   get '/:feed_type/:id' do
+    cache_page
     @feed = Atom::Feed.with_uri("#{settings.base_url}/#{params[:feed_type]}/#{params[:id]}")
     halt 404 unless @feed && root_catalog && latest_feed
     @title = "Alarm: #{@feed.title}"
