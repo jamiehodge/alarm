@@ -1,0 +1,16 @@
+nav:
+    latest: Latest
+    browse: Browse
+feed:
+    subscribe: Subscribe in iTunes
+    play_all: Play All
+    links_to_programs: Links to Programs
+    entry:
+        comments:
+            count: !!pl
+                1: 1 comment
+                n: %1 comments
+            author: Author
+            content: Content
+            submit: Comment
+        

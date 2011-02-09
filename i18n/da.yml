@@ -1,0 +1,15 @@
+nav:
+    latest: Seneste
+    browse: Browse
+feed:
+    subscribe: Abonner i iTunes
+    play_all: Afspil alle
+    links_to_programs: Genveje til udsendelser
+    entry:
+        comments:
+            count: !!pl
+                1: 1 kommentar
+                n: %1 kommentarer
+            author: Forfatter
+            content: Inhold
+            submit: Kommentarer
