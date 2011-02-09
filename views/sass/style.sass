@@ -8,7 +8,7 @@
 	font-weight: normal
 	font-style: normal
 *
-	// background-color: rgba(0,0,0,.0125)
+	// background-color: rgba(0,0,0,.125)
 
 h1, h2, h3, h4, h5, h6
 	font-family: 'BebasNeueRegular'
@@ -21,20 +21,18 @@ body
 		+container
 		#slideshow
 			+full
-			+leader
 			height: $base-rhythm-unit * 3
-			+trailer(2)
+			color: #777
 			blockquote
-				+columns(6)
-				+pad(3,3)
+				+pad(2,2)
 		> header
-			+full
-			+pad(1,1)
+			+columns(6)
+			+alpha
+			+pad(1,5)
 			+leader
 			a
 				+unstyled-link
 				h1
-					+full(10)
 					+adjust-font-size-to(96px)
 					+trailer(.5,96px)
 					font-family: BebasNeue
@@ -47,7 +45,6 @@ body
 			+columns(3)
 			+leader(1)
 			// +rotate(15deg)
-			// background-color: #FFF095
 			h2
 				// +trailing-border(1px, 0)
 				+trailer(.5)
@@ -60,7 +57,7 @@ body
 			+alpha
 			+columns(3)
 			// +rotate(-5deg)
-			// background-color: #FFF095
+			+leader
 			h2
 				// +trailing-border(1px, 0)	
 				+trailer(.5)
@@ -68,24 +65,27 @@ body
 				+no-bullets
 				li
 					+trailer
+			+trailer
 		> a
 			+alpha
 			+columns(3)
-			opacity: .8
+			opacity: .7
 		#content
 			+columns(9)
 			+omega
 			a
-				+link-colors(rgba(56, 24, 24, 1))
+				+link-colors(darken(rgba(91, 53, 36, 1), 10%))
+				// +link-colors(rgba(56, 24, 24, 1))
+				// +link-colors(rgba(137, 53, 0, 1))
 			#main
 				+columns(6,9)
 				> article
-					+box-shadow(rgba(0, 0, 0, .2))
+					+box-shadow(rgba(0, 0, 50, .2))
 				article
 					+full(9)
 					+rhythm-borders(1px, 1, $base_font_size, 'none')
-					background-color: rgba(255, 250, 200, .5)
-					// background-color: rgba(255, 255, 255, .75)
+					// background-color: rgba(255, 250, 200, .5)
+					background-color: rgba(255, 255, 255, .8)
 					// +linear-gradient(color-stops(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), left, image-url('/images/noise.png'))
 					> header
 						+full(9)
@@ -93,16 +93,19 @@ body
 							+trailer(0)
 						figure
 							+columns(3,9)
+							+opacity(.8)
 						time
 							@extend small
 						+trailer
 					> nav
 						+full(9)
 						ul
-							+no-bullets
-							+trailer
+							+inline-block-list
+							+trailer(1, 14px)
+							+adjust-font-size-to(14px)
 							li:after
-								content: '\00a0'
+								// content: '\00a0'
+								content: '|'
 						+trailer
 					figure
 						+full(9)
@@ -142,7 +145,7 @@ body
 					+trailer
 		> footer
 			+full
-			background: rgba(255, 255, 255, 1)
+			// background: rgba(255, 255, 255, 1)
 			address
 				@extend small
 			
@@ -153,8 +156,8 @@ a
 	font-family: BebasNeue
 	+adjust-font-size-to(24px)
 	+trailer(1, 24px)
-	+border-radius
-	+linear-gradient(color-stops(#eee, #ccc))
+	+border-radius($base-rhythm-unit * .125)
+	+linear-gradient(color-stops(rgba(255, 255, 255, .9), darken(rgba(255, 255, 255, .9), 3%)), left)
 	color: #777
-	border-color: #eee
+	border-color: #fff
 	width: 100%
