@@ -2,6 +2,7 @@
 
 class App < Sinatra::Base
   register Sinatra::R18n
+  helpers Sinatra::UrlForHelper
   
   mime_type :otf, 'application/octet-stream'
   mime_type :ttf, 'application/octet-stream'

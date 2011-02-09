@@ -2,5 +2,5 @@
 	%ul
 		- latest.entries[0..4].each do |entry|
 			%li
-				%a{ :href => "/atom_feeds/#{latest_feed.id}##{entry.id}" }
+				%a{ :href => url_for("/atom_feeds/#{latest_feed.id}##{entry.id}") }
 					= entry.title

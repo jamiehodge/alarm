@@ -6,21 +6,21 @@
 		%meta{ :content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible" }/
 		
 		%title= @title || 'Alarm'
-		%meta{ :content => "", :name => "description" }/
+		%meta{ :content => "An Internet Portal for the Podcast Producer Feed Library", :name => "description" }/
 		%meta{ :content => "Jamie Hodge", :name => "author" }/
 		
 		%meta{ :content => "width=device-width, initial-scale=1.0", :name => "viewport" }/
 		
-		%link{ :href => "/stylesheets/style.css?v=1", :media => "all", :rel => "stylesheet" }/
+		%link{ :href => url_for("/stylesheets/style.css?v=1"), :media => "all", :rel => "stylesheet" }/
 		
-		%script{ :src => "/javascripts/modernizr.min.js" }
+		%script{ :src => url_for("/javascripts/modernizr.min.js") }
 	%body{ :lang => session[:locale] }
 		#page
-			#slideshow{ :style => 'display: none;' }
+			#slideshow
 				- Comment.all.each do |comment|
 					%blockquote
 						= '&#8220;' + comment.content[0..200] + '...&#8221;'
-						= comment.author 
+						= comment.author
 			%header
 				%hgroup
 					%a{ :href => '/' }
@@ -47,19 +47,14 @@
 					
 					
 		%script{ :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" }
-		:javascript
-			!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/jquery.min.js"%3E%3C/script%3E'))
 
-		%script{ :src => "/javascripts/plugins.js?v=1" }
-		%script{ :src => "/javascripts/script.js?v=1" }
+		%script{ :src => url_for("/javascripts/plugins.js?v=1") }
+		%script{ :src => url_for("/javascripts/script.js?v=1") }
 		
-		%script{ :src => "/javascripts/jquery.collapse.js?v=1" }
-		%script{ :src => "/javascripts/jquery.cookie.js?v?=1" }
+		%script{ :src => url_for("/javascripts/jquery.collapse.js?v=1") }
+		%script{ :src => url_for("/javascripts/jquery.cookie.js?v?=1") }
 		
-		%script{ :src => "/javascripts/jquery.cycle.lite.min.js?v=1" }
-		
-		:javascript
-			$.getScript("/javascripts/dd_belatedpng.min.js",function(){ DD_belatedPNG.fix('img, .png_bg'); });
+		%script{ :src => url_for("/javascripts/jquery.cycle.lite.min.js?v=1") }
 		
 		:javascript
 			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];

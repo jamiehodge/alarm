@@ -15,7 +15,7 @@
 			- feed.entries.each do |entry|
 				%li
 					%a{ :href => "##{entry.id}" }= entry.title
-					%small= '(' + entry.enclosures.first['duration'] + ')'
+					// %small= '(' + entry.enclosures.first['duration'] + ')'
 	- feed.entries.each do |entry|
 		= haml :"entries/episode", :locals => { :entry => entry }
 	%footer

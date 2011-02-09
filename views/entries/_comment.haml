@@ -7,7 +7,7 @@
 					%h1= comment.author
 					%time{ :pubdate => true, :datetime => comment.created_at }= l comment.created_at, '%A, %b %d %Y'
 				%p= comment.content
-		%form{ :action => '/comments', :method => 'post' }
+		%form{ :action => url_for('/comments'), :method => 'post' }
 			%input{ :type => 'hidden', :name => 'entry_id', :value => entry.id }
 			%ul
 				%li
