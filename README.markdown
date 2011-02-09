@@ -3,7 +3,6 @@
 A simple web front-end for Podcast Producer's Podcast Library
 
 ## Stack
-* Ruby 1.9
 * Bundler
 * Sinatra
 * Sequel
