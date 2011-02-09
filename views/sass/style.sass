@@ -1,13 +1,17 @@
 @charset "utf-8"
 @import defaults
 
-+font-face('BebasNeue', '/fonts/BebasNeue.otf')
-
+// +font-face('BebasNeue', '/fonts/BebasNeue.otf')
+@font-face
+	font-family: 'BebasNeueRegular'
+	src: url('/fonts/BebasNeue-webfont.eot?') format('eot'), url('/fonts/BebasNeue-webfont.woff') format('woff'), url('/fonts/BebasNeue-webfont.ttf') format('truetype'), url('/fonts/BebasNeue-webfont.svg#webfontfvFLBU0N') format('svg')
+	font-weight: normal
+	font-style: normal
 *
 	// background-color: rgba(0,0,0,.0125)
 
 h1, h2, h3, h4, h5, h6
-	font-family: BebasNeue
+	font-family: 'BebasNeueRegular'
 	
 body
 	+susy
@@ -18,7 +22,7 @@ body
 		#slideshow
 			+full
 			+leader
-			height: $base-rhythm-unit * 2
+			height: $base-rhythm-unit * 3
 			+trailer(2)
 			blockquote
 				+columns(6)
@@ -26,13 +30,16 @@ body
 		> header
 			+full
 			+pad(1,1)
+			+leader
 			a
 				+unstyled-link
 				h1
 					+full(10)
 					+adjust-font-size-to(96px)
-					+trailer(1,96px)
+					+trailer(.5,96px)
 					font-family: BebasNeue
+					+replace-text('/images/larm_radio.png', 0, 0)
+					opacity: .70
 			h2
 				display: none
 		> aside
@@ -41,22 +48,30 @@ body
 			+leader(1)
 			// +rotate(15deg)
 			// background-color: #FFF095
+			h2
+				// +trailing-border(1px, 0)
+				+trailer(.5)
 			nav
 				ul
 					+no-bullets
 					li
-						+trailer
+						+trailer(1)
 		> nav
 			+alpha
 			+columns(3)
 			// +rotate(-5deg)
 			// background-color: #FFF095
-			h1
-				
+			h2
+				// +trailing-border(1px, 0)	
+				+trailer(.5)
 			ul
 				+no-bullets
 				li
 					+trailer
+		> a
+			+alpha
+			+columns(3)
+			opacity: .8
 		#content
 			+columns(9)
 			+omega
@@ -69,8 +84,8 @@ body
 				article
 					+full(9)
 					+rhythm-borders(1px, 1, $base_font_size, 'none')
-					// background-color: rgba(255, 250, 200, .9)
-					background-color: rgba(255, 255, 255, .75)
+					background-color: rgba(255, 250, 200, .5)
+					// background-color: rgba(255, 255, 255, .75)
 					// +linear-gradient(color-stops(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), left, image-url('/images/noise.png'))
 					> header
 						+full(9)
@@ -84,7 +99,7 @@ body
 					> nav
 						+full(9)
 						ul
-							+inline-block-list
+							+no-bullets
 							+trailer
 							li:after
 								content: '\00a0'
@@ -94,14 +109,11 @@ body
 						audio,
 						video
 							+columns(9,9)
+							+trailer
 						figcaption
 							+columns(2,9)
 							+suffix(7,9)
 							@extend small
-							&:before
-								content: '('
-							&:after
-								content: ')'
 						+trailer
 					summary
 						+full(9)
@@ -142,6 +154,7 @@ a
 	+adjust-font-size-to(24px)
 	+trailer(1, 24px)
 	+border-radius
-	background-color: #eee
+	+linear-gradient(color-stops(#eee, #ccc))
 	color: #777
+	border-color: #eee
 	width: 100%
