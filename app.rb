@@ -13,12 +13,14 @@ class App < Sinatra::Base
     set :home_catalog, '130D80EB-2C3B-49D4-91E2-11CD100F9EAC'
     set :latest_feed, '130D80EB-2C3B-49D4-91E2-11CD100F9EAC'
     
-    Compass.configuration.environment = environment
-    Compass.configuration.project_path = root
-    Compass.configuration.http_path = '/'
-    Compass.configuration.http_images_dir = 'images'
-    Compass.configuration.http_fonts_dir = 'stylesheets/fonts'
-    Compass.configuration.output_style = production? ? :compressed : :expanded
+    if development?
+      Compass.configuration.environment = environment
+      Compass.configuration.project_path = root
+      Compass.configuration.http_path = '/'
+      Compass.configuration.http_images_dir = 'images'
+      Compass.configuration.http_fonts_dir = 'stylesheets/fonts'
+      Compass.configuration.output_style = :compressed
+    end
     
     Sequel.sqlite(File.join(root, 'db', "#{environment}.db"))
     
@@ -83,6 +85,6 @@ class App < Sinatra::Base
   end
   
   get '/' do
-    redirect "/atom_feeds/#{home_catalog.id}"
+    redirect url_for("/atom_feeds/#{home_catalog.id}")
   end
 end
