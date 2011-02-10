@@ -1,7 +1,7 @@
 %article.feed{ :id => feed.id }
 	%header
 		%figure
-			%img{ :src => feed.logo}
+			%img{ :src => feed.logo, :height => 144, :width => 144 }
 		%hgroup
 			%h1= feed.title
 			%a{ :href => feed.link('self')['href'].gsub(/http/, 'itpc') }

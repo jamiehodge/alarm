@@ -94,6 +94,7 @@ body
 						figure
 							+columns(3,9)
 							+opacity(.8)
+							overflow: hidden
 						time
 							@extend small
 						+trailer
@@ -105,10 +106,11 @@ body
 							+adjust-font-size-to(14px)
 							li:after
 								// content: '\00a0'
-								content: '|'
+								// content: '|'
 						+trailer
 					figure
 						+full(9)
+						overflow: hidden
 						audio,
 						video
 							+columns(9,9)
