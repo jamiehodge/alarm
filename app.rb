@@ -16,6 +16,7 @@ class App < Sinatra::Base
     Compass.configuration do |config|
       config.project_path = File.dirname(__FILE__)
       config.sass_dir = 'view/stylesheets'
+      config.output_style = :compressed
     end
     
     set :haml, { :format => :html5 }
