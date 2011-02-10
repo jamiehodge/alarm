@@ -41,7 +41,7 @@
 				%ul
 					- root.entries[0..-3].each do |entry|
 						%li
-							%a{ :href => entry.path }= entry.title
+							%a{ :href => url_for(entry.path) }= entry.title
 			%a{ :href => 'http://www.larm-archive.org' }
 				%img{ :src => 'http://larm.media.hum.ku.dk/wp-content/themes/larm/images/logo.png' }
 			%footer
