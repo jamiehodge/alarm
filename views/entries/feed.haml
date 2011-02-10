@@ -10,7 +10,7 @@
 			%img{ :src => entry.link('related')['href'], :width => 116, :height => 116 }
 		%hgroup
 			%h1 
-				%a{ :href => entry.path }= entry.title
+				%a{ :href => url_for(entry.path) }= entry.title
 			%a{ :href => entry.link('alternate')['href'].gsub(/http/, 'itpc') } 
 				%small= t.feed.subscribe
 		%p
