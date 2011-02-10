@@ -80,7 +80,8 @@ body
 			#main
 				+columns(6,9)
 				> article
-					+box-shadow(rgba(0, 0, 50, .2))
+					// +box-shadow(rgba(0, 0, 50, .2))
+					+box-shadow(rgba(151, 169, 198, .2))
 				article
 					+full(9)
 					+rhythm-borders(1px, 1, $base_font_size, 'none')
@@ -95,6 +96,7 @@ body
 							+columns(3,9)
 							+opacity(.8)
 							overflow: hidden
+							+box-shadow(rgba(151, 169, 198, .8))
 						time
 							@extend small
 						+trailer
@@ -161,7 +163,8 @@ a
 	+border-radius($base-rhythm-unit * .125)
 	+linear-gradient(color-stops(rgba(255, 255, 255, .9), darken(rgba(255, 255, 255, .9), 3%)), left)
 	color: #777
-	border-color: #fff
+	border: 1px solid
+	border-color: #ccc
 	width: 100%
 
 .js #slideshow blockquote
