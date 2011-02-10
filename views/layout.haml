@@ -14,7 +14,7 @@
 		:javascript
 			document.documentElement.className = "js";
 		
-		%link{ :href => url_for("/stylesheets/style.css?v=1"), :media => "all", :rel => "stylesheet" }/
+		%link{ :href => url_for("/stylesheets/screen.css?v=1"), :media => "all", :rel => "stylesheet" }/
 		
 		%script{ :src => url_for("/javascripts/modernizr.min.js") }
 	%body{ :lang => session[:locale] }
