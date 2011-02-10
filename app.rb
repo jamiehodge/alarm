@@ -79,7 +79,7 @@ class App < Sinatra::Base
   end
   
   post '/comments' do
-    @comment = Comment.new(params.merge(:created_at => Time.now, :user_ip => request.ip, :user_agent => request.user_agent, :referrer => request.referer))
+    @comment = Comment.new(params.merge(:created_at => Time.now, :user_ip => request.ip, :user_agent => request.user_agent, :referrer => request.referer, :permalink => request.referer + '#' + params[:entry_id]))
     @comment.save unless @comment.spam?
     redirect request.referer + "##{params[:entry_id]}"
   end

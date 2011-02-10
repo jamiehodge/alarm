@@ -10,7 +10,10 @@ class Comment < Sequel::Model
       text        :entry_id
       text        :author
       text        :content
+      text        :permalink
       timestamp   :created_at
+      
+      index :entry_id
     end
     create_table
   end

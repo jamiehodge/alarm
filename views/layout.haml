@@ -20,10 +20,11 @@
 	%body{ :lang => session[:locale] }
 		#page
 			#slideshow
-				- Comment.all.each do |comment|
-					%blockquote
-						= '&#8220;' + comment.content[0..200] + '...&#8221;'
-						= comment.author
+				- Comment.all[0..19].each do |comment|
+					%a{ :href => comment.permalink }
+						%blockquote
+							= '&#8220;' + comment.content[0..200] + '...&#8221;'
+							= comment.author
 			%header
 				%hgroup
 					%a{ :href => url_for('/') }
