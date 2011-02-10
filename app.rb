@@ -13,14 +13,13 @@ class App < Sinatra::Base
     set :home_catalog, '130D80EB-2C3B-49D4-91E2-11CD100F9EAC'
     set :latest_feed, '130D80EB-2C3B-49D4-91E2-11CD100F9EAC'
     
-    if development?
-      Compass.configuration.environment = environment
-      Compass.configuration.project_path = root
-      Compass.configuration.http_path = '/'
-      Compass.configuration.http_images_dir = 'images'
-      Compass.configuration.http_fonts_dir = 'stylesheets/fonts'
-      Compass.configuration.output_style = :compressed
+    Compass.configuration do |config|
+      config.project_path = File.dirname(__FILE__)
+      config.sass_dir = 'view/stylesheets'
     end
+    
+    set :haml, { :format => :html5 }
+    set :sass, Compass.sass_engine_options
     
     Sequel.sqlite(File.join(root, 'db', "#{environment}.db"))
     
@@ -63,7 +62,7 @@ class App < Sinatra::Base
   get '/stylesheets/:name.css' do |name|
     cache_page
     content_type 'text/css', :charset => 'utf-8'
-    sass :"sass/#{name}", Compass.sass_engine_options
+    sass :"sass/#{name}"
   end
   
   get '/:feed_type/:id' do
