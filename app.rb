@@ -13,9 +13,11 @@ class App < Sinatra::Base
     set :home_catalog, '130D80EB-2C3B-49D4-91E2-11CD100F9EAC'
     set :latest_feed, '130D80EB-2C3B-49D4-91E2-11CD100F9EAC'
     
-    Compass.configuration.project_path = File.dirname(__FILE__)
+    Compass.configuration.http_path = '/'
     Compass.configuration.environment = environment
+    Compass.configuration.relative_assets = true if production?
     Compass.configuration.output_style = :compressed
+    
     
     Sequel.sqlite(File.join(root, 'db', "#{environment}.db"))
     
