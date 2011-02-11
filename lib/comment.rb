@@ -12,4 +12,8 @@ class Comment
   
   field :entry_id
   
+  validates_presence_of :author
+  validates_presence_of :email
+  validates_presence_of :content
+  
 end

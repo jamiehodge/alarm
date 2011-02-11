@@ -11,6 +11,7 @@ feed:
                 1: 1 comment
                 n: %1 comments
             author: Author
+            email: Email
             content: Content
             submit: Comment
         

@@ -14,6 +14,9 @@
 					%label{ :for => 'author' }= t.feed.entry.comments.author
 					%input{ :type => 'text', :name => 'author', :placeholder => t.feed.entry.comments.author, :required => true }
 				%li
+					%label{ :for => 'email' }= t.feed.entry.comments.email
+					%input{ :type => 'text', :name => 'email', :placeholder => t.feed.entry.comments.email, :require => true }
+				%li
 					%label{ :for => 'content' }= t.feed.entry.comments.content
 					%textarea{ :name => 'content', :name => 'content', :placeholder => t.feed.entry.comments.content, :required => true }
 				%li

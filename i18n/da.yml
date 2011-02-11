@@ -11,5 +11,6 @@ feed:
                 1: 1 kommentar
                 n: %1 kommentarer
             author: Forfatter
+            email: Email
             content: Inhold
             submit: Kommentarer
