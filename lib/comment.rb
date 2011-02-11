@@ -2,6 +2,7 @@ class Comment
   include Mongoid::Document
   include Rakismet::Model
   include Gravtastic
+  gravtastic
   
   attr_accessor :user_ip, :user_agent, :referrer
   
