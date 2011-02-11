@@ -2,19 +2,24 @@
 
 A simple web front-end for Podcast Producer's Podcast Library
 
+A working installation is running (in production!) [here](http://radio.larm-archive.org).
+
 ## Stack
 * Bundler
 * Sinatra
-* Sequel
+* Mongoid
 * Compass
 * Susy
 * Rakismet
+* Gravtastic
+* API Cache
 
 ## Installation
 
-1. Alter `base_url`, `Rakismet.key` and `Rakismet.url` in `app.rb` to reflect your Podcast Producer installation
-2. `bundle install`
-3. `rackup`
+1. `brew install mongodb`
+2. Alter `base_url`, `home_catalog`, `latest_feed`, `Rakismet.key` and `Rakismet.url` in `app.rb` to reflect your Podcast Producer installation
+3. `bundle install`
+4. `rackup`
 
 ## License
 
