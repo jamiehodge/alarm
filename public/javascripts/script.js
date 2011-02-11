@@ -7,7 +7,7 @@ $(function() {
 		group: 'section',
 		show: function() { this.animate({opacity: 'toggle', height: 'toggle'}, 200); },
 		hide : function() { this.animate({opacity: 'toggle', height: 'toggle'}, 200); },
-		cookieName: location.hash 
+		cookieName: $(location).attr('pathname')
 	});
 	
 	$audioVideo = $('audio, video');
