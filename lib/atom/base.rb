@@ -35,7 +35,7 @@ module Atom
     end
     
     def self.with_uri(uri)
-      self.new(open(URI.encode(uri))) rescue nil
+      self.new(APICache.get(URI.encode(uri))) rescue nil
     end
     
     private
