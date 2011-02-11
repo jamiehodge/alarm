@@ -9,6 +9,7 @@
 			- feed.entries.each do |entry|
 				%li
 					%a{ :href => "##{entry.id}" }= entry.title
+					|
 	- feed.entries.each do |entry|
 		= haml :"entries/feed", :locals => { :entry => entry, :feed => feed }
 	%footer
