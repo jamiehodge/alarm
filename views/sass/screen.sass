@@ -11,7 +11,8 @@ h1, h2, h3, h4, h5, h6
 	
 body
 	+susy
-	background: #eee
+	// background: #eee
+	+rgba-background-inline(rgba(238, 238, 238, 1))
 	
 	#page
 		+container
@@ -33,7 +34,7 @@ body
 					+trailer(.5,96px)
 					font-family: BebasNeueRegular
 					+replace-text(image-url('larm_radio.png', true), 0, 0)
-					opacity: .70
+					+opacity(.7)
 			h2
 				display: none
 		> aside
@@ -65,7 +66,7 @@ body
 		> a
 			+alpha
 			+columns(3)
-			opacity: .7
+			+opacity(.7)
 		#content
 			+columns(9)
 			+omega
@@ -82,7 +83,8 @@ body
 					+full(9)
 					+rhythm-borders(1px, 1, $base_font_size, 'none')
 					// background-color: rgba(255, 250, 200, .5)
-					background-color: rgba(255, 255, 255, .8)
+					+rgba-background-inline(rgba(255, 255, 255, .8))
+					// background-color: rgba(255, 255, 255, .8)
 					// +linear-gradient(color-stops(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), left, image-url('/images/noise.png'))
 					> header
 						+full(9)

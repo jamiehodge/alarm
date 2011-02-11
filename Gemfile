@@ -2,6 +2,7 @@ source :rubygems
 
 gem 'compass'
 gem 'compass-susy-plugin', :require => 'susy'
+gem 'compass-rgbapng', :require => 'rgbapng'
 
 gem 'sinatra'
 gem 'sinatra-r18n', :require => 'sinatra/r18n'

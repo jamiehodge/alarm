@@ -45,12 +45,13 @@ body
 		
 ::-moz-selection
 	+accessible-color($alt)
-	background: $alt
+	// background: $alt
+	+rgba-background-inline($alt)
 	text-shadow: none
 	
 ::selection
 	+accessible-color($alt)
-	background: $alt
+	+rgba-background-inline($alt)
 	text-shadow: none
 	
 // Links
@@ -124,8 +125,9 @@ del
 	text-decoration: line-through
 	
 mark
-	background: #ffff99
-	background-color: rgba(yellow, .5)
+	// background: #ffff99
+	// background-color: rgba(yellow, .5)
+	+rgba-background-inline(rgba(255, 255, 153, 1))
 	text-shadow: none
 	
 small
