@@ -6,9 +6,9 @@
 				%header
 					%figure
 						%img{ :src => comment.gravatar_url }
-					%h1= comment.author
+					%h1= escape_html(comment.author)
 					%time{ :pubdate => true, :datetime => comment.created_at }= l Time.parse(comment.created_at), '%A, %b %d %Y'
-				%p= comment.content
+				%p= escape_html(comment.content)
 		%form{ :action => url_for('/comments'), :method => 'post' }
 			%input{ :type => 'hidden', :name => 'entry_id', :value => entry.id }
 			%ul
