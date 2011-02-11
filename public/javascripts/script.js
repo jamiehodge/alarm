@@ -1,6 +1,6 @@
 $(function() {
 
-	$('#slideshow').show().cycle({ timeout: 8000 });
+	$('#slideshow').show().cycle({ timeout: 12000 });
 	
 	$('details').collapse({ 
 		head: 'summary', 
