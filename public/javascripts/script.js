@@ -24,6 +24,9 @@ $(function() {
 		});
 		
 		$('.playAll').click(function(event) {
+			$audioVideo.each(function() {
+				this.pause();
+			});
 			$audioVideo[0].play();
 			location.href = '#' + $audioVideo.first().closest('article').attr('id');
 			event.preventDefault();
