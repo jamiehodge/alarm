@@ -17,7 +17,7 @@ module Atom
     end
     
     def comments
-      Comment.filter(:entry_id => id ).reverse_order(:created_at)
+      Comment.find(:conditions => { :entry_id => id } ).order_by(:created_at)
     end
     
     def catalog?

@@ -1,21 +1,15 @@
-class Comment < Sequel::Model
-  plugin :schema
+class Comment
+  include Mongoid::Document
   include Rakismet::Model
+  include Gravtastic
   
   attr_accessor :user_ip, :user_agent, :referrer
   
-  unless table_exists?
-    set_schema  do
-      primary_key :id
-      text        :entry_id
-      text        :author
-      text        :content
-      text        :permalink
-      timestamp   :created_at
-      
-      index :entry_id
-    end
-    create_table
-  end
+  field :author
+  field :email
+  field :content
+  field :created_at
+  
+  field :entry_id
   
 end

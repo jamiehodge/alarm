@@ -12,7 +12,8 @@ gem 'sass'
 
 gem 'nokogiri'
 
-gem 'sequel'
-gem 'sqlite3'
+gem 'mongoid'
+gem 'bson_ext'
 
 gem 'rakismet'
+gem 'gravtastic'

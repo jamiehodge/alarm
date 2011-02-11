@@ -22,7 +22,15 @@ class App < Sinatra::Base
     set :haml, { :format => :html5 }
     set :sass, Compass.sass_engine_options
     
-    Sequel.sqlite(File.join(root, 'db', "#{environment}.db"))
+    Mongoid.configure do |config|
+      name = "#{environment}"
+      host = 'localhost'
+      config.master = Mongo::Connection.new.db(name)
+      config.slaves = [
+        Mongo::Connection.new(host, 27017, :slave_ok => true).db(name)
+      ]
+      config.persist_in_safe_mode = false
+    end
     
     Rakismet.key = ''
     Rakismet.url = 'http://larm-radio.hum.ku.dk'
@@ -79,7 +87,7 @@ class App < Sinatra::Base
   end
   
   post '/comments' do
-    @comment = Comment.new(params.merge(:created_at => Time.now, :user_ip => request.ip, :user_agent => request.user_agent, :referrer => request.referer, :permalink => request.referer + '#' + params[:entry_id]))
+    @comment = Comment.new(params.merge(:created_at => Time.now, :user_ip => request.ip, :user_agent => request.user_agent, :referrer => request.referer))
     @comment.save unless @comment.spam?
     redirect request.referer + "##{params[:entry_id]}"
   end

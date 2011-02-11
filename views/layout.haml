@@ -21,7 +21,7 @@
 		#page
 			#slideshow
 				- Comment.all[0..19].each do |comment|
-					%a{ :href => comment.permalink }
+					%a{ :href => url_for("/atom_feeds/#{latest_feed.id}##{comment.entry_id}") }
 						%blockquote
 							= '&#8220;' + comment.content[0..200] + '...&#8221;'
 							= comment.author
