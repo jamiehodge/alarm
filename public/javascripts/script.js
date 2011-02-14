@@ -17,17 +17,19 @@ $(function() {
 		$audioVideo.each(function(index) {
 			if (index < ($audioVideo.length - 1)) {
 				$(this).bind('ended', function() {
-					$audioVideo[index + 1].play();
-					location.href = '#' + $($audioVideo[index + 1]).closest('article').attr('id');
+					$audioVideo.get(index + 1).play();
+					location.href = '#' + $($audioVideo.get(index + 1)).closest('article').attr('id');
 				});
 			}
 		});
 		
 		$('.playAll').click(function(event) {
 			$audioVideo.each(function() {
-				this.pause();
+				if (this.paused == false) {
+					this.pause();
+				}
 			});
-			$audioVideo[0].play();
+			$audioVideo.get(0).play();
 			location.href = '#' + $audioVideo.first().closest('article').attr('id');
 			event.preventDefault();
 		});

@@ -1,8 +1,7 @@
 @charset "utf-8"
 @import defaults
 
-+font-face('BebasNeueRegular', font-files('BebasNeue-webfont.eot?', eot, 'BebasNeue-webfont.woff', woff, 'BebasNeue-webfont.ttf', truetype, 'BebasNeue-webfont.svg#webfontfvFLBU0N', svg))
-+font-face('Underwood Champion', font-files('underwood_champion-webfont.eot?', eot, 'underwood_champion-webfont.woff', woff, 'underwood_champion-webfont.ttf', truetype, 'underwood_champion-webfont.svg#webfontf3v23jNG', svg))
++font-face('BebasNeueRegular', font-files('BebasNeue-webfont.woff', woff, 'BebasNeue-webfont.ttf', truetype, 'BebasNeue-webfont.svg', svg), 'BebasNeue-webfont.eot' )
 
 *
 	// background-color: rgba(0,0,0,.125)
@@ -12,22 +11,21 @@ h1, h2, h3, h4, h5, h6
 	
 body
 	+susy
-	// background: #eee
 	+rgba-background-inline(rgba(238, 238, 238, 1))
 	
 	#page
 		+container
+		min-width: 64em
 		#slideshow
 			+full
-			height: $base-rhythm-unit * 4
+			height: $base-rhythm-unit * 3
 			color: #777
-			font-family: 'Underwood Champion'
 			blockquote
 				+pad(2,2)
 		> header
-			+columns(6)
+			+columns(7)
 			+alpha
-			+pad(1,5)
+			+pad(1,4)
 			+leader
 			a
 				+unstyled-link
@@ -43,9 +41,7 @@ body
 			+alpha
 			+columns(3)
 			+leader(1)
-			// +rotate(15deg)
 			h2
-				// +trailing-border(1px, 0)
 				+trailer(.5)
 			nav
 				ul
@@ -55,10 +51,8 @@ body
 		> nav
 			+alpha
 			+columns(3)
-			// +rotate(-5deg)
 			+leader
 			h2
-				// +trailing-border(1px, 0)	
 				+trailer(.5)
 			ul
 				+no-bullets
@@ -74,21 +68,15 @@ body
 			+omega
 			a
 				+link-colors(darken(rgba(91, 53, 36, 1), 10%))
-				// +link-colors(rgba(56, 24, 24, 1))
-				// +link-colors(rgba(137, 53, 0, 1))
 			#main
 				+columns(6,9)
 				> article
-					// +box-shadow(rgba(0, 0, 50, .2))
 					+box-shadow(rgba(151, 169, 198, .2))
 					+border-top-radius($base-rhythm-unit * .5)
 				article
 					+full(9)
 					+rhythm-borders(1px, 1, $base_font_size, 'none')
-					// background-color: rgba(255, 250, 200, .5)
 					+rgba-background-inline(rgba(255, 255, 255, .8))
-					// background-color: rgba(255, 255, 255, .8)
-					// +linear-gradient(color-stops(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), left, image-url('/images/noise.png'))
 					> header
 						+full(9)
 						h1
@@ -108,17 +96,16 @@ body
 							+inline-block-list
 							+trailer(1, 14px)
 							+adjust-font-size-to(14px)
-							li:after
-								// content: '\00a0'
-								// content: '|'
 						+trailer
 					figure
 						+full(9)
 						overflow: hidden
 						audio,
-						video
+						video,
+						.mejs-container
+							+leader
+							background-color: white
 							+columns(9,9)
-							+trailer
 						figcaption
 							+columns(2,9)
 							+suffix(7,9)
@@ -151,7 +138,6 @@ body
 					+trailer
 		> footer
 			+full
-			// background: rgba(255, 255, 255, 1)
 			address
 				@extend small
 			

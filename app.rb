@@ -14,9 +14,11 @@ class App < Sinatra::Base
     set :latest_feed, '130D80EB-2C3B-49D4-91E2-11CD100F9EAC'
     
     Compass.configuration do |config|
-      config.project_path = File.dirname(__FILE__)
-      config.sass_dir = 'view/stylesheets'
+      config.project_path = root
+      config.environment = environment
       config.output_style = :compressed
+      config.css_dir = 'stylesheets'
+      config.images_dir = 'images'
     end
     
     set :haml, { :format => :html5 }
