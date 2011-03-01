@@ -67,7 +67,7 @@ class App < Sinatra::Base
   end
   
   before do
-    session[:locale] = 'da'
+    session[:locale] = params[:locale] if params[:locale]
   end
   
   get '/stylesheets/:name.css' do |name|
