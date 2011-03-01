@@ -5,7 +5,7 @@
 		
 		%meta{ :content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible" }/
 		
-		%title= @title || 'Alarm'
+		%title= settings.title
 		%meta{ :content => "An Internet portal for the Podcast Producer Feed Library", :name => "description" }/
 		%meta{ :content => "Jamie Hodge", :name => "author" }/
 		
@@ -29,7 +29,6 @@
 				%hgroup
 					%a{ :href => url_for('/') }
 						%h1= root.title
-					%h2= root.subtitle
 			%aside
 				%h2= t.nav.latest
 				= haml :latest, :locals => { :latest => latest }

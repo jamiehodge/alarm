@@ -9,9 +9,9 @@ class App < Sinatra::Base
   
   configure do
     set :app_file, __FILE__
-    set :base_url, 'http://larm-radio.hum.ku.dk/podcastproducer'
-    set :home_catalog, '130D80EB-2C3B-49D4-91E2-11CD100F9EAC'
-    set :latest_feed, '130D80EB-2C3B-49D4-91E2-11CD100F9EAC'
+    
+    config_file = YAML.load_file File.join('conf', 'settings.yml')
+    config_file.each_pair { |k,v| set k.to_sym, v }
     
     Compass.configuration do |config|
       config.project_path = root
@@ -25,7 +25,7 @@ class App < Sinatra::Base
     set :sass, Compass.sass_engine_options
     
     Mongoid.configure do |config|
-      name = "#{environment}"
+      name = "#{title.split.join('_').downcase}_#{environment}"
       host = 'localhost'
       config.master = Mongo::Connection.new.db(name)
       config.slaves = [
@@ -34,8 +34,8 @@ class App < Sinatra::Base
       config.persist_in_safe_mode = false
     end
     
-    Rakismet.key = ''
-    Rakismet.url = 'http://larm-radio.hum.ku.dk'
+    Rakismet.key = akismet_key
+    Rakismet.url = akismet_url
     Rakismet.host = 'rest.akismet.com'
     
     enable :sessions
@@ -52,8 +52,8 @@ class App < Sinatra::Base
       @root_catalog ||= Atom::Feed.with_uri("#{settings.base_url}/catalogs")
     end
     
-    def home_catalog
-      @home_catalog ||= Atom::Feed.with_uri("#{settings.base_url}/atom_feeds/#{settings.home_catalog}")
+    def home_feed
+      @home_feed ||= Atom::Feed.with_uri("#{settings.base_url}/atom_feeds/#{settings.home_feed}")
     end
     
     def latest_feed
@@ -95,6 +95,6 @@ class App < Sinatra::Base
   end
   
   get '/' do
-    redirect url_for("/atom_feeds/#{home_catalog.id}")
+    redirect url_for("/atom_feeds/#{home_feed.id}")
   end
 end
