@@ -2,7 +2,15 @@
 	%video{ :controls => true, :preload => 'none', :poster => entry.link('related')['href'] }
 		- entry.video_enclosures.each do |enclosure|
 			%source{ :src => enclosure['href'], :type => enclosure['type'] }/
+		%ul
+			- entry.video_enclosures.each do |enclosure|
+				%li
+					%a{ :href => enclosure['href'] }= enclosure['type']
 - elsif !entry.audio_enclosures.empty?
 	%audio{ :controls => true, :preload => 'none' }
 		- entry.audio_enclosures.each do |enclosure|
 			%source{ :src => enclosure['href'], :type => enclosure['type'] }/
+		%ul
+			- entry.audio_enclosures.each do |enclosure|
+				%li
+					%a{ :href => enclosure['href'] }= enclosure['type']
