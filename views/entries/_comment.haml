@@ -5,7 +5,7 @@
 			%article
 				%header
 					%figure
-						%img{ :src => comment.gravatar_url }
+						%img{ :src => comment.avatar_url }
 					%h1= escape_html(comment.author)
 					%time{ :pubdate => true, :datetime => comment.created_at }= l Time.parse(comment.created_at), '%A, %b %d %Y'
 				%p= escape_html(comment.content)

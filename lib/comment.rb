@@ -1,8 +1,6 @@
 class Comment
   include Mongoid::Document
   include Rakismet::Model
-  include Gravtastic
-  gravtastic
   
   attr_accessor :user_ip, :user_agent, :referrer
   
@@ -17,4 +15,8 @@ class Comment
   validates_presence_of :email
   validates_presence_of :content
   
+  def avatar_url
+    gravatar_id = Digest::MD5.hexdigest(email.downcase)
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=48"
+  end
 end

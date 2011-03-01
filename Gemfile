@@ -17,6 +17,5 @@ gem 'mongoid'
 gem 'bson_ext'
 
 gem 'rakismet'
-gem 'gravtastic'
 
 gem 'api_cache'
