@@ -11,6 +11,15 @@ $(function() {
 	    'monochromatic' : false
 	});
 	
+	$('article').noisy({
+	    'noise' : 1, 
+	    'tileSize' : 200, 
+	    'backgroundColor' : 'rgba(255, 255, 255, .8)', 
+	    'maxNoiseOpacity' : 0.078, 
+	    'fallbackImage' : '', 
+	    'monochromatic' : false
+	});
+	
 	$('details').collapse({ 
 		head: 'summary', 
 		group: 'section',
