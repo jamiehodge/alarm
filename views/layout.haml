@@ -29,13 +29,13 @@
 				%hgroup
 					%a{ :href => url_for('/') }
 						%h1= root.title
-			%aside
+			%nav#latest
 				%h2= t.nav.latest
 				= haml :latest, :locals => { :latest => latest }
 			#content
 				#main
 					= yield
-			%nav
+			%nav#browse
 				%h2= t.nav.browse
 				%ul
 					- root.entries[0..-3].each do |entry|

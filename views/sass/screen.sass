@@ -11,7 +11,9 @@ h1, h2, h3, h4, h5, h6
 	
 body
 	+susy
-	+rgba-background-inline(rgba(238, 238, 238, 1))
+	// +rgba-background-inline(rgba(238, 238, 238, 1))
+	+linear-gradient(color-stops(rgb(201,237,240), rgba(34,59,58,.5), rgb(201,237,240)), left, image-url('noise.png'))
+	min-width: 64em
 	
 	#page
 		+container
@@ -22,6 +24,7 @@ body
 			color: #777
 			blockquote
 				+pad(2,2)
+				color: white
 		> header
 			+columns(7)
 			+alpha
@@ -37,7 +40,7 @@ body
 					+opacity(.7)
 			h2
 				display: none
-		> aside
+		> nav#latest
 			+alpha
 			+columns(3)
 			+leader(1)
@@ -48,7 +51,7 @@ body
 					+no-bullets
 					li
 						+trailer(1)
-		> nav
+		> nav#browse
 			+alpha
 			+columns(3)
 			+leader
@@ -71,7 +74,7 @@ body
 			#main
 				+columns(6,9)
 				> article
-					+box-shadow(rgba(151, 169, 198, .2))
+					+box-shadow(rgba(23, 46, 51, .2))
 					+border-top-radius($base-rhythm-unit * .5)
 				article
 					+full(9)
