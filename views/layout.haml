@@ -9,7 +9,7 @@
 		%meta{ :content => "An Internet portal for the Podcast Producer Feed Library", :name => "description" }/
 		%meta{ :content => "Jamie Hodge", :name => "author" }/
 		
-		%meta{ :content => "width=device-width, initial-scale=0.5", :name => "viewport" }/
+		%meta{ :content => "width=device-width, initial-scale=1", :name => "viewport" }/
 		
 		:javascript
 			document.documentElement.className = "js";
@@ -57,6 +57,9 @@
 		%script{ :src => url_for("/javascripts/jquery.collapse.js?v=1") }
 		
 		%script{ :src => url_for("/javascripts/jquery.cycle.lite.min.js?v=1") }
+		
+		%script{ :src => url_for("/javascripts/jquery.noisy.js?v=1") }
+		
 		
 		:javascript
 			var _gaq = [['_setAccount', settings.google_analytics], ['_trackPageview']];

@@ -2,6 +2,15 @@ $(function() {
 
 	$('#slideshow').show().cycle({ timeout: 12000 });
 	
+	$('body').noisy({
+	    'noise' : 1, 
+	    'tileSize' : 200, 
+	    'backgroundColor' : '#BDC4C4', 
+	    'maxNoiseOpacity' : 0.078, 
+	    'fallbackImage' : '', 
+	    'monochromatic' : false
+	});
+	
 	$('details').collapse({ 
 		head: 'summary', 
 		group: 'section',
