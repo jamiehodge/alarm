@@ -53,11 +53,11 @@ class App < Sinatra::Base
     end
     
     def home_feed
-      @home_feed ||= Atom::Feed.with_uri("#{settings.base_url}/atom_feeds/#{settings.home_feed}")
+      Atom::Feed.with_uri("#{settings.base_url}/atom_feeds/#{settings.home_feed}")
     end
     
     def latest_feed
-      @latest_feed ||= Atom::Feed.with_uri("#{settings.base_url}/atom_feeds/#{settings.latest_feed}")
+      Atom::Feed.with_uri("#{settings.base_url}/atom_feeds/#{settings.latest_feed}")
     end
     
     def cache_page(seconds=5*60)
