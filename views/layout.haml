@@ -49,7 +49,10 @@
 					
 					
 					
-		%script{ :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" }
+		%script{ :src => "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" }
+		
+		:javascript
+			!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/jquery.min.js"%3E%3C/script%3E'))
 
 		%script{ :src => url_for("/javascripts/script.js?v=1") }
 		
