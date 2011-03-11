@@ -21,7 +21,7 @@
 			if (confirm("Save changes to " + $field.attr('class') + '?')) {
 				$.ajax({
 					type: 'put',
-					url: '/feeds/' + $field.closest('article').attr('id'),
+					url: localStorage.getItem('base_url') + '/feeds/' + $field.closest('article').attr('id'),
 					data: { property_name: $field.attr('class'), property_value: $field.text() },
 					success: function() {
 						alert('Saved changes to ' + $field.attr('class'));
