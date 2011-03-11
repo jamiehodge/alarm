@@ -1,0 +1,23 @@
+!!! 5
+/[if lt IE 7 ]
+	%html{ :lang => 'en', :class => 'no-js ie6' }
+/[if IE 7]
+	%html{ :lang => 'en', :class => 'no-js ie7' }
+/[if IE 8]
+	%html{ :lang => 'en', :class => 'no-js ie8' }
+/[if IE 9]
+	%html{ :lang => 'en', :class => 'no-js ie9' }
+<!--[if (gte IE 9)|!(IE)]><!-->
+%html.no-js
+	<!--<![endif]-->
+	= haml :'layouts/_head'
+	%body{ :lang => 'en', :class => '' }
+		#container
+			%header#header
+				= haml :'layouts/_header'
+			#main{ :role => 'main' }
+				-# = haml :'layouts/_flashes'
+				= yield
+			%footer#footer
+				= haml :'layouts/_footer'
+		= haml :'layouts/_js'

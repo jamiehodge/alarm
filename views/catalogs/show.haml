@@ -1,0 +1,16 @@
+%nav#nav
+	= haml :'layouts/_nav'
+%article#feed
+	%header
+		%hgroup
+			%h1.edit= catalog.title
+			%h2.edit= catalog.subtitle
+			%p
+				%small
+					Published
+					%time{ :time => catalog.updated.strftime('%y-%m-%d'), :pubdate => true }= catalog.updated.strftime('%A, %b %d %Y')
+	%aside		
+		%p
+			%img{ :src => catalog.logo }
+	- catalog.entries.each do |feed|
+		= haml :'entries/show', :locals => { :entry => feed }

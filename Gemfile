@@ -5,8 +5,9 @@ gem 'compass-susy-plugin', :require => 'susy'
 gem 'compass-rgbapng', :require => 'rgbapng'
 
 gem 'sinatra'
+
 gem 'sinatra-r18n', :require => 'sinatra/r18n'
-gem 'emk-sinatra-url-for', :require => 'sinatra/url_for'
+gem 'rack-flash'
 
 gem 'haml'
 gem 'sass'
@@ -18,4 +19,8 @@ gem 'bson_ext'
 
 gem 'rakismet'
 
-gem 'api_cache'
+gem 'net-ldap'
+
+group :development do
+  gem 'sinatra-reloader'
+end

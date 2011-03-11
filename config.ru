@@ -1,15 +1,16 @@
-# encoding: UTF-8
-
 require 'rubygems'
 require 'bundler'
-
 Bundler.require
 
-FileUtils.mkdir_p 'log' unless File.exists?('log')
-log = File.new("log/sinatra.log", "a")
-$stdout.reopen(log)
-$stderr.reopen(log)
+require 'open-uri'
+require 'yaml'
 
-require './app.rb'
+require './app'
 
-run App
+use Rack::Session::Cookie, :secret => `uuidgen`
+use Rack::MethodOverride
+use Rack::Flash
+	
+map '/' do
+	run App
+end

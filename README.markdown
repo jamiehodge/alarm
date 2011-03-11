@@ -1,8 +1,10 @@
 # ALARM
 
-A simple web front-end for Podcast Producer's Podcast Library
+A simple web front-end for Podcast Producer's Podcast Library.
 
-A working installation is running (in production!) [here](http://radio.larm-archive.org).
+## TODO
+
+Authenticated management of catalog, feed and episode metadata and images.
 
 ## Stack
 * Bundler
@@ -11,13 +13,12 @@ A working installation is running (in production!) [here](http://radio.larm-arch
 * Compass
 * Susy
 * Rakismet
-* Gravtastic
-* API Cache
+* Net/LDAP
 
 ## Installation
 
 1. `brew install mongodb`
-2. Alter `base_url`, `home_catalog`, `latest_feed`, `Rakismet.key` and `Rakismet.url` in `app.rb` to reflect your Podcast Producer installation
+2. `mv conf/settings.yml.default conf/settings.yml` and edit
 3. `bundle install`
 4. `rackup`
 

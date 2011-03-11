@@ -2,10 +2,10 @@ GEM
   remote: http://rubygems.org/
   specs:
     activesupport (2.3.11)
-    api_cache (0.2.0)
-    bson (1.0.9)
-    bson_ext (1.2.1)
-    chunky_png (0.12.0)
+    backports (1.18.2)
+    bson (1.2.4)
+    bson_ext (1.2.4)
+    chunky_png (1.0.1)
     compass (0.10.6)
       haml (>= 3.0.4)
     compass-rgbapng (0.1.1)
@@ -14,27 +14,40 @@ GEM
     compass-susy-plugin (0.8.1)
       compass (>= 0.10.0)
     durran-validatable (2.0.1)
-    emk-sinatra-url-for (0.2.1)
-      sinatra (>= 0.9.1.1)
     haml (3.0.25)
-    mongo (1.0.9)
-      bson (>= 1.0.5)
-    mongoid (1.9.2)
+    mongo (1.2.4)
+      bson (>= 1.2.4)
+    mongoid (1.9.5)
       activesupport (< 3.0.0)
-      bson (~> 1.0.1)
+      bson (~> 1.2.1)
       durran-validatable (>= 2.0.1)
-      mongo (~> 1.0.1)
+      mongo (~> 1.2.1)
       will_paginate (< 2.9)
+    monkey-lib (0.5.4)
+      backports
+    net-ldap (0.1.1)
     nokogiri (1.4.4)
     r18n-core (0.4.9)
     rack (1.2.1)
+    rack-flash (0.1.1)
+      rack
     rakismet (1.0.1)
     sass (3.1.0.alpha.221)
-    sinatra (1.1.2)
+    sinatra (1.2.0)
       rack (~> 1.1)
-      tilt (~> 1.2)
+      tilt (>= 1.2.2, < 2.0)
+    sinatra-advanced-routes (0.5.1)
+      monkey-lib (~> 0.5.0)
+      sinatra (~> 1.0)
+      sinatra-sugar (~> 0.5.0)
     sinatra-r18n (0.4.9)
       r18n-core (= 0.4.9)
+    sinatra-reloader (0.5.0)
+      sinatra (~> 1.0)
+      sinatra-advanced-routes (~> 0.5.0)
+    sinatra-sugar (0.5.0)
+      monkey-lib (~> 0.5.0)
+      sinatra (~> 1.0)
     tilt (1.2.2)
     will_paginate (2.3.15)
 
@@ -42,16 +55,17 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  api_cache
   bson_ext
   compass
   compass-rgbapng
   compass-susy-plugin
-  emk-sinatra-url-for
   haml
   mongoid
+  net-ldap
   nokogiri
+  rack-flash
   rakismet
   sass
   sinatra
   sinatra-r18n
+  sinatra-reloader

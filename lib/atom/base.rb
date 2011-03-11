@@ -1,59 +1,79 @@
-# encoding: UTF-8
+require 'nokogiri'
+require 'open-uri'
 
 module Atom
-  class Base
-    
-    def initialize(xml)
-      @doc = Nokogiri::XML(xml)
-      ['title', 'author/name', 'author/email', 'itunes|explicit'].each do |e|
-        self.class.send(:define_method, symbolize_method_name(e)) { text_at(e) }
-      end
-    end
-    
-    def id
-      text_at('id').gsub(/urn:uuid:/, '')
-    end
-    
-    def updated
-      time_at('updated')
-    end
-    
-    def link(type)
-      @doc.at("#{self.class.name.split(':').last.downcase}/link[@rel=#{type}]")
-    end
-
-    def links(type)
-      @doc.search("#{self.class.name.split(':').last.downcase}/link[@rel=#{type}]")
-    end
-    
-    def path
-      if catalog?
-        "/catalogs/#{id}"
-      else
-        "/atom_feeds/#{id}"
-      end
-    end
-    
-    def self.with_uri(uri)
-      self.new(APICache.get(URI.encode(uri))) rescue nil
-    end
-    
-    private
-    
-      def text_at(args)
-        @doc.at(args).inner_text rescue nil
-      end
-      
-      def text_search(args)
-        @doc.search(args).map(&:inner_text)
-      end
-      
-      def time_at(args)
-        Time.parse(text_at(args))
-      end
-      
-      def symbolize_method_name(name)
-        name.gsub(/[\/|]/, '_').to_sym
-      end
-  end
+	def initialize(doc)
+		@doc = doc
+	end
+	
+	def self.included(base)
+		base.extend(ClassMethods)
+	end
+	
+	module ClassMethods
+		def with_uri(uri)
+			self.parse(open(uri))
+		end
+		
+		def parse(doc)
+			self.new(Nokogiri::XML(doc))
+		end
+		
+		def element(*args)
+			args.each do |arg|
+				self.send(:define_method, arg.gsub(/[\/|]/, '_')) { text_at(arg) }
+			end
+		end
+		alias :elements :element
+		
+		def time_element(*args)
+			args.each do |arg|
+				self.send(:define_method, arg.gsub(/[\/|]/, '_')) { time_at(arg)}
+			end
+		end
+		alias :time_elements :time_element
+		
+		def link(*args)
+			args.each do |arg|
+				self.send(:define_method, arg.gsub(/[\/|]/, '_') + '_link') { link_at(arg)}
+			end
+		end
+		
+		def links(*args)
+			args.each do |arg|
+				self.send(:define_method, arg.gsub(/[\/|]/, '_') + '_links') { link_search(arg)}
+			end
+		end
+		
+		def entries(arg)
+			self.send(:define_method, 'entries') { @doc.search('entry').map { |e| eval("Atom::#{arg.capitalize}").new(e) } }
+			self.send(:define_method, 'entry') { |uuid| @doc.search('entry').map { |e| eval("Atom::#{arg.capitalize}").new(e) }.find { |e| e.uuid == uuid }  }
+		end
+	end
+	
+	def uuid
+		text_at('id').gsub(/urn:uuid:/, '') if text_at('id')
+	end
+	
+	private
+	
+		def text_at(args)
+			@doc.at(args).inner_text if @doc.at(args)
+		end
+		
+		def text_search(args)
+			@doc.search(args).map(&:inner_text) if @doc.search(args)
+		end
+		
+		def time_at(args)
+			Time.parse(text_at(args)) if text_at(args)
+		end
+		
+		def link_at(arg)
+			@doc.at "link[@rel=#{arg}]"
+		end
+		
+		def link_search(arg)
+			@doc.search "link[@rel=#{arg}]"
+		end
 end

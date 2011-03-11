@@ -1,0 +1,4 @@
+%ul
+	- catalogs.each do |catalog| 
+		%a{ :href => "/catalogs/#{catalog.uuid}" }
+			%li= catalog.title

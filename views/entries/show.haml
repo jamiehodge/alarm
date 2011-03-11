@@ -1,0 +1,13 @@
+%article.entry{ :id => entry.uuid }
+	%header
+		%hgroup
+			%a{ :href => "/feeds/#{entry.uuid}" }
+				%h1.edit_link= entry.title
+			%p
+				%small
+					Published
+					%time{ :time => entry.updated.strftime('%y-%m-%d'), :pubdate => true }= entry.updated.strftime('%A, %b %d %Y')
+	%aside		
+		%p
+			%img.edit_img{ :src => entry.related_link['href'], :height => 125 }
+	%p.edit= entry.summary

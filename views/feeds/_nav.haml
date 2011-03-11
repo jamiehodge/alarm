@@ -1,0 +1,3 @@
+- feed.entries.each do |entry|
+	%p
+		%a{ :href => "/feeds/#{feed.uuid}/entries/#{entry.uuid}" }= entry.title

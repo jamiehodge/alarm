@@ -1,0 +1,63 @@
+@import defaults
+
+*
+	// background-color: rgba(0, 0, 0, 0.01)
+	
+// +font-face('BebasNeueRegular', font-files('BebasNeue-webfont.woff', woff, 'BebasNeue-webfont.ttf', truetype, 'BebasNeue-webfont.svg', svg), 'BebasNeue-webfont.eot' )
+
+h1, h2, h3, h4, h5, h6
+	@extend .sans
+	@extend b
+	// font-family: BebasNeueRegular
+a
+	+hover-link
+		
+audio,
+video
+	width: 100%
+	
+body
+	+susy
+	+rgba-background-inline(rgba(34, 59, 58, .3))
+	
+	#container
+		+container
+		
+		#header
+			+full
+			+alpha
+			+omega
+			+pad(1,4)
+			h1
+				+adjust-font-size-to(64px)
+		
+		#main
+			+pad(2,2)
+			+columns(8)
+			+alpha
+			+omega
+			#nav
+				ul
+					+inline-block-list
+					+leader(.5)
+					li
+						+columns(2,7)
+						height: $base-rhythm-unit * 1.5
+						+rgba-background-inline(rgba(0, 0, 0, .8))
+						+border-top-radius($base-rhythm-unit)
+						color: white
+						text-align: center
+			article
+				+rhythm-borders(1px, 1, $base_font_size, 'none')
+				+rgba-background-inline(rgba(255, 255, 255, .8))
+				+box-sizing(border-box)
+				border-top: 2px #fff solid
+				border-bottom: 2px #eee solid
+				> header
+					+columns(5,8)
+				+trailer
+		#footer
+			+pad(2,2)
+			+columns(8)
+			+alpha
+			+omega

@@ -5,7 +5,7 @@ feed:
     subscribe: Subscribe in iTunes
     play_all: Play All
     links_to_programs: Links to Programs
-    entry:
+    episode:
         comments:
             count: !!pl
                 1: 1 comment
@@ -14,4 +14,3 @@ feed:
             email: Email
             content: Content
             submit: Comment
-        

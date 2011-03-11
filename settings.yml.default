@@ -1,0 +1,28 @@
+---
+title: Podcast Library
+subtitle: Podcast Producer Podcast Feeds
+
+pcp:
+	library: http://example.com/podcastproducer
+	recent: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+	catalogs:
+    	- user
+    	- workflow
+    	- keyword 
+			# - history 
+			# - custom
+    
+ldap:
+    host: www.example.com
+    port: 636 # SSL
+
+google_account_id: UA-XXXXXXX-X
+
+mongoid:
+    host: localhost
+    database: alarm
+    
+rakismet:
+    host: rest.akismet.com
+    url: http://www.example.com/
+    key:

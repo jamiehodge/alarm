@@ -1,0 +1,4 @@
+- unless enclosures.empty?
+	%audio{ :controls => true, :preload => 'none' }
+		- enclosures.each do |enclosure|
+			%source{ :src => enclosure['href'], :type => enclosure['type'] }/
