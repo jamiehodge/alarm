@@ -102,6 +102,12 @@ class App < Sinatra::Base
 		:locals => { :feed => Atom::Feed.with_uri("#{settings.pcp['library']}/user_atom_feeds/#{params[:id]}")}
 	end
 	
+	get '/users/:id/edit' do
+		haml :'feeds/edit',
+		:layout => :'layouts/app',
+		:locals => { :feed => Atom::Feed.with_uri("#{settings.pcp['library']}/user_atom_feeds/#{params[:id]}")}
+	end
+	
 	# Root
 	
 	get '/' do

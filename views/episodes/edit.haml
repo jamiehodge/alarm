@@ -1,0 +1,20 @@
+%article.episode{ :id => episode.uuid }
+	%header
+		%hgroup
+			%h1.title{ :contenteditable => true }= episode.title
+			%p
+				%small
+					Published
+					%time{ :time => episode.updated.strftime('%y-%m-%d'), :pubdate => true }= episode.updated.strftime('%A, %b %d %Y')
+	%aside		
+		%p
+			%img{ :src => episode.related_link['href'], :height => 125 }
+		%p
+			= haml :'episodes/_enclosures', :locals => { :enclosures => episode.enclosure_links }
+	%p.summary{ :contenteditable => true }= episode.summary
+	%details
+		%summary= t.feed.episode.comments.count(episode.comments.count)
+		%section
+			- episode.comments.each do |comment|
+				= haml :'comments/show', :locals => { :comment => comment }
+			= haml :'comments/new', :locals => { :feed => feed, :episode => episode }

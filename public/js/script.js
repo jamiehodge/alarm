@@ -7,6 +7,25 @@
 		cookieName: $(location).attr('pathname')
 	});
 	
+	$editable = $('*[contenteditable]');
+	
+	$editable.focus(function() {
+		$(this).addClass('edit');
+		localStorage.setItem('undo', this.innerHTML);
+	});
+	
+	$editable.blur(function() {
+		$(this).removeClass('edit');
+		if (localStorage.getItem('undo') != $(this).text()) {
+			if (confirm("Save changes to " + $(this).attr('class') + '?')) {
+				$.post('' + $(this).closest('article').attr('id'), 
+					{ property_name: $(this).attr('class'), property_value: $(this).text() });
+			} else {
+				$(this).text(localStorage.getItem('undo'));
+			}
+		}
+	});
+	
 	$audioVideo = $('audio, video');
 	
 	$audioVideo.each(function(index) {

@@ -1,0 +1,17 @@
+%nav#nav
+	= haml :'layouts/_nav'
+%article#feed
+	%header
+		%hgroup
+			%h1.title{ :contenteditable => true }= feed.title
+			%p.subtitle{ :contenteditable => true }= feed.subtitle
+			%p
+				%small
+					Published
+					%time{ :time => feed.updated.strftime('%y-%m-%d'), :pubdate => true }= feed.updated.strftime('%A, %b %d %Y')
+	%aside		
+		%p
+			%img{ :src => feed.logo }
+	-# %button{ :type => 'button' }= t.feed.play_all
+	- feed.entries.each do |episode|
+		= haml :'episodes/edit', :locals => { :feed => feed, :episode => episode }

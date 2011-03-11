@@ -45,7 +45,7 @@ module Sinatra
 		      app.post '/login' do
 		        if authenticate
 							session[:user] = params['username']
-		          redirect "/users/#{session[:user]}"
+		          redirect "/users/#{session[:user]}/edit"
 		        else
 		          session[:user] = false
 		          redirect '/login'
