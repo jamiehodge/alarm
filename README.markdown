@@ -1,10 +1,10 @@
 # ALARM
 
-A simple web front-end for Podcast Producer's Podcast Library.
+A simple web front-end for Podcast Producer's Podcast Library. Includes basic web-based management of feed metadata, using LDAP authentication.
 
 ## TODO
 
-Authenticated management of catalog, feed and episode metadata and images.
+Management of episode metadata and images.
 
 ## Stack
 * Bundler
