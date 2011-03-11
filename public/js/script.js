@@ -15,13 +15,24 @@
 	});
 	
 	$editable.blur(function() {
-		$(this).removeClass('edit');
-		if (localStorage.getItem('undo') != $(this).text()) {
-			if (confirm("Save changes to " + $(this).attr('class') + '?')) {
-				$.post('' + $(this).closest('article').attr('id'), 
-					{ property_name: $(this).attr('class'), property_value: $(this).text() });
+		$field = $(this);
+		$field.removeClass('edit');
+		if (localStorage.getItem('undo') != $field.text()) {
+			if (confirm("Save changes to " + $field.attr('class') + '?')) {
+				$.ajax({
+					type: 'put',
+					url: '/feeds/' + $field.closest('article').attr('id'),
+					data: { property_name: $field.attr('class'), property_value: $field.text() },
+					success: function() {
+						alert('Saved changes to ' + $field.attr('class'));
+					},
+					error: function() {
+						alert('Failed to save changes to ' + $field.attr('class'));
+						$field.text(localStorage.getItem('undo'));
+					}
+				});
 			} else {
-				$(this).text(localStorage.getItem('undo'));
+				$field.text(localStorage.getItem('undo'));
 			}
 		}
 	});

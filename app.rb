@@ -90,6 +90,17 @@ class App < Sinatra::Base
 			:locals => { :feed => Atom::Feed.with_uri("#{settings.pcp['library']}/atom_feeds/#{params[:id]}")}
 	end
 	
+	put '/feeds/:id' do
+		if authenticated?
+			Nokogiri::XML(open(
+				"#{settings.pcp['ssl_library']}/feeds/setproperty?feed_uuid=#{params[:id]}&property_name=#{URI.encode(params[:property_name])}&property_value=#{URI.encode(params[:property_value])}",
+				:http_basic_authentication => [ settings.pcp['ssl_username'], settings.pcp['ssl_password'] ]
+			).read).at('status').text == 'success' ? 200 : 401
+		else
+			status 401
+		end
+	end
+	
 	get '/keywords/:id' do
 		haml :'feeds/show',
 			:layout => :'layouts/app',
@@ -103,6 +114,7 @@ class App < Sinatra::Base
 	end
 	
 	get '/users/:id/edit' do
+		authenticate!
 		haml :'feeds/edit',
 		:layout => :'layouts/app',
 		:locals => { :feed => Atom::Feed.with_uri("#{settings.pcp['library']}/user_atom_feeds/#{params[:id]}")}

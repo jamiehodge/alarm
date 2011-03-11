@@ -4,6 +4,9 @@ subtitle: Podcast Producer Podcast Feeds
 
 pcp:
 	library: http://example.com/podcastproducer
+	ssl_library: https://example.com:8170/podcastproducer
+	ssl_username: 
+  ssl_password:
 	recent: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 	catalogs:
     	- user

@@ -1,10 +1,10 @@
 %nav#nav
 	= haml :'layouts/_nav'
-%article#feed
+%article.feed{ :id => feed.uuid }
 	%header
 		%hgroup
-			%h1.title{ :contenteditable => true }= feed.title
-			%p.subtitle{ :contenteditable => true }= feed.subtitle
+			%h1.name{ :contenteditable => true }= feed.title
+			%p.description{ :contenteditable => true }= feed.subtitle
 			%p
 				%small
 					Published
