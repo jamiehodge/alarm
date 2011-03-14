@@ -35,6 +35,7 @@ class App < Sinatra::Base
 	$LOAD_PATH.unshift File.join(root, 'lib' )
 	require 'atom'
 	require 'comment'
+	require 'podcast_producer'
 	
 	helpers do
 
@@ -66,6 +67,25 @@ class App < Sinatra::Base
 			:layout => :'layouts/app', 
 			:locals => { :catalog => Atom::Catalog.with_uri("#{settings.pcp['library']}/catalogs/#{params[:id]}")}
 	end
+	
+	put '/catalogs/:id' do
+		authenticate!
+		PodcastProducer.set_catalog_property(params[:id], params[:property_name], params[:property_value])
+	end
+	
+	get '/catalogs/:id/edit' do
+		authenticate!
+		session[:return_to] = "/catalogs/#{params[:id]}/edit"
+		haml :'catalogs/edit',
+		:layout => :'layouts/app',
+		:locals => { :catalog => Atom::Feed.with_uri("#{settings.pcp['library']}/catalogs/#{params[:id]}")}
+	end
+	
+	put '/catalogs/:id/image' do
+		authenticate!
+		PodcastProducer.set_image('catalog', params[:id], IO.read(params[:file][:tempfile]), File.extname(params[:file][:filename]))
+		redirect session[:return_to]
+	end
 
 	get '/feeds/:feed_id/episodes/:episode_id' do
 		feed = Atom::Feed.with_uri("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
@@ -95,14 +115,22 @@ class App < Sinatra::Base
 	end
 	
 	put '/feeds/:id' do
-		if authenticated?
-			Nokogiri::XML(open(
-				"#{settings.pcp['ssl_library']}/feeds/setproperty?feed_uuid=#{params[:id]}&property_name=#{URI.encode(params[:property_name])}&property_value=#{URI.encode(params[:property_value])}",
-				:http_basic_authentication => [ settings.pcp['ssl_username'], settings.pcp['ssl_password'] ]
-			).read).at('status').text == 'success' ? 200 : 401
-		else
-			status 401
-		end
+		authenticate!
+		PodcastProducer.set_feed_property(params[:id], params[:property_name], params[:property_value])
+	end
+	
+	get '/feeds/:id/edit' do
+		authenticate!
+		session[:return_to] = "/feeds/#{params[:id]}/edit"
+		haml :'feeds/edit',
+		:layout => :'layouts/app',
+		:locals => { :feed => Atom::Feed.with_uri("#{settings.pcp['library']}/atom_feeds/#{params[:id]}")}
+	end
+	
+	put '/feeds/:id/image' do
+		authenticate!
+		PodcastProducer.set_image('feed', params[:id], IO.read(params[:file][:tempfile]), File.extname(params[:file][:filename]))
+		redirect session[:return_to]
 	end
 	
 	get '/keywords/:id' do
@@ -119,6 +147,7 @@ class App < Sinatra::Base
 	
 	get '/users/:id/edit' do
 		authenticate!
+		session[:return_to] = "/users/#{params[:id]}/edit"
 		haml :'feeds/edit',
 		:layout => :'layouts/app',
 		:locals => { :feed => Atom::Feed.with_uri("#{settings.pcp['library']}/user_atom_feeds/#{params[:id]}")}
@@ -127,7 +156,7 @@ class App < Sinatra::Base
 	# Root
 	
 	get '/' do
-		redirect "/catalogs/#{settings.pcp['recent']}"
+		redirect "/feeds/#{settings.pcp['recent']}"
 	end
 
 end

@@ -1,6 +1,4 @@
-%nav#nav
-	= haml :'layouts/_nav'
-%article#feed
+%article.feed
 	%header
 		%hgroup
 			%h1= feed.title
@@ -9,9 +7,8 @@
 				%small
 					Published
 					%time{ :time => feed.updated.strftime('%y-%m-%d'), :pubdate => true }= feed.updated.strftime('%A, %b %d %Y')
-	%aside		
-		%p
-			%img{ :src => feed.logo }
-	-# %button{ :type => 'button' }= t.feed.play_all
+		%aside		
+			%img{ :src => feed.logo, :width => '100%' }
+	%button{ :type => 'button' }= t.feed.play_all
 	- feed.entries.each do |episode|
 		= haml :'episodes/show', :locals => { :feed => feed, :episode => episode }

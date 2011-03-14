@@ -13,8 +13,11 @@ GEM
       compass (>= 0.10.0)
     compass-susy-plugin (0.8.1)
       compass (>= 0.10.0)
+    crack (0.1.8)
     durran-validatable (2.0.1)
     haml (3.0.25)
+    httparty (0.7.4)
+      crack (= 0.1.8)
     mongo (1.2.4)
       bson (>= 1.2.4)
     mongoid (1.9.5)
@@ -60,6 +63,7 @@ DEPENDENCIES
   compass-rgbapng
   compass-susy-plugin
   haml
+  httparty
   mongoid
   net-ldap
   nokogiri

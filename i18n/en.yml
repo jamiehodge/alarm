@@ -1,6 +1,8 @@
 nav:
     latest: Latest
     browse: Browse
+    admin: Admin
+    user: User
 feed:
     subscribe: Subscribe in iTunes
     play_all: Play All

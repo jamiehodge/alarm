@@ -1,7 +1,2 @@
 %small.copyright
 	Copyright &copy; #{Time.now.year}
-%p
-	- if authenticated?
-		%a{ :href => '/logout' } Log out
-	- else
-		%a{ :href => '/login'} Log in

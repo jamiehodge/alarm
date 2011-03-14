@@ -1,4 +1,19 @@
+%h2= t.nav.browse
 %ul
 	- catalogs.each do |catalog| 
 		%a{ :href => "/catalogs/#{catalog.uuid}" }
 			%li= catalog.title
+%h2= t.nav.admin
+%ul
+	- if authenticated?
+		%li
+			%a{ :href => '/logout' } Log out
+		- if request.path_info.split('/').last == 'edit'
+			%li
+				%a{ :href => url("#{request.path_info[0..-6]}") } View Page
+		- else
+			%li
+				%a{ :href => url("#{request.path_info}/edit") } Edit Page
+	- else
+		%li
+			%a{ :href => '/login'} Log in

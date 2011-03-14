@@ -1,7 +1,7 @@
 @import defaults
 
 *
-	// background-color: rgba(0, 0, 0, 0.01)
+	background-color: rgba(0, 0, 0, 0.01)
 	
 // +font-face('BebasNeueRegular', font-files('BebasNeue-webfont.woff', woff, 'BebasNeue-webfont.ttf', truetype, 'BebasNeue-webfont.svg', svg), 'BebasNeue-webfont.eot' )
 
@@ -18,7 +18,7 @@ video
 	
 body
 	+susy
-	+rgba-background-inline(rgba(34, 59, 58, .3))
+	+rgba-background-inline(rgba(35, 35, 35, .3))
 	
 	#container
 		+container
@@ -30,23 +30,16 @@ body
 			+pad(1,4)
 			h1
 				+adjust-font-size-to(64px)
-		
-		#main
-			+pad(2,2)
-			+columns(8)
+				+trailer(0)
+		#nav
+			+columns(2)
 			+alpha
-			+omega
-			#nav
-				ul
-					+inline-block-list
-					+leader(.5)
-					li
-						+columns(2,7)
-						height: $base-rhythm-unit * 1.5
-						+rgba-background-inline(rgba(0, 0, 0, .8))
-						+border-top-radius($base-rhythm-unit)
-						color: white
-						text-align: center
+			ul
+				+no-bullets
+				li
+					+trailer
+		#main
+			+columns(8)
 			article
 				+rhythm-borders(1px, 1, $base_font_size, 'none')
 				+rgba-background-inline(rgba(255, 255, 255, .8))
@@ -54,7 +47,15 @@ body
 				border-top: 2px #fff solid
 				border-bottom: 2px #eee solid
 				> header
-					+columns(5,8)
+					+full(8)
+					overflow: auto
+					hgroup
+						+columns(5,8)
+					aside
+						+columns(2,8)
+				button
+					width: 100%
+					+trailer
 				+trailer
 				.edit
 					background-color: lighten($alt, 60%)

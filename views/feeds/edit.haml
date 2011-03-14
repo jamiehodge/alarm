@@ -1,5 +1,3 @@
-%nav#nav
-	= haml :'layouts/_nav'
 %article.feed{ :id => feed.uuid }
 	%header
 		%hgroup
@@ -12,6 +10,11 @@
 	%aside		
 		%p
 			%img{ :src => feed.logo }
+		%p
+			%form{ :action => url("/feeds/#{feed.uuid}/image"), :method => 'post', :enctype => 'multipart/form-data' }
+				%input{ :type => 'hidden', :name => '_method', :value => 'put' }
+				%input{ :type => 'file', :name => 'file' }
+				%input{ :type => 'submit', :value => 'Upload' }
 	-# %button{ :type => 'button' }= t.feed.play_all
 	- feed.entries.each do |episode|
-		= haml :'episodes/edit', :locals => { :feed => feed, :episode => episode }
+		= haml :'episodes/show', :locals => { :feed => feed, :episode => episode }

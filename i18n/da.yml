@@ -1,6 +1,8 @@
 nav:
     latest: Seneste
     browse: Browse
+    admin: Admin
+    user: Bruger
 feed:
     subscribe: Abonner i iTunes
     play_all: Afspil alle

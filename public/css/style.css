@@ -416,6 +416,11 @@ button {
   overflow: visible;
 }
 
+/* line 3, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
+* {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
 /* line 12, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
 a {
   text-decoration: none;
@@ -433,8 +438,8 @@ video {
 
 /* line 19, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
 body {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUiOzpmDZneAAAAAXRSTlNNSIvlSwAAAApJREFUeJxjYgAAAAYAAzY3fKgAAAAASUVORK5CYII=');
-  background: rgba(34, 59, 58, 0.3);
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNS9gUAAJwAc+vUUwsAAAAASUVORK5CYII=');
+  background: rgba(35, 35, 35, 0.3);
 }
 /* line 29, /Users/jamiehodge/.rvm/gems/ruby-1.9.2-p136@alarm/gems/compass-susy-plugin-0.8.1/sass/susy/_vertical_rhythm.scss */
 body body {
@@ -479,72 +484,38 @@ body #container #header {
 body #container #header h1 {
   font-size: 4em;
   line-height: 1.125em;
+  margin-bottom: 0em;
 }
 /* line 34, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
+body #container #nav {
+  display: inline;
+  float: left;
+  width: 14.754%;
+  margin-right: 1.639%;
+  margin-left: 1.639%;
+}
+/* line 37, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
+body #container #nav ul {
+  list-style: none;
+}
+/* line 11, /Users/jamiehodge/.rvm/gems/ruby-1.9.2-p136@alarm/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/lists/_bullets.scss */
+body #container #nav ul li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+}
+/* line 39, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
+body #container #nav ul li {
+  margin-bottom: 1.5em;
+}
+/* line 41, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
 body #container #main {
-  padding-left: 16.393%;
-  padding-right: 16.393%;
   display: inline;
   float: left;
   width: 63.934%;
   margin-right: 1.639%;
-  margin-left: 1.639%;
-  display: inline;
-  float: right;
-  margin-right: 1.639%;
-  #margin-left: -1em;
-}
-/* line 40, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
-body #container #main #nav ul {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  overflow: hidden;
-  *zoom: 1;
-  margin-top: 0.75em;
-}
-/* line 41, /Users/jamiehodge/.rvm/gems/ruby-1.9.2-p136@alarm/gems/compass-susy-plugin-0.8.1/sass/susy/_inline_block_list.scss */
-body #container #main #nav ul li {
-  list-style-image: none;
-  list-style-type: none;
-  margin-left: 0px;
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  white-space: nowrap;
-}
-/* line 7, /Users/jamiehodge/.rvm/gems/ruby-1.9.2-p136@alarm/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
-body #container #main #nav ul li {
-  *display: inline;
 }
 /* line 43, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
-body #container #main #nav ul li {
-  display: inline;
-  float: left;
-  width: 26.471%;
-  margin-right: 2.941%;
-  height: 2.25em;
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNiOAMAANUAz5n+TlUAAAAASUVORK5CYII=');
-  background: rgba(0, 0, 0, 0.8);
-  -moz-border-radius-topleft: 1.5em;
-  -webkit-border-top-left-radius: 1.5em;
-  -o-border-top-left-radius: 1.5em;
-  -ms-border-top-left-radius: 1.5em;
-  -khtml-border-top-left-radius: 1.5em;
-  border-top-left-radius: 1.5em;
-  -moz-border-radius-topright: 1.5em;
-  -webkit-border-top-right-radius: 1.5em;
-  -o-border-top-right-radius: 1.5em;
-  -ms-border-top-right-radius: 1.5em;
-  -khtml-border-top-right-radius: 1.5em;
-  border-top-right-radius: 1.5em;
-  color: white;
-  text-align: center;
-}
-/* line 50, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
 body #container #main article {
   border-style: "none";
   border-width: 0.063em;
@@ -559,18 +530,35 @@ body #container #main article {
   border-bottom: 2px #eeeeee solid;
   margin-bottom: 1.5em;
 }
-/* line 56, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
+/* line 49, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
 body #container #main article > header {
+  clear: both;
+  overflow: auto;
+}
+/* line 52, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
+body #container #main article > header hgroup {
   display: inline;
   float: left;
   width: 61.538%;
   margin-right: 2.564%;
 }
-/* line 59, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
+/* line 54, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
+body #container #main article > header aside {
+  display: inline;
+  float: left;
+  width: 23.077%;
+  margin-right: 2.564%;
+}
+/* line 56, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
+body #container #main article button {
+  width: 100%;
+  margin-bottom: 1.5em;
+}
+/* line 60, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
 body #container #main article .edit {
   background-color: #b9d6d5;
 }
-/* line 61, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
+/* line 62, /Users/jamiehodge/Documents/Develop/alarm/views/sass/style.sass */
 body #container #footer {
   padding-left: 16.393%;
   padding-right: 16.393%;

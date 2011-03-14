@@ -4,6 +4,7 @@ Bundler.require
 
 require 'open-uri'
 require 'yaml'
+require 'base64'
 
 require './app'
 

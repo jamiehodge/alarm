@@ -21,6 +21,8 @@ gem 'rakismet'
 
 gem 'net-ldap'
 
+gem 'httparty'
+
 group :development do
   gem 'sinatra-reloader'
 end

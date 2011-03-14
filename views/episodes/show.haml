@@ -9,7 +9,7 @@
 					%time{ :time => episode.updated.strftime('%y-%m-%d'), :pubdate => true }= episode.updated.strftime('%A, %b %d %Y')
 	%aside		
 		%p
-			%img{ :src => episode.related_link['href'], :height => 125 }
+			%img{ :src => episode.related_link['href'], :width => '100%' }
 		%p
 			= haml :'episodes/_enclosures', :locals => { :enclosures => episode.enclosure_links }
 	%p= episode.summary
