@@ -1,6 +1,7 @@
 ---
-title: Podcast Library
-subtitle: Podcast Producer Podcast Feeds
+site:
+	title: Podcast Library
+	subtitle: Podcast Producer Podcast Feeds
 
 pcp:
 	library: http://example.com/podcastproducer
