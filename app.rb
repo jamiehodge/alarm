@@ -70,7 +70,7 @@ class App < Sinatra::Base
 	
 	put '/catalogs/:id' do
 		authenticate!
-		PodcastProducer.set_catalog_property(params[:id], params[:property_name], params[:property_value])
+		PodcastProducer::Server.set_catalog_property(params[:id], params[:property_name], params[:property_value])
 	end
 	
 	get '/catalogs/:id/edit' do
@@ -83,7 +83,7 @@ class App < Sinatra::Base
 	
 	put '/catalogs/:id/image' do
 		authenticate!
-		PodcastProducer.set_image('catalog', params[:id], IO.read(params[:file][:tempfile]), File.extname(params[:file][:filename]))
+		PodcastProducer::Server.set_image('catalog', params[:id], IO.read(params[:file][:tempfile]), File.extname(params[:file][:filename]))
 		redirect session[:return_to]
 	end
 
@@ -116,7 +116,7 @@ class App < Sinatra::Base
 	
 	put '/feeds/:id' do
 		authenticate!
-		PodcastProducer.set_feed_property(params[:id], params[:property_name], params[:property_value])
+		PodcastProducer::Server.set_feed_property(params[:id], params[:property_name], params[:property_value])
 	end
 	
 	get '/feeds/:id/edit' do
@@ -129,7 +129,7 @@ class App < Sinatra::Base
 	
 	put '/feeds/:id/image' do
 		authenticate!
-		PodcastProducer.set_image('feed', params[:id], IO.read(params[:file][:tempfile]), File.extname(params[:file][:filename]))
+		PodcastProducer::Server.set_image('feed', params[:id], IO.read(params[:file][:tempfile]), File.extname(params[:file][:filename]))
 		redirect session[:return_to]
 	end
 	
