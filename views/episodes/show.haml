@@ -13,6 +13,7 @@
 		%p
 			= haml :'episodes/_enclosures', :locals => { :enclosures => episode.enclosure_links }
 	%p= episode.summary
+	= haml :'episodes/_social', :locals => { :feed => feed, :episode => episode }
 	%details
 		%summary= t.feed.episode.comments.count(episode.comments.count)
 		%section
