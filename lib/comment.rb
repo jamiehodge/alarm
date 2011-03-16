@@ -16,6 +16,8 @@ class Comment
   validates_presence_of :email
   validates_presence_of :content
   
+	index :episode_id
+	
   def avatar_url
     default_url = 'http://larm.media.hum.ku.dk/wp-content/themes/larm/images/avatar.jpg'
     gravatar_id = Digest::MD5.hexdigest(email.downcase)

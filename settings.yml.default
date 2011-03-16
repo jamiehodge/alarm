@@ -4,6 +4,7 @@ site:
 	subtitle: Podcast Producer Podcast Feeds
 
 pcp:
+	library_path: /Library/PodcastProducer/Shared
 	library: http://example.com/podcastproducer
 	ssl_library: https://example.com:8170/podcastproducer
 	ssl_username: 

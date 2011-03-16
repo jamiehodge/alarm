@@ -17,4 +17,4 @@
 				%input{ :type => 'submit', :value => 'Upload' }
 	-# %button{ :type => 'button' }= t.feed.play_all
 	- feed.entries.each do |episode|
-		= haml :'episodes/show', :locals => { :feed => feed, :episode => episode }
+		= haml :'episodes/edit', :locals => { :feed => feed, :episode => episode }

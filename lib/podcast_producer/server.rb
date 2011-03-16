@@ -21,6 +21,15 @@ module PodcastProducer
 		def self.set_catalog_image(catalog_uuid, image, extension)
 			set_image('catalog', catalog_uuid, image, extension)
 		end
+		
+		def self.synchronize(prb_uuid, ppi_uuid)
+			self.post("/library/synchronize",
+					:body => {
+						:prbuuid => prb_uuid,
+						:ppiuuid => ppi_uuid 
+				}
+			).response.class == Net::HTTPOK
+		end
 
 		private
 
@@ -50,7 +59,6 @@ module PodcastProducer
 			end
 
 			def self.success?(response)
-				# puts response
 				response.inspect['status'] == 'success'
 			end
 	end

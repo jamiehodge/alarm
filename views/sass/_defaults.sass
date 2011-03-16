@@ -226,7 +226,7 @@ legend
 input[type=radio], input[type=checkbox]
 	vertical-align: baseline
 	
-label, input[type=button], input[type=submit], button 
+label, input[type=button], input[type=submit], input[type=file], button 
 	cursor: pointer 
 
 label 
@@ -253,7 +253,7 @@ textarea
 input 
 	&[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
 	&[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
-	&[type=number], &[type=range], &[type=search], &[type=color] 
+	&[type=number], &[type=range], &[type=search], &[type=color]
 		@extend .textinput 
 	// reset webkit search styles
 	&[type=search] 

@@ -13,6 +13,7 @@ gem 'haml'
 gem 'sass'
 
 gem 'nokogiri'
+gem 'plist'
 
 gem 'mongoid'
 gem 'bson_ext'

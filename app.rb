@@ -75,7 +75,7 @@ class App < Sinatra::Base
 	
 	get '/catalogs/:id/edit' do
 		authenticate!
-		session[:return_to] = "/catalogs/#{params[:id]}/edit"
+		session[:return_to] = request.path_info
 		haml :'catalogs/edit',
 		:layout => :'layouts/app',
 		:locals => { :catalog => Atom::Feed.with_uri("#{settings.pcp['library']}/catalogs/#{params[:id]}")}
@@ -92,6 +92,22 @@ class App < Sinatra::Base
 		haml :'episodes/show',
 			:layout => :'layouts/app',
 			:locals => { :feed => feed, :episode => feed.entry(params[:episode_id])}
+	end
+	
+	get '/feeds/:feed_id/episodes/:episode_id/edit' do
+		authenticate!
+		session[:return_to] = request.path_info
+		feed = Atom::Feed.with_uri("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
+		haml :'episodes/edit',
+			:layout => :'layouts/app',
+			:locals => { :feed => feed, :episode => feed.entry(params[:episode_id])}
+	end
+	
+	put '/episodes/:id' do
+		authenticate!
+		prb = PodcastProducer::PRB.new(params[:id])
+		prb.set_property(params[:property_name], params[:property_value]).save
+		prb.synchronize
 	end
 	
 	post '/feeds/:feed_id/episodes/:episode_id/comments' do
@@ -121,7 +137,7 @@ class App < Sinatra::Base
 	
 	get '/feeds/:id/edit' do
 		authenticate!
-		session[:return_to] = "/feeds/#{params[:id]}/edit"
+		session[:return_to] = request.path_info
 		haml :'feeds/edit',
 		:layout => :'layouts/app',
 		:locals => { :feed => Atom::Feed.with_uri("#{settings.pcp['library']}/atom_feeds/#{params[:id]}")}

@@ -1,8 +1,7 @@
 %article.episode{ :id => episode.uuid }
 	%header
 		%hgroup
-			%h1
-				%a{ :href => "/feeds/#{feed.uuid}/episodes/#{episode.uuid}" }= episode.title
+			%h1.title{ :contenteditable => true }= episode.title
 			%p
 				%small
 					Published
@@ -12,7 +11,7 @@
 		-#	%img{ :src => episode.related_link['href'], :width => '100%' }
 		%p
 			= haml :'episodes/_enclosures', :locals => { :enclosures => episode.enclosure_links }
-	%p= episode.summary
+	%p.description{ :contenteditable => true }= episode.summary
 	= haml :'episodes/_social', :locals => { :feed => feed, :episode => episode }
 	%details
 		%summary= t.feed.episode.comments.count(episode.comments.count)
