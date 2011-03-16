@@ -1,10 +1,6 @@
 # ALARM
 
-A simple web front-end for Podcast Producer's Podcast Library. Includes basic web-based management of feed metadata, using LDAP authentication.
-
-## TODO
-
-Management of episode metadata and images.
+A simple web front-end for Podcast Producer's Podcast Library. Includes basic web-based management of feed, catalog metadata and images, as well as episode metadata. Access control using existing Podcast Producer LDAP authentication.
 
 ## Stack
 * Bundler
@@ -21,6 +17,8 @@ Management of episode metadata and images.
 2. `mv conf/settings.yml.default conf/settings.yml` and edit
 3. `bundle install`
 4. `rackup`
+
+Please note that you will need to relax permissions for your library `Content` and `UUIDs` folders and subfolders to allow for episode metadata editing. Please let me know if you have a better solution!
 
 ## License
 
