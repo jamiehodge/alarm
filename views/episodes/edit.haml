@@ -8,8 +8,7 @@
 		%aside		
 			%p
 				%img{ :src => episode.related_link['href'], :width => '100%' }
-	%p
-		= haml :'episodes/_enclosures', :locals => { :episode => episode }
+	= haml :'episodes/_enclosures', :locals => { :episode => episode }
 	%p.description{ :contenteditable => true }= episode.summary
 	= haml :'episodes/_social', :locals => { :feed => feed, :episode => episode }
 	%details
