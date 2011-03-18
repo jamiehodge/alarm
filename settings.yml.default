@@ -16,6 +16,7 @@ pcp:
     	- keyword 
 			# - history 
 			# - custom
+	capture: https://example.com:8170/podcastproducer/capture/login
     
 ldap:
     host: www.example.com
