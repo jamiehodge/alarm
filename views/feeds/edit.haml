@@ -5,16 +5,15 @@
 			%p.description{ :contenteditable => true }= feed.subtitle
 			%p
 				%small
-					Published
 					%time{ :time => feed.updated.strftime('%y-%m-%d'), :pubdate => true }= feed.updated.strftime('%A, %b %d %Y')
-	%aside		
-		%p
-			%img{ :src => feed.logo }
-		%p
-			%form{ :action => url("/feeds/#{feed.uuid}/image"), :method => 'post', :enctype => 'multipart/form-data' }
-				%input{ :type => 'hidden', :name => '_method', :value => 'put' }
-				%input{ :type => 'file', :name => 'file' }
-				%input{ :type => 'submit', :value => 'Upload' }
+		%aside		
+			%p
+				%img{ :src => feed.logo }
+			%p
+				%form{ :action => url("/feeds/#{feed.uuid}/image"), :method => 'post', :enctype => 'multipart/form-data' }
+					%input{ :type => 'hidden', :name => '_method', :value => 'put' }
+					%input{ :type => 'file', :name => 'file' }
+					%input{ :type => 'submit', :value => 'Upload' }
 	-# %button{ :type => 'button' }= t.feed.play_all
 	- feed.entries.each do |episode|
 		= haml :'episodes/edit', :locals => { :feed => feed, :episode => episode }

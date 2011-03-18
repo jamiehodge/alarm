@@ -1,7 +1,5 @@
 @import defaults
-
-*
-	background-color: rgba(0, 0, 0, 0.01)
++susy
 	
 // +font-face('BebasNeueRegular', font-files('BebasNeue-webfont.woff', woff, 'BebasNeue-webfont.ttf', truetype, 'BebasNeue-webfont.svg', svg), 'BebasNeue-webfont.eot' )
 
@@ -17,49 +15,70 @@ video
 	width: 100%
 	
 body
-	+susy
-	+rgba-background-inline(rgba(35, 35, 35, .3))
+	
+	background-color: rgb(228, 228, 228)
 	
 	#container
 		+container
+		+leader
 		
-		#header
+		> header
 			+full
-			+alpha
-			+omega
 			+pad(1,4)
 			h1
 				+adjust-font-size-to(64px)
-				+trailer(0)
-		#nav
+				+trailer(0, 64px)
+		> nav
 			+columns(2)
 			+alpha
+			+leader
+			h3
+				+trailer(0)
 			ul
 				+no-bullets
-				li
-					+trailer
-		#main
+		> article
 			+columns(8)
-			article
-				+rhythm-borders(1px, 1, $base_font_size, 'none')
-				+rgba-background-inline(rgba(255, 255, 255, .8))
-				+box-sizing(border-box)
-				border-top: 2px #fff solid
-				border-bottom: 2px #eee solid
-				> header
-					+full(8)
-					overflow: auto
-					hgroup
-						+columns(5,8)
-					aside
-						+columns(2,8)
-				button
-					width: 100%
-					+trailer
+		article
+			+rhythm-borders(1px, 1, $base-font-size, solid)
+			border-color: #fff
+			background-color: rgb(255, 255, 255)
+			+box-sizing(border-box)
+			+box-shadow(0, 0, 5px, 0, darken(rgb(228, 228, 228), 25%))
+			> header
+				+full(8)
+				overflow: auto
+				hgroup
+					+columns(6,8)
+				aside
+					+columns(2,8)
+					+omega(8)
 				+trailer
-				.edit
-					background-color: lighten($alt, 60%)
-		#footer
+			& article
+				+box-shadow(0, 0, 5px, 0, rgb(228, 228, 228))
+			details
+				+trailer
+				summary
+					@extend h4
+			ul
+				@extend small
+				+no-bullets
+			button
+				width: 100%
+				background-color: black
+				color: white
+				border: none
+				+adjust-font-size-to(14px)
+				+trailer(1,14px)
+				+box-shadow(0, 0, 5px, 0, darken(rgb(228, 228, 228), 25%))
+				&:hover
+					background-color: lighten(black, 25%)
+					+box-shadow(0, 0, 5px, 0, rgb(228, 228, 228))
+				&:active
+					background-color: black
+			+trailer
+			.edit
+				background-color: lighten($alt, 60%)
+		> footer
 			+pad(2,2)
 			+columns(8)
 			+alpha

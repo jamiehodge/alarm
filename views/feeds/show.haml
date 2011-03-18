@@ -5,7 +5,6 @@
 			%p= feed.subtitle
 			%p
 				%small
-					Published
 					%time{ :time => feed.updated.strftime('%y-%m-%d'), :pubdate => true }= feed.updated.strftime('%A, %b %d %Y')
 		%aside		
 			%img{ :src => feed.logo, :width => '100%' }

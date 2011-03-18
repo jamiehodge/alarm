@@ -1,4 +1,14 @@
-- unless enclosures.empty?
+- if episode.video_links
+	%video{ :controls => true, :poster => episode.related_link['href'], :preload => 'none' }
+		- episode.video_links.each do |link|
+			%source{ :src => link['href'], :type => "#{link['type']}" }/
+- elsif episode.audio_links
 	%audio{ :controls => true, :preload => 'none' }
-		- enclosures.each do |enclosure|
-			%source{ :src => enclosure['href'], :type => enclosure['type'] }/
+		- episode.audio_links.each do |link|
+			%source{ :src => link['href'], :type => "#{link['type']}" }/
+%details
+	%summary Downloads
+	%ul
+		- episode.enclosure_links.each do |enclosure|
+			%li
+				%a{ :href => enclosure['href'] }= enclosure['title']

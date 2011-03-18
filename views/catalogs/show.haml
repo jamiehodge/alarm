@@ -5,7 +5,6 @@
 			%h2= catalog.subtitle
 			%p
 				%small
-					Published
 					%time{ :time => catalog.updated.strftime('%y-%m-%d'), :pubdate => true }= catalog.updated.strftime('%A, %b %d %Y')
 		%aside		
 			%img{ :src => catalog.logo }

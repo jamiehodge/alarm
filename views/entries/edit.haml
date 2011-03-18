@@ -1,16 +1,15 @@
 %article.feed{ :id => entry.uuid }
 	%header
 		%hgroup
-			%h1.name{ :contenteditable => true }= entry.title
+			%h2.name{ :contenteditable => true }= entry.title
 			%p
 				%small
-					Published
 					%time{ :time => entry.updated.strftime('%y-%m-%d'), :pubdate => true }= entry.updated.strftime('%A, %b %d %Y')
-	%aside		
-		%p
-			%img{ :src => entry.related_link['href'], :height => 125 }
-		%form{ :action => url("/feeds/#{entry.uuid}/image"), :method => 'post', :enctype => 'multipart/form-data' }
-			%input{ :type => 'hidden', :name => '_method', :value => 'put' }
-			%input{ :type => 'file', :name => 'file' }
-			%input{ :type => 'submit', :value => 'Upload' }
+		%aside		
+			%p
+				%img{ :src => entry.related_link['href'], :height => 125 }
+			%form{ :action => url("/feeds/#{entry.uuid}/image"), :method => 'post', :enctype => 'multipart/form-data' }
+				%input{ :type => 'hidden', :name => '_method', :value => 'put' }
+				%input{ :type => 'file', :name => 'file' }
+				%input{ :type => 'submit', :value => 'Upload' }
 	%p.description{ :contenteditable => true }= entry.summary

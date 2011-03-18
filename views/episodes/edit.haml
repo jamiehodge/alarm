@@ -1,16 +1,15 @@
 %article.episode{ :id => episode.uuid }
 	%header
 		%hgroup
-			%h1.title{ :contenteditable => true }= episode.title
+			%h2.title{ :contenteditable => true }= episode.title
 			%p
 				%small
-					Published
 					%time{ :time => episode.updated.strftime('%y-%m-%d'), :pubdate => true }= episode.updated.strftime('%A, %b %d %Y')
-	%aside		
-		-#%p
-		-#	%img{ :src => episode.related_link['href'], :width => '100%' }
-		%p
-			= haml :'episodes/_enclosures', :locals => { :enclosures => episode.enclosure_links }
+		%aside		
+			%p
+				%img{ :src => episode.related_link['href'], :width => '100%' }
+	%p
+		= haml :'episodes/_enclosures', :locals => { :episode => episode }
 	%p.description{ :contenteditable => true }= episode.summary
 	= haml :'episodes/_social', :locals => { :feed => feed, :episode => episode }
 	%details

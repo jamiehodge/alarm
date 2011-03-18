@@ -4,6 +4,7 @@ require './lib/sinatra/sessionauth'
 class App < Sinatra::Base
 	register Sinatra::R18n
 	register Sinatra::SessionAuth
+	# use Rack::SslEnforcer, :only => "/login", :strict => true
 	
 	mime_type :otf, 'font/otf'
 	mime_type :ttf, 'font/ttf'
@@ -17,7 +18,8 @@ class App < Sinatra::Base
 
 		Compass.configuration do |config|
 	    config.css_dir = 'css'
-			config.output_style = production? ? :compressed : :expanded
+			config.images_dir = 'img'
+			config.output_style = :compressed
 	  end
 
 		Mongoid.configure { |c| c.from_hash mongoid }
@@ -29,15 +31,17 @@ class App < Sinatra::Base
 		set :haml, { :format => :html5 }
 		set :sass, Compass.sass_engine_options
 	end
+	
+	configure(:production) {  }
 
-	configure(:development) {require 'sinatra/reloader'}
-
-	$LOAD_PATH.unshift File.join(root, 'lib' )
+	$LOAD_PATH.unshift File.join(root, 'lib')
 	require 'atom'
 	require 'comment'
 	require 'podcast_producer'
 	
 	helpers do
+		include Rack::Utils
+		alias_method :h, :escape_html
 
 		def library_root
 			@library_root ||= Atom::Catalog.with_uri("#{settings.pcp['library']}/catalogs")
@@ -53,123 +57,14 @@ class App < Sinatra::Base
 
 	end
 	
-	# Assets
+	require_relative 'routes/catalogs'
+	require_relative 'routes/feeds'
+	require_relative 'routes/episodes'
 	
 	get '/css/:name.css' do |name|
 		content_type 'text/css', :charset => 'utf-8'
 		sass :"sass/#{name}"
 	end
-	
-	# Library
-
-	get '/catalogs/:id' do
-		haml :'catalogs/show', 
-			:layout => :'layouts/app', 
-			:locals => { :catalog => Atom::Catalog.with_uri("#{settings.pcp['library']}/catalogs/#{params[:id]}")}
-	end
-	
-	put '/catalogs/:id' do
-		authenticate!
-		PodcastProducer::Server.set_catalog_property(params[:id], params[:property_name], params[:property_value])
-	end
-	
-	get '/catalogs/:id/edit' do
-		authenticate!
-		session[:return_to] = request.path_info
-		haml :'catalogs/edit',
-		:layout => :'layouts/app',
-		:locals => { :catalog => Atom::Feed.with_uri("#{settings.pcp['library']}/catalogs/#{params[:id]}")}
-	end
-	
-	put '/catalogs/:id/image' do
-		authenticate!
-		PodcastProducer::Server.set_image('catalog', params[:id], IO.read(params[:file][:tempfile]), File.extname(params[:file][:filename]))
-		redirect session[:return_to]
-	end
-
-	get '/feeds/:feed_id/episodes/:episode_id' do
-		feed = Atom::Feed.with_uri("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
-		haml :'episodes/show',
-			:layout => :'layouts/app',
-			:locals => { :feed => feed, :episode => feed.entry(params[:episode_id])}
-	end
-	
-	get '/feeds/:feed_id/episodes/:episode_id/edit' do
-		authenticate!
-		session[:return_to] = request.path_info
-		feed = Atom::Feed.with_uri("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
-		haml :'episodes/edit',
-			:layout => :'layouts/app',
-			:locals => { :feed => feed, :episode => feed.entry(params[:episode_id])}
-	end
-	
-	put '/episodes/:id' do
-		authenticate!
-		prb = PodcastProducer::PRB.new(params[:id])
-		prb.set_property(params[:property_name], params[:property_value]).save
-		prb.synchronize
-	end
-	
-	post '/feeds/:feed_id/episodes/:episode_id/comments' do
-		comment = Comment.new(
-			params.merge(
-				:published => Time.now,
-				:user_ip => request.ip,
-				:user_agent => request.user_agent,
-				:referrer => request.referrer,
-				:feed_id => params[:feed_id],
-				:episode_id => params[:episode_id]
-		))
-		comment.save unless comment.spam?
-		redirect request.referer 
-	end
-
-	get '/feeds/:id' do
-		haml :'feeds/show', 
-			:layout => :'layouts/app', 
-			:locals => { :feed => Atom::Feed.with_uri("#{settings.pcp['library']}/atom_feeds/#{params[:id]}")}
-	end
-	
-	put '/feeds/:id' do
-		authenticate!
-		PodcastProducer::Server.set_feed_property(params[:id], params[:property_name], params[:property_value])
-	end
-	
-	get '/feeds/:id/edit' do
-		authenticate!
-		session[:return_to] = request.path_info
-		haml :'feeds/edit',
-		:layout => :'layouts/app',
-		:locals => { :feed => Atom::Feed.with_uri("#{settings.pcp['library']}/atom_feeds/#{params[:id]}")}
-	end
-	
-	put '/feeds/:id/image' do
-		authenticate!
-		PodcastProducer::Server.set_image('feed', params[:id], IO.read(params[:file][:tempfile]), File.extname(params[:file][:filename]))
-		redirect session[:return_to]
-	end
-	
-	get '/keywords/:id' do
-		haml :'feeds/show',
-			:layout => :'layouts/app',
-			:locals => { :feed => Atom::Feed.with_uri("#{settings.pcp['library']}/keyword_atom_feeds/#{params[:id]}")}
-	end
-	
-	get '/users/:id' do
-		haml :'feeds/show',
-		:layout => :'layouts/app',
-		:locals => { :feed => Atom::Feed.with_uri("#{settings.pcp['library']}/user_atom_feeds/#{params[:id]}")}
-	end
-	
-	get '/users/:id/edit' do
-		authenticate!
-		session[:return_to] = "/users/#{params[:id]}/edit"
-		haml :'feeds/edit',
-		:layout => :'layouts/app',
-		:locals => { :feed => Atom::Feed.with_uri("#{settings.pcp['library']}/user_atom_feeds/#{params[:id]}")}
-	end
-	
-	# Root
 	
 	get '/' do
 		redirect "/feeds/#{settings.pcp['recent']}"

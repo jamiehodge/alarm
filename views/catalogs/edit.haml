@@ -5,15 +5,14 @@
 			%h2.subtitle{ :contenteditable => true }= catalog.subtitle
 			%p
 				%small
-					Published
 					%time{ :time => catalog.updated.strftime('%y-%m-%d'), :pubdate => true }= catalog.updated.strftime('%A, %b %d %Y')
-	%aside		
-		%p
-			%img{ :src => catalog.logo }
-		%p
-			%form{ :action => url("/catalogs/#{catalog.uuid}/image"), :method => 'post', :enctype => 'multipart/form-data' }
-				%input{ :type => 'hidden', :name => '_method', :value => 'put' }
-				%input{ :type => 'file', :name => 'file' }
-				%input{ :type => 'submit', :value => 'Upload' }
+		%aside		
+			%p
+				%img{ :src => catalog.logo }
+			%p
+				%form{ :action => url("/catalogs/#{catalog.uuid}/image"), :method => 'post', :enctype => 'multipart/form-data' }
+					%input{ :type => 'hidden', :name => '_method', :value => 'put' }
+					%input{ :type => 'file', :name => 'file' }
+					%input{ :type => 'submit', :value => 'Upload' }
 	- catalog.entries.each do |feed|
 		= haml :'entries/edit', :locals => { :entry => feed }

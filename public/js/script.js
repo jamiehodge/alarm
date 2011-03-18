@@ -1,7 +1,7 @@
 (function($){
 	$('details').collapse({ 
 		head: 'summary', 
-		group: 'section',
+		group: 'section, ul',
 		show: function() { this.animate({opacity: 'toggle', height: 'toggle'}, 200); },
 		hide : function() { this.animate({opacity: 'toggle', height: 'toggle'}, 200); },
 		cookieName: $(location).attr('pathname')

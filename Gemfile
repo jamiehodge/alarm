@@ -21,6 +21,7 @@ gem 'bson_ext'
 gem 'rakismet'
 
 gem 'net-ldap'
+gem 'rack-ssl-enforcer'
 
 gem 'httparty'
 

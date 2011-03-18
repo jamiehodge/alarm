@@ -10,7 +10,8 @@
 		load: ['/js/libs/jquery.cookie.js', '/js/libs/jquery.collapse.js', '/js/libs/jquery.lazyload.min.js', '/js/script.js?v=1'],
 		complete: function () {
 			$('img').lazyload({
-				effect : "fadeIn" 
+				effect : "fadeIn",
+				placeholder: "/img/grey.gif"
 			});
 			localStorage.setItem('base_url', '#{base_url}')
 		}
