@@ -34,7 +34,7 @@ class App < Sinatra::Base
 				:episode_id => params[:episode_id]
 		))
 		comment.save unless comment.spam?
-		redirect request.referer 
+		redirect "/feeds/#{params[:feed_id]}##{params[:episode_id]}"
 	end
 	
 end
