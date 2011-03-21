@@ -1,17 +1,17 @@
 require 'rubygems'
 require 'bundler'
-Bundler.require
+Bundler.require(:default, :development)
 
 require 'open-uri'
 require 'yaml'
 require 'base64'
 
+use Rack::Session::Cookie, :secret => `uuidgen`
+use Rack::Flash
+use Rack::MethodOverride
+
 require './app'
 
-use Rack::Session::Cookie, :secret => `uuidgen`
-use Rack::MethodOverride
-use Rack::Flash
-	
 map '/' do
 	run App
 end

@@ -26,5 +26,5 @@ gem 'rack-ssl-enforcer'
 gem 'httparty'
 
 group :development do
-  gem 'sinatra-reloader'
+  gem 'sinatra-reloader', :require => 'sinatra/reloader'
 end

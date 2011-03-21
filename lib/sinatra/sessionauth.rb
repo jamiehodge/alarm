@@ -45,16 +45,19 @@ module Sinatra
 		      app.post '/login' do
 		        if authenticate
 							session[:user] = params['username']
-		          redirect "/users/#{session[:user]}/edit"
+							flash[:notice] = "Welcome #{params['username']}"
+		          redirect to '/'
 		        else
 		          session[:user] = false
-		          redirect '/login'
+							flash[:error] = 'The username or password you entered is incorrect'
+		          redirect to '/login'
 		        end
 		      end
 		
 					app.get '/logout' do
 						logout!
-						redirect '/'
+						flash[:notice] = 'Successfully logged out'
+						redirect to '/'
 					end
 					
 				end

@@ -5,7 +5,7 @@ class App < Sinatra::Base
 	register Sinatra::R18n
 	register Sinatra::SessionAuth
 	# use Rack::SslEnforcer, :only => "/login", :strict => true
-	
+
 	mime_type :otf, 'font/otf'
 	mime_type :ttf, 'font/ttf'
 	mime_type :eot, 'application/vnd.ms-fontobject'
@@ -16,12 +16,6 @@ class App < Sinatra::Base
 		
 		YAML.load_file(File.expand_path('settings.yml')).each_pair { |k,v| set k.to_sym, v }
 
-		Compass.configuration do |config|
-	    config.css_dir = 'css'
-			config.images_dir = 'img'
-			config.output_style = :compressed
-	  end
-
 		Mongoid.configure { |c| c.from_hash mongoid }
 
 		Rakismet.key = rakismet['key']
@@ -29,10 +23,20 @@ class App < Sinatra::Base
 		Rakismet.host = rakismet['host']
 
 		set :haml, { :format => :html5 }
-		set :sass, Compass.sass_engine_options
 	end
 	
-	configure(:production) {  }
+	configure(:development) do
+		register Sinatra::Reloader
+		also_reload "routes/*.rb"
+		
+		Compass.configuration do |config|
+	    config.css_dir = 'css'
+			config.images_dir = 'img'
+			config.output_style = :compressed
+	  end
+	
+		set :sass, Compass.sass_engine_options
+	end
 
 	$LOAD_PATH.unshift File.join(root, 'lib')
 	require 'atom'

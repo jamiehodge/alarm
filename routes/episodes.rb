@@ -34,9 +34,9 @@ class App < Sinatra::Base
 				:episode_id => params[:episode_id]
 		))
 		if !comment.spam? && comment.save
-			flash[:notice] = 'Thank you for your comment'
+			flash[:notice] = 'Thank you for your comments'
 		else
-			flash[:error] = 'Please resubmit your comment'
+			flash[:error] = 'Please resubmit your comments'
 		end
 		redirect "/feeds/#{params[:feed_id]}"
 	end
