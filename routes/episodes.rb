@@ -25,7 +25,7 @@ class App < Sinatra::Base
 
 	post '/feeds/:feed_id/episodes/:episode_id/comments' do
 		comment = Comment.new(
-			params.merge(
+			params[:comment].merge(
 				:published => Time.now,
 				:user_ip => request.ip,
 				:user_agent => request.user_agent,
@@ -33,8 +33,12 @@ class App < Sinatra::Base
 				:feed_id => params[:feed_id],
 				:episode_id => params[:episode_id]
 		))
-		comment.save unless comment.spam?
-		redirect "/feeds/#{params[:feed_id]}##{params[:episode_id]}"
+		if !comment.spam? && comment.save
+			flash[:notice] = 'Thank you for your comment'
+		else
+			flash[:error] = 'Please resubmit your comment'
+		end
+		redirect "/feeds/#{params[:feed_id]}"
 	end
 	
 end

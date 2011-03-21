@@ -6,8 +6,10 @@
 			%p
 				%small
 					%time{ :time => feed.updated.strftime('%y-%m-%d'), :pubdate => true }= feed.updated.strftime('%A, %b %d %Y')
+			%p.playAll
+				%button{ :type => 'button' }= t.feed.play_all
 		%aside		
 			%img{ :src => feed.logo, :width => '100%' }
-	%button{ :type => 'button' }= t.feed.play_all
+		
 	- feed.entries.each do |episode|
 		= haml :'episodes/show', :locals => { :feed => feed, :episode => episode }

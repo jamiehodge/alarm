@@ -1,18 +1,18 @@
 @import defaults
-+susy
+@import formalize
 	
-// +font-face('BebasNeueRegular', font-files('BebasNeue-webfont.woff', woff, 'BebasNeue-webfont.ttf', truetype, 'BebasNeue-webfont.svg', svg), 'BebasNeue-webfont.eot' )
-
 h1, h2, h3, h4, h5, h6
 	@extend .sans
 	@extend b
-	// font-family: BebasNeueRegular
+	
 a
 	+hover-link
 		
 audio,
 video
 	width: 100%
+	
++susy
 	
 body
 	
@@ -49,6 +49,7 @@ body
 				overflow: auto
 				hgroup
 					+columns(6,8)
+				button
 				aside
 					+columns(2,8)
 					+omega(8)
@@ -62,19 +63,7 @@ body
 			ul
 				@extend small
 				+no-bullets
-			button
-				width: 100%
-				background-color: black
-				color: white
-				border: none
-				+adjust-font-size-to(14px)
-				+trailer(1,14px)
-				+box-shadow(0, 0, 5px, 0, darken(rgb(228, 228, 228), 25%))
-				&:hover
-					background-color: lighten(black, 25%)
-					+box-shadow(0, 0, 5px, 0, rgb(228, 228, 228))
-				&:active
-					background-color: black
+			
 			+trailer
 			.edit
 				background-color: lighten($alt, 60%)

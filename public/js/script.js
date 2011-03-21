@@ -59,4 +59,18 @@
 		event.preventDefault();
 	});
 	
+	$('input, textarea').blur(function() {
+		if (this.willValidate && !this.validity.valid) {
+			$(this).removeClass('valid');
+			$(this).addClass('error');
+		} else {
+			$(this).removeClass('error');
+			$(this).addClass('valid');
+		}
+	});
+	
+	$('form').submit(function() {
+		return ($(this).has('input:required:invalid, textarea:required:invalid').length ? false : true);
+	});
+	
 })(this.jQuery);

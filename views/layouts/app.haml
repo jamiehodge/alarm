@@ -13,13 +13,12 @@
 	= haml :'layouts/_head'
 	%body{ :lang => 'en', :class => '' }
 		#container
-			%header
-				= haml :'layouts/_header'
-			%nav
-				= haml :'layouts/_nav'
+			#flash= haml :'layouts/_flash'
+			%header= haml :'layouts/_header'
+			%nav= haml :'layouts/_nav'
 				
 			= yield
 			
-			%footer
-				= haml :'layouts/_footer'
+			%footer= haml :'layouts/_footer'
+		
 		= haml :'layouts/_js'
