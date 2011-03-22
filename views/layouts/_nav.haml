@@ -7,15 +7,19 @@
 %ul
 	- if authenticated?
 		%li
-			%a{ :href => '/logout' } Log out
+			%a{ :href => '/logout' }= t.nav.log_out
 		- if request.path_info.split('/').last == 'edit'
 			%li
-				%a{ :href => url("#{request.path_info[0..-6]}") } View Page
+				%a{ :href => url("#{request.path_info[0..-6]}") }= t.nav.view_page
 		- else
 			%li
-				%a{ :href => url("#{request.path_info}/edit") } Edit Page
+				%a{ :href => url("#{request.path_info}/edit") }= t.nav.edit_page
 	- else
 		%li
-			%a{ :href => '/login'} Log in
+			%a{ :href => '/login'}= t.nav.log_in
 		%li
-			%a{ :href => settings.pcp['capture'] } Capture
+			%a{ :href => settings.pcp['capture'] }= t.nav.capture
+%ul
+	- r18n.available_locales.each do |locale|
+		%li
+			%a{ :href => "#{request.path_info}?locale=#{locale.code}" }= locale.title

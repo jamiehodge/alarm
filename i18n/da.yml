@@ -3,6 +3,11 @@ nav:
     browse: Browse
     admin: Admin
     user: Bruger
+    log_in: Log ind
+    log_out: Log ud
+    view_page: Se side
+    edit_page: Rediger side
+    capture: Optag
 feed:
     subscribe: Abonner i iTunes
     play_all: Afspil alle

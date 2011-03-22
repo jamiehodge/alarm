@@ -28,7 +28,7 @@ class App < Sinatra::Base
 	get '/keywords/:id' do
 		haml :'feeds/show',
 			:layout => :'layouts/app',
-			:locals => { :feed => Atom::Feed.with_uri("#{settings.pcp['library']}/keyword_atom_feeds/#{params[:id]}")}
+			:locals => { :feed => Atom::Feed.with_uri("#{settings.pcp['library']}/keyword_atom_feeds/#{URI.encode(params[:id])}")}
 	end
 
 	get '/users/:id' do

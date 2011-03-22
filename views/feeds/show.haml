@@ -6,10 +6,11 @@
 			%p
 				%small
 					%time{ :time => feed.updated.strftime('%y-%m-%d'), :pubdate => true }= feed.updated.strftime('%A, %b %d %Y')
-			%p.playAll
+					| 
+					%a{ :href => feed.self_link['href'].sub(/http:\/\//, 'itpc://' ) }= t.feed.subscribe
+			%p
 				%button{ :type => 'button' }= t.feed.play_all
 		%aside		
 			%img{ :src => feed.logo, :width => '100%' }
-		
 	- feed.entries.each do |episode|
 		= haml :'episodes/show', :locals => { :feed => feed, :episode => episode }

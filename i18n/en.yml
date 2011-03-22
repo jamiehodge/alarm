@@ -3,6 +3,11 @@ nav:
     browse: Browse
     admin: Admin
     user: User
+    log_in: Log in
+    log_out: Log out
+    view_page: View page
+    edit_page: Edit page
+    capture: Capture
 feed:
     subscribe: Subscribe in iTunes
     play_all: Play All

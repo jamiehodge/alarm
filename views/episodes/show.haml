@@ -10,7 +10,13 @@
 			%p
 				%img{ :src => episode.related_link['href'], :width => '100%' }
 	= haml :'episodes/_enclosures', :locals => { :episode => episode }
-	%p= episode.summary
+	%p= h episode.summary
+	%footer
+		%nav
+			%ul
+				- episode.itunes_keywords.split(',').each do |keyword|
+					%li
+						%a{ :href => "/keywords/#{keyword.strip}" }= keyword
 	= haml :'episodes/_social', :locals => { :feed => feed, :episode => episode }
 	%details
 		%summary= t.feed.episode.comments.count(episode.comments.count)

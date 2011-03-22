@@ -65,6 +65,10 @@ class App < Sinatra::Base
 	require_relative 'routes/feeds'
 	require_relative 'routes/episodes'
 	
+	before do
+		session[:locale] = params[:locale] if params[:locale]
+	end
+	
 	get '/css/:name.css' do |name|
 		content_type 'text/css', :charset => 'utf-8'
 		sass :"sass/#{name}"
