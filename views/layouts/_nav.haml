@@ -19,6 +19,7 @@
 			%a{ :href => '/login'}= t.nav.log_in
 		%li
 			%a{ :href => settings.pcp['capture'] }= t.nav.capture
+%h3 Locale
 %ul
 	- r18n.available_locales.each do |locale|
 		%li
