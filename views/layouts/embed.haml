@@ -10,17 +10,8 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 %html.no-js
 	<!--<![endif]-->
-	= haml :'layouts/_head'
+	= haml :'layouts/_embed_head'
 	%body{ :lang => 'en', :class => '' }
 		#container
-			#flash= haml :'layouts/_flash'
-			%header= haml :'layouts/_header'
-			%nav#local= haml :'layouts/_nav'
-				
-			= yield
-			
-			%nav#external= haml :'layouts/_external'
-			
-			%footer= haml :'layouts/_footer'
-		
-		= haml :'layouts/_js'
+			= yield		
+		= haml :'layouts/_embed_js'

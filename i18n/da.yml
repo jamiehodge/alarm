@@ -8,6 +8,9 @@ nav:
     view_page: Se side
     edit_page: Rediger side
     capture: Optag
+    external_links: Links
+    locale: Sprog
+    more: Hør mere...
 feed:
     subscribe: Abonner i iTunes
     play_all: Afspil alle

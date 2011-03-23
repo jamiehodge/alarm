@@ -40,5 +40,12 @@ class App < Sinatra::Base
 		end
 		redirect "/feeds/#{params[:feed_id]}"
 	end
+
+	get '/feeds/:feed_id/episodes/:episode_id/embed' do
+		feed = Atom::Feed.with_uri("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
+		haml :'episodes/embed',
+			:layout => :'layouts/embed',
+			:locals => { :feed => feed, :episode => feed.entry(params[:episode_id])}
+	end
 	
 end

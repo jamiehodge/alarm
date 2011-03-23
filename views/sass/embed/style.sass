@@ -1,0 +1,29 @@
+@import defaults
+	
+h1, h2, h3, h4, h5, h6
+	@extend .sans
+	@extend b
+	+trailer(0)
+	
+a
+	+hover-link
+	
++susy
+
+body
+	background-color: transparent
+	#container
+		+container
+		article
+			+leader(.5)
+			+rhythm-borders(1px, 1, $base-font-size, none)
+			+box-shadow(0, 1px, 3px, 0, rgba(0, 0, 0, 0.296875))
+			background-color: #fff
+			audio,
+			video
+				width: 100%
+		nav
+			a
+				+full
+				+pad(9,0)
+				

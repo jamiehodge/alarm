@@ -8,6 +8,9 @@ nav:
     view_page: View page
     edit_page: Edit page
     capture: Capture
+    external_links: Links
+    locale: Language
+    more: Hear more...
 feed:
     subscribe: Subscribe in iTunes
     play_all: Play All

@@ -11,6 +11,7 @@ a
 audio,
 video
 	width: 100%
+	+trailer
 	
 +susy
 	
@@ -35,9 +36,17 @@ body
 			h1
 				+adjust-font-size-to(64px)
 				+trailer(0, 64px)
-		> nav
+		> nav#local
 			+columns(2)
 			+alpha
+			+leader
+			h3
+				+trailer(0)
+			ul
+				+no-bullets
+		> nav#external
+			+columns(2)
+			+omega
 			+leader
 			h3
 				+trailer(0)
@@ -50,18 +59,20 @@ body
 			border-color: #fff
 			background-color: rgb(255, 255, 255)
 			+box-sizing(border-box)
-			+box-shadow(0, 0, 5px, 0, darken(rgb(228, 228, 228), 25%))
+			// +box-shadow(0, 0, 5px, 0, darken(rgb(228, 228, 228), 25%))
+			+box-shadow(0, 1px, 3px, 0, rgba(0, 0, 0, 0.296875))
 			> header
 				+full(8)
 				overflow: auto
 				hgroup
 					+columns(6,8)
-				aside
+				figure
 					+columns(2,8)
 					+omega(8)
 				+trailer
 			& article
-				+box-shadow(0, 0, 5px, 0, rgb(228, 228, 228))
+				// +box-shadow(0, 0, 5px, 0, rgb(228, 228, 228))
+				+box-shadow(0, 1px, 3px, 0, rgba(0, 0, 0, 0.296875))
 			nav
 				ul
 					+inline-block-list
@@ -70,7 +81,10 @@ body
 				+trailer
 				summary
 					@extend h4
-			.downloads
+			.embed
+				+trailer(0)
+			.embed,
+			.download
 				summary
 					+trailer(0)
 			ul
@@ -85,3 +99,6 @@ body
 			+columns(8)
 			+alpha
 			+omega
+
+.no-audio .play_all
+	display: none

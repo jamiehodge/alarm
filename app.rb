@@ -69,9 +69,9 @@ class App < Sinatra::Base
 		session[:locale] = params[:locale] if params[:locale]
 	end
 	
-	get '/css/:name.css' do |name|
+	get '/css/:type/:name.css' do
 		content_type 'text/css', :charset => 'utf-8'
-		sass :"sass/#{name}"
+		sass :"sass/#{params[:type]}/#{params[:name]}"
 	end
 	
 	get '/' do

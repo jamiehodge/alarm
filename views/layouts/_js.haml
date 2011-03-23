@@ -1,20 +1,33 @@
 :javascript
 	yepnope([{
 		load: 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js',
-	  complete: function () {
+	  complete: function() {
 	    if (!window.jQuery) {
 	      yepnope('/js/libs/jquery.min.js');
 	    }
 		}
 	},{
-		load: ['/js/libs/jquery.formalize.min.js','/js/libs/jquery.cookie.js', '/js/libs/jquery.collapse.js', '/js/libs/jquery.lazyload.min.js', '/js/script.js?v=1'],
-		complete: function () {
+		load: ['/js/libs/jquery.cookie.js', '/js/libs/jquery.collapse.js'],
+		complete: function() {
+			$('details').collapse({ 
+				head: 'summary', 
+				group: 'section, ul',
+				show: function() { this.animate({opacity: 'toggle', height: 'toggle'}, 200); },
+				hide : function() { this.animate({opacity: 'toggle', height: 'toggle'}, 200); },
+				cookieName: $(location).attr('pathname')
+			});
+		}
+	},{
+		load: '/js/libs/jquery.lazyload.min.js',
+		complete: function() {
 			$('img').lazyload({
 				effect : "fadeIn",
 				placeholder: "/img/grey.gif"
 			});
 			localStorage.setItem('base_url', '#{base_url}')
-		}
+			}
+	},{
+		load: ['/js/libs/jquery.formalize.min.js','/js/script.js?v=1']
 	}]);
 
 /[if lt IE 7 ]
