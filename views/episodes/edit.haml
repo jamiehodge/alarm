@@ -4,7 +4,7 @@
 			%h2.title{ :contenteditable => true }= episode.title
 			%p
 				%small
-					%time{ :time => episode.updated.strftime('%y-%m-%d'), :pubdate => true }= episode.updated.strftime('%A, %b %d %Y')
+					%time{ :time => episode.updated.strftime('%y-%m-%d'), :pubdate => true }= l episode.updated, :human
 		%figure		
 			%p
 				%img{ :src => episode.related_link['href'], :width => '100%' }

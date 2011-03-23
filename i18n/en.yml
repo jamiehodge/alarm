@@ -16,6 +16,8 @@ feed:
     play_all: Play All
     links_to_programs: Links to Programs
     episode:
+        embed: Embed
+        download: Download
         comments:
             count: !!pl
                 1: 1 comment

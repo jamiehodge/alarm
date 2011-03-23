@@ -5,7 +5,7 @@
 			%p= feed.subtitle
 			%p
 				%small
-					%time{ :time => feed.updated.strftime('%y-%m-%d'), :pubdate => true }= feed.updated.strftime('%A, %b %d %Y')
+					%time{ :time => feed.updated.strftime('%y-%m-%d'), :pubdate => true }= l feed.updated, :human
 					| 
 					%a{ :href => feed.self_link['href'].sub(/http:\/\//, 'itpc://' ) }= t.feed.subscribe
 			%p#play_all

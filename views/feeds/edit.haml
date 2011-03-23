@@ -5,7 +5,7 @@
 			%p.description{ :contenteditable => true }= feed.subtitle
 			%p
 				%small
-					%time{ :time => feed.updated.strftime('%y-%m-%d'), :pubdate => true }= feed.updated.strftime('%A, %b %d %Y')
+					%time{ :time => feed.updated.strftime('%y-%m-%d'), :pubdate => true }= l feed.updated, :human
 		%figure		
 			%p
 				%img{ :src => feed.logo }
