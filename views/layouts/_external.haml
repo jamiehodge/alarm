@@ -1,5 +1,5 @@
 %h3= t.nav.external_links
 %ul
 	- settings.external_links.each do |k,v| 
-		%a{ :href => v }
+		%a{ :href => v, :target => '_blank' }
 			%li= k
