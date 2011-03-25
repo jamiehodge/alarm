@@ -78,9 +78,9 @@ class App < Sinatra::Base
 		end
 	end
 	
-	require_relative 'routes/catalogs'
-	require_relative 'routes/feeds'
-	require_relative 'routes/episodes'
+	require 'routes/catalogs'
+	require 'routes/feeds'
+	require 'routes/episodes'
 	
 	before do
 		session[:locale] = params[:locale] if params[:locale]
