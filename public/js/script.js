@@ -13,7 +13,7 @@
 			if (confirm("Save changes to " + $field.attr('class') + '?')) {
 				$.ajax({
 					type: 'put',
-					url: localStorage.getItem('base_url') + '/' + $field.closest('article').attr('class') + 's/' + $field.closest('article').attr('id'),
+					url: localStorage.getItem('base_url') + $field.closest('article').attr('class') + 's/' + $field.closest('article').attr('id'),
 					data: { property_name: $field.attr('class'), property_value: $field.text() },
 					success: function() {
 						alert('Saved changes to ' + $field.attr('class'));
