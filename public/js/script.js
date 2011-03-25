@@ -29,7 +29,7 @@
 		}
 	});
 	
-	if (Modernizr.audio) {
+	if (!Modernizr.audio) {
 		$audioVideo = $('audio, video');
 
 		$audioVideo.each(function(index) {
@@ -41,7 +41,7 @@
 			}
 		});
 
-		$('button').click(function(event) {
+		$('button.play_all').click(function(event) {
 			$audioVideo.each(function() {
 				if (this.paused == false) {
 					this.pause();

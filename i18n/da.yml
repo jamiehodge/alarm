@@ -24,5 +24,6 @@ feed:
                 n: %1 kommentarer
             author: Forfatter
             email: Email
+            url: Hjemmeside
             content: Inhold
             submit: Kommentarer

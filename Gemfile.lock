@@ -33,6 +33,8 @@ GEM
     plist (3.1.0)
     r18n-core (0.4.9)
     rack (1.2.1)
+    rack-cache (1.0)
+      rack (>= 0.4)
     rack-flash (0.1.1)
       rack
     rack-ssl-enforcer (0.2.2)
@@ -70,6 +72,7 @@ DEPENDENCIES
   net-ldap
   nokogiri
   plist
+  rack-cache
   rack-flash
   rack-ssl-enforcer
   rakismet

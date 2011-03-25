@@ -1,19 +1,23 @@
 class App < Sinatra::Base
 	
 	get '/feeds/:feed_id/episodes/:episode_id' do
-		feed = Atom::Feed.with_uri("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
+		feed = open_resource("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
+		etag feed.meta['etag'].gsub(/"/, '') unless flash.has?(:notice) || flash.has?(:error)
+		parsed_feed = Atom::Feed.parse(feed)
 		haml :'episodes/show',
 			:layout => :'layouts/app',
-			:locals => { :feed => feed, :episode => feed.entry(params[:episode_id])}
+			:locals => { :feed => parsed_feed, :episode => parsed_feed.entry(params[:episode_id])}
 	end
 
 	get '/feeds/:feed_id/episodes/:episode_id/edit' do
 		authenticate!
+		feed = open_resource("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
+		etag feed.meta['etag'].gsub(/"/, '')
+		parsed_feed = Atom::Feed.parse(feed)
 		session[:return_to] = request.path_info
-		feed = Atom::Feed.with_uri("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
 		haml :'episodes/edit',
 			:layout => :'layouts/app',
-			:locals => { :feed => feed, :episode => feed.entry(params[:episode_id])}
+			:locals => { :feed => parsed_feed, :episode => parsed_feed.entry(params[:episode_id])}
 	end
 
 	put '/episodes/:id' do
@@ -30,11 +34,12 @@ class App < Sinatra::Base
 				:user_ip => request.ip,
 				:user_agent => request.user_agent,
 				:referrer => request.referrer,
-				:feed_id => params[:feed_id],
-				:episode_id => params[:episode_id]
+				:episode_id => params[:episode_id],
+				:permalink => "#{base_url}/feeds/#{params[:feed_id]}/episodes/#{params[:episode_id]}"
 		))
 		if !comment.spam? && comment.save
 			flash[:notice] = 'Thank you for your comments'
+			puts comment
 		else
 			flash[:error] = 'Please resubmit your comments'
 		end
@@ -42,10 +47,12 @@ class App < Sinatra::Base
 	end
 
 	get '/feeds/:feed_id/episodes/:episode_id/embed' do
-		feed = Atom::Feed.with_uri("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
+		feed = open_resource("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
+		etag feed.meta['etag'].gsub(/"/, '')
+		parsed_feed = Atom::Feed.parse(feed)
 		haml :'episodes/embed',
 			:layout => :'layouts/embed',
-			:locals => { :feed => feed, :episode => feed.entry(params[:episode_id])}
+			:locals => { :feed => parsed_feed, :episode => parsed_feed.entry(params[:episode_id])}
 	end
 	
 end

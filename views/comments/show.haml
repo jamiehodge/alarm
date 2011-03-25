@@ -1,8 +1,11 @@
 %article.comment
 	%p= h comment.content
-	%footer
-		%p
-			= comment.author
-		%p
-			%small
-				%time{ :time => Time.parse(comment.published).strftime('%y-%m-%d'), :pubdate => true }= Time.parse(comment.published).strftime('%A, %b %d %Y')
+	%header
+		%hgroup
+			%h3= comment.author
+			%p
+				%small
+					%time{ :time => Time.parse(comment.published).strftime('%y-%m-%d'), :pubdate => true }= Time.parse(comment.published).strftime('%A, %b %d %Y')
+		%figure
+			%p
+				%img{ :src => comment.avatar_url }

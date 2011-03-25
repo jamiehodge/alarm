@@ -6,7 +6,7 @@
 			%p
 				%small
 					%time{ :time => catalog.updated.strftime('%y-%m-%d'), :pubdate => true }= catalog.updated.strftime('%A, %b %d %Y')
-		%aside		
-			%img{ :src => catalog.logo }
+		%figure		
+			%img{ :src => catalog.logo, :width => '100%' }
 	- catalog.entries.each do |feed|
 		= haml :'entries/show', :locals => { :entry => feed }

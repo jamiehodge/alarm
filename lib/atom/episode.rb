@@ -8,7 +8,7 @@ module Atom
 		links 'enclosure'
 		
 		def comments
-			Comment.find(:conditions => { :episode_id => uuid } ).order_by(:created_at)
+			Comment.find(:conditions => { :episode_id => uuid } ).order_by(:published)
 		end
 		
 		def video_links

@@ -6,7 +6,7 @@
 			%p
 				%small
 					%time{ :time => entry.updated.strftime('%y-%m-%d'), :pubdate => true }= entry.updated.strftime('%A, %b %d %Y')
-		%aside		
+		%figure		
 			%p
-				%img{ :src => entry.related_link['href'], :height => 125 }
+				%img{ :src => entry.related_link['href'], :width => '100%' }
 	%p= entry.summary

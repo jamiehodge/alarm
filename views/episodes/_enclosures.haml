@@ -7,6 +7,4 @@
 		- episode.audio_links.each do |link|
 			%source{ :src => link['href'], :type => "#{link['type']}" }/
 		-# flash fallback
-		%div{ :id => "flash_audio_#{episode.uuid}" }
-		:javascript
-			AudioPlayer.embed("flash_audio_#{episode.uuid}", { soundFile: "#{episode.audio_links.find { |l| l['type'] == 'audio/mpeg' }['href']}" });
+		%div.flash_audioplayer{ :id => "flash_audioplayer_#{episode.uuid}", :'data-soundFile' => episode.audio_links.find { |l| l['type'] == 'audio/mpeg' }['href'] }

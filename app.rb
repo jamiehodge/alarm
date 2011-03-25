@@ -2,10 +2,6 @@ require 'sinatra/base'
 require './lib/sinatra/sessionauth'
 
 class App < Sinatra::Base
-	register Sinatra::R18n
-	register Sinatra::SessionAuth
-	# use Rack::SslEnforcer, :only => "/login", :strict => true
-
 	mime_type :otf, 'font/otf'
 	mime_type :ttf, 'font/ttf'
 	mime_type :eot, 'application/vnd.ms-fontobject'
@@ -13,6 +9,9 @@ class App < Sinatra::Base
 
 	configure do
 		set :app_file, __FILE__
+		register Sinatra::R18n
+		register Sinatra::SessionAuth
+		# use Rack::SslEnforcer, :only => "/login", :strict => true
 		
 		YAML.load_file(File.expand_path('settings.yml')).each_pair { |k,v| set k.to_sym, v }
 
@@ -48,7 +47,7 @@ class App < Sinatra::Base
 		alias_method :h, :escape_html
 
 		def library_root
-			@library_root ||= Atom::Catalog.with_uri("#{settings.pcp['library']}/catalogs")
+			@library_root ||= Atom::Catalog.parse(open_resource("#{settings.pcp['library']}/catalogs"))
 		end
 		
 		def catalogs
@@ -58,7 +57,25 @@ class App < Sinatra::Base
 		def base_url
 			@base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
 		end
-
+		
+		def open_resource(url)
+			begin
+				open(url)
+			rescue OpenURI::HTTPError => e
+				if e.io.status[0] == '401'
+					authenticate!
+					begin
+						open(url, :http_basic_authentication => [session[:user], session[:password]])
+					rescue
+						flash[:error] = 'You do not have access to this resource'
+						redirect back
+					end
+				else
+					flash[:error] = 'Unable to access resource'
+					redirect back
+				end
+			end
+		end
 	end
 	
 	require_relative 'routes/catalogs'

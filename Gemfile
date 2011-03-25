@@ -8,6 +8,7 @@ gem 'sinatra'
 
 gem 'sinatra-r18n', :require => 'sinatra/r18n'
 gem 'rack-flash'
+gem 'rack-cache', :require => 'rack/cache'
 
 gem 'haml'
 gem 'sass'

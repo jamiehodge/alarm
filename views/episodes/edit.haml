@@ -5,11 +5,18 @@
 			%p
 				%small
 					%time{ :time => episode.updated.strftime('%y-%m-%d'), :pubdate => true }= l episode.updated, :human
-		%figure		
+		%figure{ :style => 'display: none;' }	
 			%p
 				%img{ :src => episode.related_link['href'], :width => '100%' }
 	= haml :'episodes/_enclosures', :locals => { :episode => episode }
 	%p.description{ :contenteditable => true }= episode.summary
+	%footer
+		- if episode.itunes_keywords
+			%nav
+				%ul
+					- episode.itunes_keywords.split(',').each do |keyword|
+						%li
+							%a{ :href => "/keywords/#{keyword.strip}" }= keyword
 	= haml :'episodes/_social', :locals => { :feed => feed, :episode => episode }
 	%details
 		%summary= t.feed.episode.comments.count(episode.comments.count)

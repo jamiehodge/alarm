@@ -9,7 +9,11 @@ require 'base64'
 use Rack::Session::Cookie, :secret => `uuidgen`
 use Rack::Flash
 use Rack::MethodOverride
-
+use Rack::Cache,
+  :verbose     => true,
+  :metastore   => 'file:cache/meta',
+  :entitystore => 'file:cache/body'
+	
 require './app'
 
 map '/' do

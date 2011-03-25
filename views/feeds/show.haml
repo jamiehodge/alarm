@@ -9,7 +9,7 @@
 					| 
 					%a{ :href => feed.self_link['href'].sub(/http:\/\//, 'itpc://' ) }= t.feed.subscribe
 			%p#play_all
-				%button{ :type => 'button' }= t.feed.play_all
+				%button.play_all{ :type => 'button' }= t.feed.play_all
 		%figure		
 			%img{ :src => feed.logo, :width => '100%' }
 	- feed.entries.each do |episode|

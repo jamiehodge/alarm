@@ -1,9 +1,11 @@
 class App < Sinatra::Base
 	
 	get '/catalogs/:id' do
+		catalog = open_resource("#{settings.pcp['library']}/catalogs/#{params[:id]}")
+		etag catalog.meta['etag'].gsub(/"/, '') unless flash.has?(:notice) || flash.has?(:error)
 		haml :'catalogs/show', 
 			:layout => :'layouts/app', 
-			:locals => { :catalog => Atom::Catalog.with_uri("#{settings.pcp['library']}/catalogs/#{params[:id]}")}
+			:locals => { :catalog => Atom::Catalog.parse(catalog)}
 	end
 
 	put '/catalogs/:id' do
@@ -13,10 +15,12 @@ class App < Sinatra::Base
 
 	get '/catalogs/:id/edit' do
 		authenticate!
+		catalog = open_resource("#{settings.pcp['library']}/catalogs/#{params[:id]}")
+		etag catalog.meta['etag'].gsub(/"/, '') unless flash.has?(:notice) || flash.has?(:error)
 		session[:return_to] = request.path_info
 		haml :'catalogs/edit',
 		:layout => :'layouts/app',
-		:locals => { :catalog => Atom::Feed.with_uri("#{settings.pcp['library']}/catalogs/#{params[:id]}")}
+		:locals => { :catalog => Atom::Feed.parse(catalog)}
 	end
 
 	put '/catalogs/:id/image' do

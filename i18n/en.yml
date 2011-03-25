@@ -24,5 +24,6 @@ feed:
                 n: %1 comments
             author: Author
             email: Email
+            url: Homepage
             content: Content
             submit: Comment

@@ -5,7 +5,7 @@ module Sinatra
 		
 		module Helpers
 		      def authenticated?
-		        session[:user]
+						session[:user]
 		      end
 
 		      def authenticate!
@@ -45,10 +45,12 @@ module Sinatra
 		      app.post '/login' do
 		        if authenticate
 							session[:user] = params['username']
+							session[:password] = params['password']
 							flash[:notice] = "Welcome #{params['username']}"
 		          redirect to '/'
 		        else
 		          session[:user] = false
+							session[:password] = false
 							flash[:error] = 'The username or password you entered is incorrect'
 		          redirect to '/login'
 		        end
