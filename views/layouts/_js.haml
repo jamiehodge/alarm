@@ -3,11 +3,11 @@
 		load: 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js',
 	  complete: function() {
 	    if (!window.jQuery) {
-	      yepnope('/js/libs/jquery.min.js');
+	      yepnope('#{url('/js/libs/jquery.min.js')}');
 	    }
 		}
 	},{
-		load: ['/js/libs/jquery.cookie.js', '/js/libs/jquery.collapse.js'],
+		load: ['#{url('/js/libs/jquery.cookie.js')}', '#{url('/js/libs/jquery.collapse.js')}'],
 		complete: function() {
 			$('details').collapse({ 
 				head: 'summary', 
@@ -18,22 +18,22 @@
 			});
 		}
 	},{
-		load: '/js/libs/jquery.lazyload.min.js',
+		load: '#{url('/js/libs/jquery.lazyload.min.js')}',
 		complete: function() {
 			$('img').lazyload({
 				effect : "fadeIn",
-				placeholder: "/img/grey.gif"
+				placeholder: '#{url('/img/grey.gif')}'
 			});
 			localStorage.setItem('base_url', '#{base_url}')
 			}
 	},{
-		load: ['/js/libs/jquery.formalize.min.js','/js/script.js?v=1']
+		load: ['#{url('/js/libs/jquery.formalize.min.js')}','#{url('/js/script.js?v=1')}']
 	},{
 			test: !Modernizr.audio,
-			nope: '/js/libs/audio-player.js',
+			nope: '#{url('/js/libs/audio-player.js')}',
 			complete: function() {
 				if (window.AudioPlayer) {
-					AudioPlayer.setup('/js/libs/player.swf', { width: 527 });
+					AudioPlayer.setup('#{url('/js/libs/player.swf')}', { width: 527 });
 					$('.flash_audioplayer').each(function() {
 						AudioPlayer.embed($(this).attr('id'), { soundFile: $(this).data('soundFile') });
 					});
@@ -44,7 +44,7 @@
 	}]);
 
 /[if lt IE 7 ]
-	%script{ :src => '/js/libs/dd_belatedpng.js' }
+	%script{ :src => url('/js/libs/dd_belatedpng.js') }
 	:javascript
 		//DD_belatedPNG.fix('img, .png_bg');
 		

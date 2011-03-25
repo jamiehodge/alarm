@@ -1,10 +1,10 @@
 %article.episode.embed{ :id => episode.uuid }
 	%header
 		%h3
-			%a{ :href => "#{base_url}/feeds/#{feed.uuid}/episodes/#{episode.uuid}", :target => '_blank' }= episode.title
+			%a{ :href => url("/feeds/#{feed.uuid}/episodes/#{episode.uuid}"), :target => '_blank' }= episode.title
 	%footer
 		%h4
-			%a{ :href => "#{base_url}/users/#{episode.author_name}", :target => '_blank' }= episode.author_name
+			%a{ :href => url("/users/#{episode.author_name}"), :target => '_blank' }= episode.author_name
 	= haml :'episodes/_embed_enclosures', :locals => { :episode => episode }
 	%nav
 		%small

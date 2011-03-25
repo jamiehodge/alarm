@@ -9,7 +9,7 @@ module Sinatra
 		      end
 
 		      def authenticate!
-		        redirect '/login' unless authenticated?
+		        redirect url('/login') unless authenticated?
 		      end
 
 		      def logout!
@@ -47,19 +47,19 @@ module Sinatra
 							session[:user] = params['username']
 							session[:password] = params['password']
 							flash[:notice] = "Welcome #{params['username']}"
-		          redirect to '/'
+		          redirect to url('/')
 		        else
 		          session[:user] = false
 							session[:password] = false
 							flash[:error] = 'The username or password you entered is incorrect'
-		          redirect to '/login'
+		          redirect to url('/login')
 		        end
 		      end
 		
 					app.get '/logout' do
 						logout!
 						flash[:notice] = 'Successfully logged out'
-						redirect to '/'
+						redirect to url('/')
 					end
 					
 				end

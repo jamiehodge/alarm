@@ -3,15 +3,15 @@
 		load: 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js',
 	  complete: function() {
 	    if (!window.jQuery) {
-	      yepnope('/js/libs/jquery.min.js');
+	      yepnope('#{url('/js/libs/jquery.min.js')}');
 	    }
 		}
 	},{
 			test: Modernizr.audio,
-			yep: '/js/libs/audio-player.js',
+			yep: '#{url('/js/libs/audio-player.js')}',
 			complete: function() {
 				if (window.AudioPlayer) {
-					AudioPlayer.setup('/js/libs/player.swf', { width: 527 });
+					AudioPlayer.setup('#{url('/js/libs/player.swf')}', { width: 527 });
 					$('.flash_audioplayer').each(function() {
 						AudioPlayer.embed($(this).attr('id'), { soundFile: $(this).data('soundFile') });
 					});

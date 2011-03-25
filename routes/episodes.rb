@@ -43,7 +43,7 @@ class App < Sinatra::Base
 		else
 			flash[:error] = 'Please resubmit your comments'
 		end
-		redirect "/feeds/#{params[:feed_id]}"
+		redirect url("/feeds/#{params[:feed_id]}")
 	end
 
 	get '/feeds/:feed_id/episodes/:episode_id/embed' do

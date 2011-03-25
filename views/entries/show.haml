@@ -1,7 +1,7 @@
 %article.entry{ :id => entry.uuid }
 	%header
 		%hgroup
-			%a{ :href => "/feeds/#{entry.uuid}" }
+			%a{ :href => url("/feeds/#{entry.uuid}") }
 				%h2= entry.title
 			%p
 				%small

@@ -2,9 +2,9 @@
 	%header
 		%hgroup
 			%h2
-				%a{ :href => "/feeds/#{feed.uuid}/episodes/#{episode.uuid}" }= episode.title
+				%a{ :href => url("/feeds/#{feed.uuid}/episodes/#{episode.uuid}") }= episode.title
 			%h3
-				%a{ :href => "/users/#{episode.author_name}" }= episode.author_name
+				%a{ :href => url("/users/#{episode.author_name}") }= episode.author_name
 			%p
 				%small
 					%time{ :time => episode.updated.strftime('%y-%m-%d'), :pubdate => true }= l episode.updated, :human
@@ -19,11 +19,11 @@
 				%ul
 					- episode.itunes_keywords.split(',').each do |keyword|
 						%li
-							%a{ :href => "/keywords/#{keyword.strip}" }= keyword
+							%a{ :href => url("/keywords/#{keyword.strip}") }= keyword
 	%details.embed
 		%summary= t.feed.episode.embed
 		%section
-			%input{ :type => 'text', :value => "<iframe seamless width=500 height=190 frameborder=0 scrolling=no src=#{base_url}/feeds/#{feed.uuid}/episodes/#{episode.uuid}/embed></iframe>" }
+			%input{ :type => 'text', :value => "<iframe seamless width=500 height=190 frameborder=0 scrolling=no src=#{url('/feeds/#{feed.uuid}/episodes/#{episode.uuid}/embed')}></iframe>" }
 	%details.download
 		%summary= t.feed.episode.download
 		%ul

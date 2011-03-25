@@ -92,7 +92,7 @@ class App < Sinatra::Base
 	end
 	
 	get '/' do
-		redirect "/feeds/#{settings.pcp['recent']}"
+		redirect url("/feeds/#{settings.pcp['recent']}")
 	end
 
 end
