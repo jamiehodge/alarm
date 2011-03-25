@@ -2,6 +2,8 @@
 
 A simple web front-end for Podcast Producer's Podcast Library. Includes basic web-based management of feed, catalog metadata and images, as well as episode metadata. Access control using existing Podcast Producer LDAP authentication.
 
+[Here](http://radio.larm-archive.org) is an in-production example of `alarm`.
+
 ## Stack
 * Bundler
 * Sinatra

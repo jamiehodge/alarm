@@ -27,8 +27,14 @@ google_account_id: UA-XXXXXXX-X
 mongoid:
     host: localhost
     database: alarm
+		defaults: &defaults
+	      autocreate_indexes: true
     
 rakismet:
     host: rest.akismet.com
     url: http://www.example.com/
     key:
+
+external_links:
+    "A Link": http://www.example.com
+    "Another Link": http://www.example.com
