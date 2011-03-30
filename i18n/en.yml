@@ -27,3 +27,9 @@ feed:
             url: Homepage
             content: Content
             submit: Comment
+flash:
+  login_success: Hi
+  login_failed: Username or password is incorrect
+  logout_success: You are now logged out
+  comment_success: Thank you for your comment
+  comment_failed: Please resubmit your comment

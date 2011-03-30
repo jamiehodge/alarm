@@ -40,10 +40,10 @@ class App < Sinatra::Base
 				:permalink => "#{base_url}/feeds/#{params[:feed_id]}/episodes/#{params[:episode_id]}"
 		))
 		if !comment.spam? && comment.save
-			flash[:notice] = 'Thank you for your comment'
+			flash[:notice] = t.flash.comment_success
 			puts comment
 		else
-			flash[:error] = 'Please resubmit your comment'
+			flash[:error] = t.flash.comment_failed
 		end
 		redirect url("/feeds/#{params[:feed_id]}")
 	end

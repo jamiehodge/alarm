@@ -46,19 +46,19 @@ module Sinatra
 		        if authenticate
 							session[:user] = params['username']
 							session[:password] = params['password']
-							flash[:notice] = "Welcome #{params['username']}"
+							flash[:notice] = "#{t.flash.login_success} #{params['username']}"
 		          redirect to url('/')
 		        else
 		          session[:user] = false
 							session[:password] = false
-							flash[:error] = 'The username or password you entered is incorrect'
+							flash[:error] = t.flash.login_failed
 		          redirect to url('/login')
 		        end
 		      end
 		
 					app.get '/logout' do
 						logout!
-						flash[:notice] = 'Successfully logged out'
+						flash[:notice] = t.flash.logout_success
 						redirect to url('/')
 					end
 					

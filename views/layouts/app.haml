@@ -13,8 +13,8 @@
 	= haml :'layouts/_head'
 	%body{ :lang => 'en', :class => '' }
 		#container
-			#flash= haml :'layouts/_flash'
 			%header= haml :'layouts/_header'
+			#flash= haml :'layouts/_flash'
 			%nav#local= haml :'layouts/_nav'
 				
 			= yield
