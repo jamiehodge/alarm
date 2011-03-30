@@ -1,12 +1,11 @@
 %article
 	%form{ :action => url("/login"), :method => 'post' }
-		%fieldset
-			%legend Log in
-			%p
-				%label{ :for => 'username' } User name
-				%input{ :type => 'text', :name => 'username' }
-			%p
-				%label{ :for => 'password' } Password
-				%input{ :type => 'password', :name => 'password' }
-			%p
-				%input{ :type => 'submit' }
+		%p
+			%label{ :for => 'username' } User name
+			%input{ :type => 'text', :name => 'username' }
+		%p
+			%label{ :for => 'password' } Password
+			%input{ :type => 'password', :name => 'password' }
+		%p
+			%input{ :type => 'submit' }
+			
