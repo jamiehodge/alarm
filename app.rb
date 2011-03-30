@@ -78,9 +78,10 @@ class App < Sinatra::Base
 		end
 	end
 	
-	require 'routes/catalogs'
-	require 'routes/feeds'
-	require 'routes/episodes'
+	$:.unshift 'routes'
+	require 'catalogs'
+	require 'feeds'
+	require 'episodes'
 	
 	before do
 		session[:locale] = params[:locale] if params[:locale]
