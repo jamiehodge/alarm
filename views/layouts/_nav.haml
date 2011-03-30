@@ -1,7 +1,7 @@
 %h3= t.nav.browse
 %ul
 	- catalogs.each do |catalog| 
-		%a{ :href => url("/catalogs/#{catalog.uuid}") }
+		%a{ :href => url("/catalog/#{catalog.uuid}") }
 			%li= catalog.title
 %h3= t.nav.admin
 %ul

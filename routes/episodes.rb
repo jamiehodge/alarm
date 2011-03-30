@@ -1,6 +1,6 @@
 class App < Sinatra::Base
 	
-	get '/feeds/:feed_id/episodes/:episode_id' do
+	get '/feed/:feed_id/episode/:episode_id' do
 		feed = open_resource("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
 		etag feed.meta['etag'].gsub(/"/, '') unless flash.has?(:notice) || flash.has?(:error)
 		parsed_feed = Atom::Feed.parse(feed)
@@ -10,7 +10,7 @@ class App < Sinatra::Base
 			:locals => { :feed => parsed_feed, :episode => parsed_feed.entry(params[:episode_id])}
 	end
 
-	get '/feeds/:feed_id/episodes/:episode_id/edit' do
+	get '/feed/:feed_id/episode/:episode_id/edit' do
 		authenticate!
 		feed = open_resource("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
 		etag feed.meta['etag'].gsub(/"/, '')
@@ -22,14 +22,14 @@ class App < Sinatra::Base
 			:locals => { :feed => parsed_feed, :episode => parsed_feed.entry(params[:episode_id])}
 	end
 
-	put '/episodes/:id' do
+	put '/episode/:id' do
 		authenticate!
 		prb = PodcastProducer::PRB.new(params[:id])
 		prb.set_property(params[:property_name], params[:property_value]).save
 		prb.synchronize
 	end
 
-	post '/feeds/:feed_id/episodes/:episode_id/comments' do
+	post '/feed/:feed_id/episode/:episode_id/comments' do
 		comment = Comment.new(
 			params[:comment].merge(
 				:published => Time.now,
@@ -37,7 +37,7 @@ class App < Sinatra::Base
 				:user_agent => request.user_agent,
 				:referrer => request.referrer,
 				:episode_id => params[:episode_id],
-				:permalink => "#{base_url}/feeds/#{params[:feed_id]}/episodes/#{params[:episode_id]}"
+				:permalink => "#{base_url}/feed/#{params[:feed_id]}/episode/#{params[:episode_id]}"
 		))
 		if !comment.spam? && comment.save
 			flash[:notice] = t.flash.comment_success
@@ -45,10 +45,10 @@ class App < Sinatra::Base
 		else
 			flash[:error] = t.flash.comment_failed
 		end
-		redirect url("/feeds/#{params[:feed_id]}")
+		redirect url("/feed/#{params[:feed_id]}")
 	end
 
-	get '/feeds/:feed_id/episodes/:episode_id/embed' do
+	get '/feed/:feed_id/episode/:episode_id/embed' do
 		feed = open_resource("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
 		etag feed.meta['etag'].gsub(/"/, '')
 		parsed_feed = Atom::Feed.parse(feed)

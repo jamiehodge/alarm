@@ -1,4 +1,4 @@
-%form{ :action => url("/feeds/#{feed.uuid}/episodes/#{episode.uuid}/comments"), :method => 'post' }
+%form{ :action => url("/feed/#{feed.uuid}/episode/#{episode.uuid}/comments"), :method => 'post' }
 	%p
 		%input{ :type => 'text', :name => 'comment[author]', :required => true, :placeholder => t.feed.episode.comments.author }
 	%p

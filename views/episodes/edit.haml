@@ -16,7 +16,7 @@
 				%ul
 					- episode.itunes_keywords.split(',').each do |keyword|
 						%li
-							%a{ :href => url("/keywords/#{keyword.strip}") }= keyword
+							%a{ :href => url("/keyword/#{keyword.strip}") }= keyword
 	= haml :'episodes/_social', :locals => { :feed => feed, :episode => episode }
 	%details
 		%summary= t.feed.episode.comments.count(episode.comments.count)

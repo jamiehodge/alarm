@@ -10,7 +10,7 @@
 			%p
 				%img{ :src => catalog.logo }
 			%p
-				%form{ :action => url("/catalogs/#{catalog.uuid}/image"), :method => 'post', :enctype => 'multipart/form-data' }
+				%form{ :action => url("/catalog/#{catalog.uuid}/image"), :method => 'post', :enctype => 'multipart/form-data' }
 					%input{ :type => 'hidden', :name => '_method', :value => 'put' }
 					%input{ :type => 'file', :name => 'file' }
 					%input{ :type => 'submit', :value => 'Upload' }

@@ -1,6 +1,6 @@
 class App < Sinatra::Base
 	
-	get '/catalogs/:id' do
+	get '/catalog/:id' do
 		catalog = open_resource("#{settings.pcp['library']}/catalogs/#{params[:id]}")
 		etag catalog.meta['etag'].gsub(/"/, '') unless flash.has?(:notice) || flash.has?(:error)
 		parsed_catalog = Atom::Catalog.parse(catalog)
@@ -10,12 +10,12 @@ class App < Sinatra::Base
 			:locals => { :catalog => parsed_catalog}
 	end
 
-	put '/catalogs/:id' do
+	put '/catalog/:id' do
 		authenticate!
 		PodcastProducer::Server.set_catalog_property(params[:id], params[:property_name], params[:property_value])
 	end
 
-	get '/catalogs/:id/edit' do
+	get '/catalog/:id/edit' do
 		authenticate!
 		catalog = open_resource("#{settings.pcp['library']}/catalogs/#{params[:id]}")
 		etag catalog.meta['etag'].gsub(/"/, '') unless flash.has?(:notice) || flash.has?(:error)
@@ -27,7 +27,7 @@ class App < Sinatra::Base
 		:locals => { :catalog => parsed_catalog}
 	end
 
-	put '/catalogs/:id/image' do
+	put '/catalog/:id/image' do
 		authenticate!
 		PodcastProducer::Server.set_image('catalog', params[:id], IO.read(params[:file][:tempfile]), File.extname(params[:file][:filename]))
 		redirect session[:return_to]

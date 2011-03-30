@@ -10,7 +10,7 @@
 			%p
 				%img{ :src => feed.logo }
 			%p
-				%form{ :action => url("/feeds/#{feed.uuid}/image"), :method => 'post', :enctype => 'multipart/form-data' }
+				%form{ :action => url("/feed/#{feed.uuid}/image"), :method => 'post', :enctype => 'multipart/form-data' }
 					%input{ :type => 'hidden', :name => '_method', :value => 'put' }
 					%input{ :type => 'file', :name => 'file' }
 					%input{ :type => 'submit', :value => 'Upload' }
