@@ -4,6 +4,7 @@ class App < Sinatra::Base
 		feed = open_resource("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
 		etag feed.meta['etag'].gsub(/"/, '') unless flash.has?(:notice) || flash.has?(:error)
 		parsed_feed = Atom::Feed.parse(feed)
+		@title = "#{settings.site['title']}: #{parsed_feed.entry(params[:episode_id]).title}"
 		haml :'episodes/show',
 			:layout => :'layouts/app',
 			:locals => { :feed => parsed_feed, :episode => parsed_feed.entry(params[:episode_id])}
@@ -14,6 +15,7 @@ class App < Sinatra::Base
 		feed = open_resource("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
 		etag feed.meta['etag'].gsub(/"/, '')
 		parsed_feed = Atom::Feed.parse(feed)
+		@title = "#{settings.site['title']}: #{parsed_feed.entry(params[:episode_id]).title}"
 		session[:return_to] = request.path_info
 		haml :'episodes/edit',
 			:layout => :'layouts/app',
@@ -38,10 +40,10 @@ class App < Sinatra::Base
 				:permalink => "#{base_url}/feeds/#{params[:feed_id]}/episodes/#{params[:episode_id]}"
 		))
 		if !comment.spam? && comment.save
-			flash[:notice] = 'Thank you for your comments'
+			flash[:notice] = 'Thank you for your comment'
 			puts comment
 		else
-			flash[:error] = 'Please resubmit your comments'
+			flash[:error] = 'Please resubmit your comment'
 		end
 		redirect url("/feeds/#{params[:feed_id]}")
 	end
@@ -50,6 +52,7 @@ class App < Sinatra::Base
 		feed = open_resource("#{settings.pcp['library']}/atom_feeds/#{params[:feed_id]}")
 		etag feed.meta['etag'].gsub(/"/, '')
 		parsed_feed = Atom::Feed.parse(feed)
+		@title = "#{settings.site['title']}: #{parsed_feed.entry(params[:episode_id]).title}"
 		haml :'episodes/embed',
 			:layout => :'layouts/embed',
 			:locals => { :feed => parsed_feed, :episode => parsed_feed.entry(params[:episode_id])}

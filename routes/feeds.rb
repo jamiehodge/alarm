@@ -3,6 +3,7 @@ class App < Sinatra::Base
 	get '/feeds/:id' do
 		feed = open_resource("#{settings.pcp['library']}/atom_feeds/#{params[:id]}")
 		etag feed.meta['etag'].gsub(/"/, '') unless flash.has?(:notice) || flash.has?(:error)
+		@title = "#{settings.site['title']}: #{feed.title}"
 		haml :'feeds/show', 
 			:layout => :'layouts/app', 
 			:locals => { :feed => Atom::Feed.parse(feed)}
@@ -17,6 +18,7 @@ class App < Sinatra::Base
 		authenticate!
 		feed = open_resource("#{settings.pcp['library']}/atom_feeds/#{params[:id]}")
 		etag feed.meta['etag'].gsub(/"/, '') unless flash.has?(:notice) || flash.has?(:error)
+		@title = "#{settings.site['title']}: #{feed.title}"
 		session[:return_to] = request.path_info
 		haml :'feeds/edit',
 		:layout => :'layouts/app',
@@ -32,6 +34,7 @@ class App < Sinatra::Base
 	get '/keywords/:id' do
 		feed = open_resource("#{settings.pcp['library']}/keyword_atom_feeds/#{URI.encode(params[:id])}")
 		etag feed.meta['etag'].gsub(/"/, '') unless flash.has?(:notice) || flash.has?(:error)
+		@title = "#{settings.site['title']}: #{feed.title}"
 		haml :'feeds/show',
 			:layout => :'layouts/app',
 			:locals => { :feed => Atom::Feed.parse(feed)}
@@ -40,6 +43,7 @@ class App < Sinatra::Base
 	get '/users/:id' do
 		feed = open_resource("#{settings.pcp['library']}/user_atom_feeds/#{URI.encode(params[:id])}")
 		etag feed.meta['etag'].gsub(/"/, '') unless flash.has?(:notice) || flash.has?(:error)
+		@title = "#{settings.site['title']}: #{feed.title}"
 		haml :'feeds/show',
 		:layout => :'layouts/app',
 		:locals => { :feed => Atom::Feed.parse(feed)}
@@ -49,6 +53,7 @@ class App < Sinatra::Base
 		authenticate!
 		feed = open_resource("#{settings.pcp['library']}/user_atom_feeds/#{params[:id]}")
 		etag feed.meta['etag'].gsub(/"/, '') unless flash.has?(:notice) || flash.has?(:error)
+		@title = "#{settings.site['title']}: #{feed.title}"
 		session[:return_to] = "/users/#{params[:id]}/edit"
 		haml :'feeds/edit',
 		:layout => :'layouts/app',

@@ -3,7 +3,7 @@
 	
 	%meta{ :content => 'IE=edge,chrome=1', 'http-equiv' => 'X-UA-Compatible' }/
 	
-	%title
+	%title= @title || settings.site['title']
 	%meta{ :content => 'A simple front-end for Podcast Producer', :name => 'description' }/
 	%meta{ :content => 'Jamie Hodge', :name => 'author' }/
 	
