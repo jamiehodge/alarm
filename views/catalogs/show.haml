@@ -2,7 +2,7 @@
 	%header
 		%hgroup
 			%h1= catalog.title
-			%h2= catalog.subtitle
+			%p= catalog.subtitle
 			%p
 				%small
 					%time{ :time => catalog.updated.strftime('%y-%m-%d'), :pubdate => true }= catalog.updated.strftime('%A, %b %d %Y')

@@ -2,7 +2,7 @@
 	%header
 		%hgroup
 			%h1.title{ :contenteditable => true }= catalog.title
-			%h2.subtitle{ :contenteditable => true }= catalog.subtitle
+			%p.subtitle{ :contenteditable => true }= catalog.subtitle
 			%p
 				%small
 					%time{ :time => catalog.updated.strftime('%y-%m-%d'), :pubdate => true }= catalog.updated.strftime('%A, %b %d %Y')
