@@ -23,7 +23,7 @@
 	%details.embed
 		%summary= t.feed.episode.embed
 		%section
-			%input{ :type => 'text', :value => "<iframe seamless width=500 height=190 frameborder=0 scrolling=no src=#{url('/feeds/#{feed.uuid}/episodes/#{episode.uuid}/embed')}></iframe>" }
+			%input{ :type => 'text', :value => "<iframe seamless width=500 height=190 frameborder=0 scrolling=no src=#{url("/feeds/#{feed.uuid}/episodes/#{episode.uuid}/embed")}></iframe>" }
 	%details.download
 		%summary= t.feed.episode.download
 		%ul
