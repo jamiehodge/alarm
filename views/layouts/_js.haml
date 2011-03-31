@@ -1,6 +1,8 @@
 :javascript
 	yepnope([{
-		load: 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js',
+		test: window.location.protocol == 'https:',
+		yep: 'https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js',
+		nope: 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js',
 	  complete: function() {
 	    if (!window.jQuery) {
 	      yepnope('#{url('/js/libs/jquery.min.js')}');
