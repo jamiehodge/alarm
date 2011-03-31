@@ -11,7 +11,6 @@ class App < Sinatra::Base
 		set :app_file, __FILE__
 		register Sinatra::R18n
 		register Sinatra::SessionAuth
-		# use Rack::SslEnforcer, :only => "/login", :strict => true
 		
 		YAML.load_file(File.expand_path('settings.yml')).each_pair { |k,v| set k.to_sym, v }
 
@@ -35,6 +34,10 @@ class App < Sinatra::Base
 	  end
 	
 		set :sass, Compass.sass_engine_options
+	end
+	
+	configure(:production) do
+		use Rack::SslEnforcer, :only => url('/login'), :strict => true
 	end
 
 	$LOAD_PATH.unshift File.join(root, 'lib')
