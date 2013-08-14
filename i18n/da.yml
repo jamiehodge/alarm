@@ -18,19 +18,7 @@ feed:
     episode:
         embed: Del
         download: Download
-        comments:
-            count: !!pl
-                1: 1 kommentar
-                n: %1 kommentarer
-            author: Forfatter
-            email: Email
-            url: Hjemmeside
-            content: Inhold
-            submit: Kommentarer
 flash:
   login_success: Hej
   login_failed: Brugernavn eller password er ikke korrekt
   logout_success: Du er nu logget ud
-  comment_success: Tak for din kommentar
-  comment_failed: Forsøg venligst at skrive din kommentar igen
-    

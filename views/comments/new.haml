@@ -1,9 +1,0 @@
-%form{ :action => url("/feed/#{feed.uuid}/episode/#{episode.uuid}/comments"), :method => 'post' }
-	%p
-		%input{ :type => 'text', :name => 'comment[author]', :required => true, :placeholder => t.feed.episode.comments.author }
-	%p
-		%input{ :type => 'email', :name => 'comment[author_email]', :required => true, :placeholder => t.feed.episode.comments.email }
-	%p
-		%textarea{ :name => 'comment[content]', :required => true, :placeholder => t.feed.episode.comments.content }
-	%p
-		%input{ :type => 'submit', :value => t.feed.episode.comments.submit }

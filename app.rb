@@ -1,5 +1,13 @@
+require 'rubygems'
+require 'bundler'
+Bundler.require(:default, :development)
+
+require 'open-uri'
+require 'yaml'
+require 'base64'
+
 require 'sinatra/base'
-require './lib/sinatra/sessionauth'
+require_relative './lib/sinatra/sessionauth'
 
 class App < Sinatra::Base
 	mime_type :otf, 'font/otf'
@@ -11,10 +19,8 @@ class App < Sinatra::Base
 		set :app_file, __FILE__
 		register Sinatra::R18n
 		register Sinatra::SessionAuth
-		
-		YAML.load_file(File.expand_path('settings.yml')).each_pair { |k,v| set k.to_sym, v }
 
-		Mongoid.configure { |c| c.from_hash mongoid }
+		YAML.load_file(File.expand_path('settings.yml')).each_pair { |k,v| set k.to_sym, v }
 
 		Rakismet.key = rakismet['key']
 		Rakismet.url = rakismet['url']
@@ -22,29 +28,28 @@ class App < Sinatra::Base
 
 		set :haml, { :format => :html5 }
 	end
-	
+
 	configure(:development) do
 		register Sinatra::Reloader
 		also_reload "routes/*.rb"
-		
+
 		Compass.configuration do |config|
 	    config.css_dir = 'css'
 			config.images_dir = 'img'
 			config.output_style = :compressed
 	  end
-	
+
 		set :sass, Compass.sass_engine_options
 	end
-	
+
 	configure(:production) do
 		use Rack::SslEnforcer, :only => url('/login'), :strict => true
 	end
 
 	$LOAD_PATH.unshift File.join(root, 'lib')
 	require 'atom'
-	require 'comment'
 	require 'podcast_producer'
-	
+
 	helpers do
 		include Rack::Utils
 		alias_method :h, :escape_html
@@ -52,15 +57,15 @@ class App < Sinatra::Base
 		def library_root
 			@library_root ||= Atom::Catalog.parse(open_resource("#{settings.pcp['library']}/catalogs"))
 		end
-		
+
 		def catalogs
 			@catalogs ||= library_root.entries.select { |catalog| settings.pcp['catalogs'].include? "#{catalog.alternate_link['feedtype'].gsub(/_feeds_catalog/, '')}" }
 		end
-		
+
 		def base_url
 			@base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
 		end
-		
+
 		def open_resource(url)
 			begin
 				open(url)
@@ -80,21 +85,21 @@ class App < Sinatra::Base
 			end
 		end
 	end
-	
+
 	$:.unshift 'routes'
 	require 'catalogs'
 	require 'feeds'
 	require 'episodes'
-	
+
 	before do
 		session[:locale] = params[:locale] if params[:locale]
 	end
-	
+
 	get '/css/:type/:name.css' do
 		content_type 'text/css', :charset => 'utf-8'
 		sass :"sass/#{params[:type]}/#{params[:name]}"
 	end
-	
+
 	get '/' do
 		redirect url("/feed/#{settings.pcp['recent']}")
 	end

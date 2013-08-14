@@ -7,7 +7,7 @@ gem 'compass-rgbapng', :require => 'rgbapng'
 gem 'sinatra'
 
 gem 'sinatra-r18n', :require => 'sinatra/r18n'
-gem 'rack-flash'
+gem 'rack-flash3', :github => 'treeder/rack-flash', :require => 'rack/flash'
 gem 'rack-cache', :require => 'rack/cache'
 
 gem 'haml'
@@ -15,9 +15,6 @@ gem 'sass'
 
 gem 'nokogiri'
 gem 'plist'
-
-gem 'mongoid'
-gem 'bson_ext'
 
 gem 'rakismet'
 

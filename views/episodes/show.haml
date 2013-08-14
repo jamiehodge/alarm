@@ -8,7 +8,7 @@
 			%p
 				%small
 					%time{ :time => episode.updated.strftime('%y-%m-%d'), :pubdate => true }= l episode.updated, :human
-		%figure{ :style => 'display: none;' }		
+		%figure{ :style => 'display: none;' }
 			%p
 				%img{ :src => episode.related_link['href'], :width => '100%' }
 	= haml :'episodes/_enclosures', :locals => { :episode => episode }
@@ -31,9 +31,3 @@
 				%li
 					%a{ :href => enclosure['href'] }= enclosure['title']
 	= haml :'episodes/_social', :locals => { :feed => feed, :episode => episode }
-	%details
-		%summary= t.feed.episode.comments.count(episode.comments.count)
-		%section
-			- episode.comments.each do |comment|
-				= haml :'comments/show', :locals => { :comment => comment }
-			= haml :'comments/new', :locals => { :feed => feed, :episode => episode }

@@ -1,79 +1,82 @@
+GIT
+  remote: git://github.com/treeder/rack-flash.git
+  revision: 4fde39103da15ebdcbd586bd4b2bc6bba9fbe943
+  specs:
+    rack-flash3 (1.0.3)
+      rack
+      rack
+
 GEM
   remote: http://rubygems.org/
   specs:
-    activesupport (2.3.11)
-    backports (1.18.2)
-    bson (1.2.4)
-    bson_ext (1.2.4)
-    chunky_png (1.0.1)
-    compass (0.10.6)
-      haml (>= 3.0.4)
-    compass-rgbapng (0.1.1)
+    backports (3.3.3)
+    chunky_png (1.2.8)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    compass-rgbapng (0.2.1)
       chunky_png (>= 0.8.0)
       compass (>= 0.10.0)
-    compass-susy-plugin (0.8.1)
-      compass (>= 0.10.0)
-    crack (0.1.8)
-    durran-validatable (2.0.1)
-    haml (3.0.25)
-    httparty (0.7.4)
-      crack (= 0.1.8)
-    mongo (1.2.4)
-      bson (>= 1.2.4)
-    mongoid (1.9.5)
-      activesupport (< 3.0.0)
-      bson (~> 1.2.1)
-      durran-validatable (>= 2.0.1)
-      mongo (~> 1.2.1)
-      will_paginate (< 2.9)
-    monkey-lib (0.5.4)
-      backports
-    net-ldap (0.1.1)
-    nokogiri (1.4.4)
+    compass-susy-plugin (0.9)
+      compass (>= 0.11.1)
+    eventmachine (1.0.3)
+    fssm (0.2.10)
+    haml (4.0.3)
+      tilt
+    httparty (0.11.0)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
+    mini_portile (0.5.1)
+    multi_json (1.7.9)
+    multi_xml (0.5.5)
+    net-ldap (0.3.1)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     plist (3.1.0)
-    r18n-core (0.4.9)
-    rack (1.2.2)
-    rack-cache (1.0)
+    r18n-core (1.1.5)
+    rack (1.5.2)
+    rack-cache (1.2)
       rack (>= 0.4)
-    rack-flash (0.1.1)
+    rack-protection (1.5.0)
       rack
-    rack-ssl-enforcer (0.2.2)
-    rakismet (1.0.1)
-    sass (3.1.0.alpha.221)
-    sinatra (1.2.1)
-      rack (~> 1.1)
-      tilt (< 2.0, >= 1.2.2)
-    sinatra-advanced-routes (0.5.1)
-      monkey-lib (~> 0.5.0)
-      sinatra (~> 1.0)
-      sinatra-sugar (~> 0.5.0)
-    sinatra-r18n (0.4.9)
-      r18n-core (= 0.4.9)
-    sinatra-reloader (0.5.0)
-      sinatra (~> 1.0)
-      sinatra-advanced-routes (~> 0.5.0)
-    sinatra-sugar (0.5.0)
-      monkey-lib (~> 0.5.0)
-      sinatra (~> 1.0)
-    tilt (1.2.2)
-    will_paginate (2.3.15)
+    rack-ssl-enforcer (0.2.5)
+    rack-test (0.6.2)
+      rack (>= 1.0)
+    rakismet (1.3.0)
+    sass (3.2.10)
+    sinatra (1.4.3)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
+    sinatra-contrib (1.4.0)
+      backports (>= 2.0)
+      eventmachine
+      rack-protection
+      rack-test
+      sinatra (~> 1.4.2)
+      tilt (~> 1.3)
+    sinatra-r18n (1.1.5)
+      r18n-core (= 1.1.5)
+      sinatra (>= 1.3)
+    sinatra-reloader (1.0)
+      sinatra-contrib
+    tilt (1.4.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bson_ext
   compass
   compass-rgbapng
   compass-susy-plugin
   haml
   httparty
-  mongoid
   net-ldap
   nokogiri
   plist
   rack-cache
-  rack-flash
+  rack-flash3!
   rack-ssl-enforcer
   rakismet
   sass
