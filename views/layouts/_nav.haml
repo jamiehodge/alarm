@@ -3,22 +3,6 @@
 	- catalogs.each do |catalog| 
 		%a{ :href => url("/catalog/#{catalog.uuid}") }
 			%li= catalog.title
-%h3= t.nav.admin
-%ul
-	- if authenticated?
-		%li
-			%a{ :href => url('/logout') }= t.nav.log_out
-		- if request.path_info.split('/').last == 'edit'
-			%li
-				%a{ :href => url("#{request.path_info[0..-6]}") }= t.nav.view_page
-		- else
-			%li
-				%a{ :href => url("#{request.path_info}/edit") }= t.nav.edit_page
-	- else
-		%li
-			%a{ :href => url('/login') }= t.nav.log_in
-		%li
-			%a{ :href => settings.pcp['capture'] }= t.nav.capture
 %h3= t.nav.locale
 %ul
 	- r18n.available_locales.reject { |l| l.code == r18n.locale.code }.each do |locale|
