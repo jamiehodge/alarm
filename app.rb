@@ -59,7 +59,7 @@ class App < Sinatra::Base
 		end
 
 		def catalogs
-			@catalogs ||= library_root.entries.select { |catalog| settings.pcp['catalogs'].include? "#{catalog.alternate_link['feedtype'].gsub(/_feeds_catalog/, '')}" }
+			@catalogs ||= library_root.entries.select { |catalog| settings.pcp['catalogs'].include? "#{catalog.alternate_link['feedtype'] && catalog.alternate_link['feedtype'].gsub(/_feeds_catalog/, '')}" }
 		end
 
 		def base_url
