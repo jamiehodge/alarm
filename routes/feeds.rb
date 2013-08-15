@@ -34,7 +34,7 @@ class App < Sinatra::Base
 	end
 
 	get '/keyword/:id' do
-		feed = open_resource("#{settings.pcp['library']}/keyword_atom_feeds/#{URI.encode(params[:id])}")
+		feed = open_resource("#{settings.pcp['library']}/keyword_atom_feeds/#{URI.escape(params[:id])}")
 		etag feed.meta['etag'].gsub(/"/, '') unless flash.has?(:notice) || flash.has?(:error)
 		parsed_feed = Atom::Feed.parse(feed)
 		@title = "#{settings.site['title']}: #{parsed_feed.title}"
@@ -44,7 +44,7 @@ class App < Sinatra::Base
 	end
 
 	get '/user/:id' do
-		feed = open_resource("#{settings.pcp['library']}/user_atom_feeds/#{URI.encode(params[:id])}")
+		feed = open_resource("#{settings.pcp['library']}/user_atom_feeds/#{URI.escape(params[:id])}")
 		etag feed.meta['etag'].gsub(/"/, '') unless flash.has?(:notice) || flash.has?(:error)
 		parsed_feed = Atom::Feed.parse(feed)
 		@title = "#{settings.site['title']}: #{parsed_feed.title}"
